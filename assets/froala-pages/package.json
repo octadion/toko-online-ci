@@ -1,0 +1,71 @@
+{
+  "_from": "froala-pages",
+  "_id": "froala-pages@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-JrcpMCi8UowIsagh09/pZ3G+Fn1P3SUnVpB6q5dnyh3A/FJLQ+hqDq3A+YMTHb/rrRecluXKR1gr6zAO+XQdIA==",
+  "_location": "/froala-pages",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "froala-pages",
+    "name": "froala-pages",
+    "escapedName": "froala-pages",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/froala-pages/-/froala-pages-1.2.0.tgz",
+  "_shasum": "c6d9d242efdf7947ce16f55c1cb093e02f6d8ed5",
+  "_spec": "froala-pages",
+  "_where": "C:\\xampp\\htdocs\\catalog",
+  "bugs": {
+    "url": "https://github.com/froala/pages/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The next generation JavaScript Page Builder made by devs for devs. A plug and play web page design and editing JavaScript tool for your web application and loved by designers.",
+  "filename": "js/froala_pages.min.js",
+  "homepage": "https://www.froala.com/pages",
+  "keywords": [
+    "froala",
+    "froala-pages",
+    "froala-wysiwyg",
+    "froala-editor",
+    "html",
+    "text",
+    "pages",
+    "wysiwyg",
+    "javascript-plugin",
+    "rte",
+    "javascript",
+    "vanillajs"
+  ],
+  "license": "https://www.froala.com/pages/pricing",
+  "main": "js/froala_pages.min.js",
+  "maintainers": [
+    {
+      "name": "Froala Labs"
+    }
+  ],
+  "name": "froala-pages",
+  "npmFileMap": [
+    {
+      "basePath": "/",
+      "files": [
+        "js/*.min.js",
+        "css/*.min.css"
+      ]
+    }
+  ],
+  "npmName": "froala-pages",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/froala/pages.git"
+  },
+  "version": "1.2.0"
+}

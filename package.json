@@ -1,0 +1,16 @@
+{
+  "name": "catalog",
+  "version": "1.0.0",
+  "description": "A catalog system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramadhan wahyu",
+  "license": "ISC",
+  "dependencies": {
+    "froala-editor": "^3.2.6",
+    "froala-pages": "^1.2.0",
+    "jquery-validation": "^1.19.3"
+  }
+}
