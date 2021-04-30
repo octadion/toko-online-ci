@@ -60,7 +60,7 @@ class Product_front_model extends CI_Model
                                     </a>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-detail.html">'.$row['name'].'</a></h3>
+                                    <h3><a href="'.base_url('front/productfront/detail/'.$row['id'].'').'">'.$row['name'].'</a></h3>
                                     <div class="product-price">
                                         <span>'.indo_currency($row['price']).'</span>
                                     </div>
