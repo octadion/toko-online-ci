@@ -84,8 +84,14 @@ class Product_model extends CI_Model
           'status_post' => $post['status_post']
         //   'user_id' => decode_id($this->session->userdata('id')),
         ];
-        // $post['thumbnail'] == '' || $post['thumbnail'] == null ? null : $params['thumbnail'] = $post['thumbnail'];
+        $post['thumbnail'] == '' || $post['thumbnail'] == null ? null : $params['thumbnail'] = $post['thumbnail'];
         $result = $this->db->insert('product', $params);
+        $product_id = $this->db->insert_id(); 
+        $stock = [
+            'product_id' => $product_id,
+            'qty' => $post['qty'],
+        ];
+        $hasil_stock = $this->db->insert('inventories', $stock);
         return $result;
     }
 
@@ -103,7 +109,7 @@ class Product_model extends CI_Model
             'status_post' => $post['status_post']
         //   'user_id_last' => decode_id($this->session->userdata('id')),
         ];
-        // $post['thumbnail'] == '' || $post['thumbnail'] == null ? null : $params['thumbnail'] = $post['thumbnail'];
+        $post['thumbnail'] == '' || $post['thumbnail'] == null ? null : $params['thumbnail'] = $post['thumbnail'];
         // $post['title'] == '' || $post['title'] == null ? null : $params['judul'] = $post['title'];
 
         $this->db->where('id', decode_id($post['id']));

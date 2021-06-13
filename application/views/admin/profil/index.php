@@ -30,8 +30,8 @@
 </nav>
 
     <div class="col-md-13"> 
-        
-            <ul class="nav nav-tabs nav-tabs-block justify-content-start" data-toggle="tabs" role="tablist">
+        <div class="block">
+            <ul class="nav nav-tabs nav-tabs-alt justify-content-start" data-toggle="tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" href="#btabs-static2-home">Akun</a>
                 </li>
@@ -46,7 +46,7 @@
                 <div class="tab-pane active" id="btabs-static2-home" role="tabpanel">
                 <div class="row">
                             <div class="col-md-12">
-                                <div class="block block-themed block-rounded block-shadow">
+                                <div class="block block-themed block-rounded">
                                     <!-- <div class="block-header block-header-default bg-gd-dusk">
                                         <h3 class="block-title">Edit Akun</h3>
                                     </div> -->
@@ -161,7 +161,7 @@
                         <div class="tab-pane" id="btabs-static2-profile" role="tabpanel">
                         <div class="row">
                         <div class="col-md-12">
-                            <div class="block block-themed block-rounded block-shadow">
+                            <div class="block block-themed block-rounded">
                                 <!-- <div class="block-header block-header-default bg-gd-dusk">
                                     <h3 class="block-title">Ganti Password</h3>
                                 </div> -->
@@ -215,5 +215,5 @@
                     
                 </div>
             </div>
-
+    </div>
 </form>

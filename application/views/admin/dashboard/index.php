@@ -25,7 +25,7 @@
                                         <i class="si si-bag fa-3x text-body-bg-dark"></i>
                                     </div>
                                     <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="0" data-to="<?= $product?>">0</div>
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Product</div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Products</div>
                                 </div>
                             </a>
                         </div>
@@ -35,7 +35,8 @@
                                     <div class="float-left mt-10 d-none d-sm-block">
                                         <i class="si si-wallet fa-3x text-body-bg-dark"></i>
                                     </div>
-                                    <div class="font-size-h3 font-w600">$<span data-toggle="countTo" data-speed="1000" data-to="780">0</span></div>
+                                     <!-- <?= print_r($earning)?> -->
+                                    <div class="font-size-h3 font-w600">Rp. <span data-toggle="countTo" data-speed="1000" data-to="<?= $earning?>">0</span></div>
                                     <div class="font-size-sm font-w600 text-uppercase text-muted">Earnings</div>
                                 </div>
                             </a>
@@ -44,10 +45,12 @@
                             <a class="block block-link-shadow text-right" href="javascript:void(0)">
                                 <div class="block-content block-content-full clearfix">
                                     <div class="float-left mt-10 d-none d-sm-block">
-                                        <i class="si si-envelope-open fa-3x text-body-bg-dark"></i>
+                                        <i class="si si-basket fa-3x text-body-bg-dark"></i>
                                     </div>
-                                    <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="1000" data-to="15">0</div>
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Messages</div>
+                                    <!-- <?= print_r($order)?> -->
+                                    <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="1000" data-to="<?= $order?>">0</div>
+            
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Orders</div>
                                 </div>
                             </a>
                         </div>
@@ -57,8 +60,9 @@
                                     <div class="float-left mt-10 d-none d-sm-block">
                                         <i class="si si-users fa-3x text-body-bg-dark"></i>
                                     </div>
+                                    <!-- <?=print_r($user);?> -->
                                     <div class="font-size-h3 font-w600" data-toggle="countTo" data-speed="1000" data-to="<?= $user?>">0</div>
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">User</div>
+                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Users</div>
                                 </div>
                             </a>
                         </div>
@@ -186,14 +190,14 @@
                                     <div class="row py-20">
                                         <div class="col-6 text-right border-r">
                                             <div class="invisible" data-toggle="appear" data-class="animated fadeInLeft">
-                                                <div class="font-size-h3 font-w600">16</div>
-                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Projects</div>
+                                                <div class="font-size-h3 font-w600"><?=$order?></div>
+                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Orders</div>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="invisible" data-toggle="appear" data-class="animated fadeInRight">
-                                                <div class="font-size-h3 font-w600">2</div>
-                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Active</div>
+                                                <div class="font-size-h3 font-w600"><?=$completed?></div>
+                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Completed</div>
                                             </div>
                                         </div>
                                     </div>
@@ -209,14 +213,14 @@
                                     <div class="row py-20">
                                         <div class="col-6 text-right border-r">
                                             <div class="invisible" data-toggle="appear" data-class="animated fadeInLeft">
-                                                <div class="font-size-h3 font-w600 text-info">63250</div>
-                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Accounts</div>
+                                                <div class="font-size-h3 font-w600 text-info"><?=$product?></div>
+                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Products</div>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="invisible" data-toggle="appear" data-class="animated fadeInRight">
-                                                <div class="font-size-h3 font-w600 text-success">97%</div>
-                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Active</div>
+                                                <div class="font-size-h3 font-w600 text-success"><?= $good?></div>
+                                                <div class="font-size-sm font-w600 text-uppercase text-muted">Good</div>
                                             </div>
                                         </div>
                                     </div>

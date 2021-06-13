@@ -44,6 +44,7 @@
             url: BASE_URL+'admin/profil/get_profile',
             dataType: 'JSON',
             success: function(res)  {
+                console.log(res.id);
                 $(`#id`).val(res.id);
                 $(`#first_name`).val(res.first_name);
                 $(`#last_name`).val(res.last_name);

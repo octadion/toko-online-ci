@@ -36,10 +36,10 @@
                     <th>Barcode</th>
                     <th class="d-none d-sm-table-cell" style="width: 15%;">Name</th>
                     <th class="d-none d-sm-table-cell" style="width: 10%;">Category</th>
-                    <th class="d-none d-sm-table-cell" style="width: 13%;">Unit</th>
+                    <th class="d-none d-sm-table-cell" style="width: 13%;">Weight</th>
                     <!-- <th class="d-none d-sm-table-cell" style="width: 13%;">Weight</th> -->
                     <th class="d-none d-sm-table-cell" style="width: 13%;">Price</th>
-                    <th class="d-none d-sm-table-cell" style="width: 13%;">Stock</th>
+                    <!-- <th class="d-none d-sm-table-cell" style="width: 13%;">Stock</th> -->
                     <th class="d-none d-sm-table-cell" style="width: 13%;">Status</th>
                     <th style="width: 17%;">Action</th>
                 </tr>

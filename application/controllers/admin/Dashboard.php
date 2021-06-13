@@ -11,7 +11,11 @@ class Dashboard extends MY_Controller
     public function index()
     {
         $product = $this->db->query("SELECT * FROM product where status_post = 'published' ")->num_rows();
-		$user = $this->db->query("SELECT * FROM user where deleted_at = null ")->num_rows();
+		$user = $this->db->query("SELECT * FROM user where deleted_at is null ")->num_rows();
+        $order = $this->db->query("SELECT * FROM orders where deleted_at is null ")->num_rows();
+        $completed = $this->db->query("SELECT * FROM orders where deleted_at is null and status = 'completed' ")->num_rows();
+        $good = $this->db->query("SELECT * FROM product where status_post = 'published' and status_barang = 'baik' ")->num_rows();
+        $earning = $this->db->query("SELECT sum(grand_total) as total FROM orders where status = 'confirmed' or status = 'delivered' or status = 'completed' ")->row()->total;
         $this->_display('admin/dashboard/index', [
             'menu_active' => 'dashboard',
             'title' => 'Dashboard',
@@ -19,6 +23,10 @@ class Dashboard extends MY_Controller
             'role' => $this->session->userdata('role'),
             'product' => $product,
             'user' => $user,
+            'order' => $order,
+            'earning' => $earning,
+            'completed' => $completed,
+            'good' => $good,
         ]);
     }
 }

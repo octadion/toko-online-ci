@@ -24,7 +24,7 @@
 
     <!-- Main CSS-->
     <link type="text/css" href="<?= base_url(); ?>assets_front/assets/css/style.css" rel="stylesheet">
-
+    
     <!-- Optional Plugins-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
@@ -84,8 +84,9 @@
                                 <span class="badge badge-default">5</span>
                             </div>
                             <div class="single-icon shopping-cart">
-                                <a href="#"><i class="fa fa-shopping-cart fa-2x"></i></a>
-                                <span class="badge badge-default">4</span>
+                            <a href="<?php echo base_url('front/cart'); ?>" title="View Cart"><i class="fa fa-shopping-cart fa-2x"></i> 
+                            </a>
+                                <span class="badge badge-default">(<?php echo ($this->cart->total_items() > 0)?$this->cart->total_items().'':'Empty'; ?>)</span>
                             </div>
                         </div>
                     </div>
@@ -103,22 +104,29 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="<?= base_url('front/home')?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="<?= base_url('front/about')?>">About</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">Pages</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="<?= base_url('front/productfront/')?>">Products</a>
-                                <a class="dropdown-item" href="product-detail.html">Product Detail</a>
-                                <a class="dropdown-item" href="cart.html">Cart</a>
-                                <a class="dropdown-item" href="checkout.html">Checkout</a>
+                                <!-- <a class="dropdown-item" href="product-detail.html">Product Detail</a> -->
+                                <a class="dropdown-item" href="<?= base_url('front/cart')?>">Cart</a>
+                                <!-- <a class="dropdown-item" href="checkout.html">Checkout</a> -->
                             </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?=base_url('front/order/')?>">ORDER</a>
                         </li>
                     </ul>
                 </div> <!-- collapse <?= base_url(); ?> assets_front// -->
             </div> <!-- container <?= base_url(); ?> assets_front// -->
         </nav>
     </header>
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="<SB-Mid-client-_dCWZfqcBr4vmo90>"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

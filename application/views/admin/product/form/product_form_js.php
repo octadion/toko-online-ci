@@ -12,7 +12,7 @@
         var data = new FormData();
         data.append("image", image);
         $.ajax({
-            url: BASE_URL + 'berita/upload_photo_summernote',
+            url: BASE_URL + 'admin/product/upload_photo_summernote',
             cache: false,
             contentType: false,
             processData: false,
@@ -22,7 +22,7 @@
                 // var image = $('<img>').attr('src', 'http://' + url);
                 // $('#isi_berita').summernote("insertNode", image[0]);
                 console.log(url);
-                $("#isi_berita").summernote("insertImage", url);
+                $("#description").summernote("insertImage", url);
             },
             error: function(data) {
                 console.log(data);

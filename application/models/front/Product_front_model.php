@@ -16,10 +16,10 @@ class Product_front_model extends CI_Model
 
     public function make_query($minimum_price, $maximum_price, $category){
         $query = "
-        SELECT product.*, product.id as id_product, category.category_name, product_photo.foto_name, product_photo.foto_path
+        SELECT product.*, product.id as id_product, category.category_name
         FROM product
         LEFT JOIN category ON product.category_id = category.id
-        LEFT JOIN product_photo ON product_photo.produk_id = product.id
+       
         WHERE product.status_post = 'published' and product.deleted_at is null
         ";
         if(isset($minimum_price, $maximum_price) && !empty($minimum_price)
@@ -55,7 +55,7 @@ class Product_front_model extends CI_Model
                             <div class="single-product">
                             <div class="js-slider slick-nav-black slick-dotted-inner slick-dotted-white product-img" data-dots="true" data-arrows="true">
                                     <a href="'.base_url('front/productfront/detail/'.$row['id'].'').'">
-                                        <img src="'.base_url().$row['foto_path']."/".$row['foto_name'].'" class="img-fluid" />
+                                        <img src="'.base_url().'uploads'."/".$row['thumbnail'].'" class="img-fluid" style="height:250px; width:300px; margin:auto;"/>
                                         <input type="hidden" value="'.$row['id'].'">
                                     </a>
                                 </div>
@@ -63,6 +63,8 @@ class Product_front_model extends CI_Model
                                     <h3><a href="'.base_url('front/productfront/detail/'.$row['id'].'').'">'.$row['name'].'</a></h3>
                                     <div class="product-price">
                                         <span>'.indo_currency($row['price']).'</span>
+                                        
+                                        <a href="'.base_url('front/productfront/cart/'.$row['id'].'').'" class="btn-sm btn-primary">Add to Cart</a>
                                     </div>
                                 </div>
                             </div>

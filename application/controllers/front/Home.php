@@ -7,9 +7,11 @@ class Home extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('category_model');
+        $this->load->library('cart');
 	}
     public function index()
     {
+       
         
         // $faq = $this->db->("SELECT * FROM faq where status = 'public' ")->get()->num_rows();
         $category = $this->category_model->get_view()->result();
@@ -19,6 +21,7 @@ class Home extends MY_Controller
             // ->where('status','public')->limit(4)->order_by('id','DESC')->get()->result(),
             // 'sosmed'=>$this->db->select('*')->from('grid_footer')->get()->result(),
             'menu_active' => 'akun',
+            'cartItems' => $this->cart->contents(),
             'title' => 'Manajemen Akun',
             'nama' => $this->session->userdata('full_name'),
             'role' => $this->session->userdata('role'),

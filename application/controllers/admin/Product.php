@@ -26,10 +26,10 @@ class Product extends MY_Controller
             // $row[] = $item->first_name.' '.$item->last_name;
             
             $row[] = $item->category_name;
-            $row[] = $item->weight.' '.$item->unit_name;
-            // $row[] = $item->weight;
+            // $row[] = $item->weight.' '.$item->unit_name;
+            $row[] = $item->weight.' '."Gr";
             $row[] = indo_currency($item->price);
-            $row[] = $item->stock;
+            // $row[] = $item->stock;
             $row[] = $this->status_color($item->status_barang);
             // add html for action
             $status_barang = $item->status_barang == 'baik' ? 'rusak' : 'baik';
@@ -108,6 +108,7 @@ class Product extends MY_Controller
         $item->short_desc = null;
         $item->status_barang = null;
         $item->status_post = null;
+        $item->thumbnail = null;
         $category = $this->category_model->get_view()->result();
         $unit = $this->unit_model->get_view()->result();
         // $photo = $this->photo_model->get_view()->result();
@@ -150,9 +151,10 @@ class Product extends MY_Controller
     }
     public function detail($id = null)
     {
-        $this->db->select('product.*,  category.category_name, unit.unit_name');
+        $this->db->select('product.*,  category.category_name, unit.unit_name, inventories.qty');
         $this->db->join('category', 'product.category_id = category.id', 'left');
          $this->db->join('unit', 'product.unit_id = unit.id', 'left');
+         $this->db->join('inventories', 'product.id = inventories.product_id', 'left');
         $this->db->where([
             'product.deleted_at' => null,
             'product.id' => $id,
@@ -220,13 +222,13 @@ class Product extends MY_Controller
         // $slug = format_url($post['title']);
 		if($post['page'] == 'add'){
 
-            // $uploads = upload_file('thumbnail', 'uploads/', true, 'jpg|png|jpeg');
-            // $post['thumbnail'] = $uploads['name'];
+            $uploads = upload_file('thumbnail', 'uploads/', true, 'jpg|png|jpeg');
+            $post['thumbnail'] = $uploads['name'];
 			$data = $this->product_model->add($post);
             
 		} else if($post['page'] == 'edit'){
-            // $uploads = upload_file('thumbnail', 'uploads/', true, 'jpg|png|jpeg');
-            // $post['thumbnail'] = $uploads['name'];
+            $uploads = upload_file('thumbnail', 'uploads/', true, 'jpg|png|jpeg');
+            $post['thumbnail'] = $uploads['name'];
 			$data = $this->product_model->edit($post);
 		} 
 		if($this->db->affected_rows()>0){

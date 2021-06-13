@@ -120,7 +120,87 @@
 
                     <!-- Side Navigation -->
                     <div class="content-side content-side-full">
-                        <ul class="nav-main">
+                    <ul class="nav-main">
+                                <li>
+                                    <a href="<?= base_url('admin/dashboard'); ?>" class="<?= @$menu_active == 'dashboard' ? 'active' : '' ?>"><i class="si si-home"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                                </li>
+                                
+                                <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">Product</span></li>
+                                <li class="<?= @$menu_active == 'category' || @$menu_active == 'unit' || @$menu_active == 'product' ? 'open' : '' ?>">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-drawer"></i><span class="sidebar-mini-hide">Catalog</span></a>
+                                    <ul>
+                                        <li>
+                                           <a href="<?= base_url('admin/category'); ?>" class="<?= @$menu_active == 'category' ? 'active' : '' ?>">Category</span></a>
+                                        </li>
+                    
+                                        <li>
+                                        <a href="<?= base_url('admin/unit'); ?>" class="<?= @$menu_active == 'unit' ? 'active' : '' ?>">Unit</a>
+                                        </li>
+                                        <li>
+                                        <a href="<?= base_url('admin/product'); ?>" class="<?= @$menu_active == 'product' ? 'active' : '' ?>">Product</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="<?= @$menu_active == 'orders' || @$menu_active == 'shipment' || @$menu_active == 'trashed' ? 'open' : '' ?>">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-basket"></i><span class="sidebar-mini-hide">Orders</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="<?= base_url('admin/order'); ?>" class="<?= @$menu_active == 'orders' ? 'active' : '' ?>">Orders</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('admin/trashed'); ?>" class="<?= @$menu_active == 'trashed' ? 'active' : '' ?>">Trashed</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('admin/shipment'); ?>" class="<?= @$menu_active == 'shipment' ? 'active' : '' ?>">Shipment</a>
+                                        </li>
+                                       
+                                    </ul>
+                                </li>
+                                <li class="<?= @$menu_active == 'payment' || @$menu_active == 'inventory' || @$menu_active == 'report_product'  ? 'open' : '' ?>">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">Reports</span></a>
+                                    <ul>
+                                        <li>
+                                        <a href="<?= base_url('admin/payment'); ?>" class="<?= @$menu_active == 'payment' ? 'active' : '' ?>">Payment</a>
+                                        </li>
+                                        <li>
+                                        <a href="<?= base_url('admin/report_product'); ?>" class="<?= @$menu_active == 'report_product' ? 'active' : '' ?>">Product</a>
+                                        </li>
+                                        <li>
+                                        <a href="<?= base_url('admin/inventory'); ?>" class="<?= @$menu_active == 'inventory' ? 'active' : '' ?>">Inventories</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-visible">BD</span><span class="sidebar-mini-hidden">General</span></li>
+                                <li class="<?= @$menu_active == 'profil' || @$menu_active == 'akun'  ? 'open' : '' ?>">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users"></i><span class="sidebar-mini-hide">Account</span></a>
+                                    <ul>
+                                        <li>
+                                        <a href="<?= base_url('admin/akun'); ?>" class="<?= @$menu_active == 'akun' ? 'active' : '' ?>">Account</a>
+                                        </li>
+                                        <li>
+                                        <a href="<?= base_url('admin/profil'); ?>" class="<?= @$menu_active == 'profil' ? 'active' : '' ?>">Profile</a>
+                                        </li>
+                                      
+                                    </ul>
+                                </li>
+                               
+                                <li class="<?= @$menu_active == 'pengaturan'  ? 'open' : '' ?>">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Setting</span></a>
+                                    <ul>
+                                        <li>
+                                        <a href="<?= base_url('admin/setting'); ?>" class="<?= @$menu_active == 'pengaturan' ? 'active' : '' ?>">Setting</a>
+                                        </li>
+                                      
+                                      
+                                    </ul>
+                                </li>
+                              
+                                <!-- <li class="nav-main-heading"><span class="sidebar-mini-visible">PG</span><span class="sidebar-mini-hidden">Pages</span></li> -->
+                              
+                            </ul>
+                        <!-- <ul class="nav-main">
                             <li>
                                 <a href="<?= base_url('admin/dashboard'); ?>" class="<?= @$menu_active == 'dashboard' ? 'active' : '' ?>"><i class="si si-home"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                             </li>
@@ -137,11 +217,17 @@
                             <l>
                                 <a href="<?= base_url('admin/product'); ?>" class="<?= @$menu_active == 'product' ? 'active' : '' ?>"><i class="si si-basket"></i><span class="sidebar-mini-hide">Product</span></a>
                             </l>
-                            
+                            <li class="nav-main-heading">
+                                <span class="sidebar-mini-hidden">Reports</span>
+                            </li>
+                            <l>
+                                <a href="<?= base_url('admin/payment'); ?>" class="<?= @$menu_active == 'payment' ? 'active' : '' ?>"><i class="si si-wallet"></i><span class="sidebar-mini-hide">Payment</span></a>
+                            </l>
 
                             <li class="nav-main-heading">
                                 <span class="sidebar-mini-hidden">ACCOUNT</span>
                             </li>
+                            
 
                             <l>
                                 <a href="<?= base_url('admin/akun'); ?>" class="<?= @$menu_active == 'akun' ? 'active' : '' ?>"><i class="si si-users"></i><span class="sidebar-mini-hide">Account</span></a>
@@ -153,10 +239,10 @@
                                 <span class="sidebar-mini-hidden">Setting</span>
                             </li>
                             <l>
-                                <a href="<?= base_url('pengaturan'); ?>" class="<?= @$menu_active == 'pengaturan' ? 'active' : '' ?>"><i class="si si-settings"></i><span class="sidebar-mini-hide">Setting</span></a>
+                                <a href="<?= base_url('admin/setting'); ?>" class="<?= @$menu_active == 'pengaturan' ? 'active' : '' ?>"><i class="si si-settings"></i><span class="sidebar-mini-hide">Setting</span></a>
                             </l>
 
-                        </ul>
+                        </ul> -->
                     </div>
                     <!-- END Side Navigation -->
                 </div>

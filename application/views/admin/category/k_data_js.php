@@ -117,6 +117,9 @@ var KategoriValidation = function() {
         $('#page').val('edit');
         $('#kategori_id').val(kategori_id);
         $('#kategori_judul').val(kategori_judul);
+        console.log(kategori_id);
+        console.log(kategori_judul);
+        console.log('page')
     });
 
     $(document).on('click', '.swal-confirm-delete', function(){

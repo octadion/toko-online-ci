@@ -11,6 +11,7 @@ class ProductFront extends MY_Controller
         $this->load->model('category_model');
         $this->load->model('unit_model');
         $this->load->model('foto_model');
+        $this->load->library('cart');
 	}
     public function index()
     {
@@ -23,6 +24,7 @@ class ProductFront extends MY_Controller
             'title' => 'Manajemen Akun',
             'nama' => $this->session->userdata('full_name'),
             'role' => $this->session->userdata('role'),
+            'cartItems' => $this->cart->contents(),
         );
         $this->template->content_frontend('front/product_front/index', $data);
     }
@@ -121,11 +123,63 @@ class ProductFront extends MY_Controller
                 'unit' => $unit,
                 'foto'=>$foto,
                 'data'=>$data,
+                'product'=>$this->db->select('product.*, product.id as id_product, product_photo.foto_name, product_photo.foto_path')->
+                from('product')->join('product_photo','product_photo.produk_id = product.id','left')
+                ->where('product.deleted_at', null)->where('product.status_post','published')->limit(4)->order_by('product.name','desc')->get()->result(),
                 ]);
         }
         else{
             echo "<script>alert('Data tidak ditemukan');";
 			echo "window.location='".site_url('front/productfront')."';</script>";
         }
-}
+    }
+
+    public function cart($id){
+        $this->db->select('product.*,  category.category_name, unit.unit_name');
+        $this->db->join('category', 'product.category_id = category.id', 'left');
+         $this->db->join('unit', 'product.unit_id = unit.id', 'left');
+        $this->db->where([
+            'product.deleted_at' => null,
+            'product.id' => $id,
+        ]);
+        $this->db->from('product');
+        $data = $this->db->get()->row();
+        
+        if (!$data || $id == null) {
+            echo 'data tidak ditemukan';
+            die;
+        }
+        $query = $this->product_model->get($id);
+        $category = $this->category_model->get_view()->result();
+        $unit = $this->unit_model->get_view()->result();
+        // $foto = $this->db->get_where('product_photo', ['produk_id' => $id])->result();
+        $cart = array(
+            'id'    => $data->id,
+            'qty'    => 1,
+            'price'    => $data->price,
+            'name'    => $data->name,
+            'foto' => $data->thumbnail,
+            'weight' => $data->weight,
+            'barcode' => $data->barcode,
+
+        );
+        $this->cart->insert($cart);
+        redirect('front/cart/');
+      
+    }
+    public function cart_by_dtl(){
+        $redirect_page = $this->input->post('redirect_page');
+        $data = array(
+            'id'    => $this->input->post('id'),
+            'qty'    => $this->input->post('qty'),
+            'price'    => $this->input->post('price'),
+            'name'    => $this->input->post('name'),
+            'weight' => $this->input->post('weight'),
+            'barcode' => $this->input->post('barcode'),
+            // 'foto' => $data->thumbnail,
+        );
+        $this->cart->insert($data);
+        redirect($redirect_page, 'refresh');
+    }
+
 }

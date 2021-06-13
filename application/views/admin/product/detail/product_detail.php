@@ -86,6 +86,11 @@
                                             </tr>
                                             <tr>
                                                 <td>
+                                                    <i class="fa fa-fw fa-balance-scale mr-10"></i> <?= $data->qty?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
                                                     <i class="fa fa-fw fa-calendar mr-10"></i><?= $data->created_at ?>
                                                 </td>
                                             </tr>

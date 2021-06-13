@@ -7,6 +7,7 @@
     height: 150px;
 }
 </style>
+<!-- <div id="loading"></div> -->
 <section class="breadcrumb-section pb-3 pt-3">
         <div class="container">
             <ol class="breadcrumb">

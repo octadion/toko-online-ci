@@ -141,11 +141,19 @@
             </div>
             <div class="block-content">
             <div class="form-group row">
-                    <label class="col-12" for="title">Weight <label class="text-danger">*</label></label>
+                    <label class="col-12" for="title">Weight (Gr) <label class="text-danger">*</label></label>
                     <div class="col-lg-12">
                         <input type="number" class="form-control" id="weight" name="weight" placeholder="weight.." value="<?= $item->weight ?>">
                     </div>
                 </div>
+                <?php if($page == 'add'){ ?>
+                <div class="form-group row">
+                    <label class="col-12" for="title">Stock<label class="text-danger">*</label></label>
+                    <div class="col-lg-12">
+                        <input type="number" class="form-control" id="qty" name="qty" placeholder="stock.." value="">
+                    </div>
+                </div>
+                <?php } ?>
                 <div class="form-group row">
                     <label class="col-12" for="kategori">Pilih Unit <label class="text-danger">*</label></label>
                     <div class="col-lg-12">
@@ -185,33 +193,25 @@
                 </div>    
             </div>                
         </div>
-        <!-- <?php if($page == 'edit'){ ?>
-        <div class="block block-themed block-rounded block-shadow">
-        <div class="block-header block-header-default bg-gd-dusk">
-                <h3 class="block-title">Photo</h3>
+        <div class="block block-rounded block-shadow">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Thumbnail</h3>
             </div>
-            <div class="block-content block-content-full">
-                                  
-                <div class="row gutters-tiny items-push">
-                <div class='table-responsive'>
-                            <table width="100%" class='table' id='table_data_gambar'>
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Image</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table_body">
-                                </tbody>
-                            </table>
+            <div class="block-content">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <div class="image-area w-100" <?= $item->thumbnail != null ? null : 'hidden' ?>>
+                                <img id="preview" class="w-auto img-fluid" style="padding-bottom: 10px;" src="<?= $item->thumbnail != null ? base_url('uploads/'.$item->thumbnail) : '#' ?>" alt="">
+                                <button type="button" class="remove-image" style="display: inline;" <?= $item->thumbnail != null && $page != 'edit' ? null : 'hidden' ?>>&#215;</button>
                         </div>
-                    
+                    </div>
+                    <label class="col-12" for="thumbnail">Pilih thumbnail</label>
+                    <div class="col-12">
+                        <input type="file" accept="image/*" id="thumbnail" name="thumbnail">
+                    </div>
                 </div>
-            </div>
-            
-            </div>
-            <?php }?> -->
+            </div>                
+        </div>
 
         <?php if($page == 'edit'){ ?>
         <div class="block block-rounded block-shadow">

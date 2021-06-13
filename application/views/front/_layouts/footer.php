@@ -6,7 +6,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo-footer">
-                                <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">IndoMarket</span>
+                                <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">Hidrostore</span>
                             </div>
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna
                                 eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
@@ -96,11 +96,19 @@
             </div>
         </div>
     </footer>
+    <?php
+    $tot_berat = 0;
+    foreach($cartItems as $item){   
+        $berat = $item["qty"] * $item["weight"];
+        $tot_berat = $tot_berat + $berat;
+    
+    ?>
+    <?php } ?>
     <style>
 #loading
 {
  text-align:center; 
- background: url('assets_front/loader.gif') no-repeat center; 
+ background: url('<?= base_url();?>assets_front/loader.gif') no-repeat center; 
  height: 150px;
 }
 </style>
@@ -118,6 +126,8 @@
     <script src="<?= base_url(); ?>assets_front/assets/js/core/jquery-ui.min.js"></script>
     <script src="<?= base_url(); ?>assets_front/assets/js/codebase.js"></script>
 
+  
+
     <!-- Optional plugins -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -126,11 +136,12 @@
 
     <!-- Main JS-->
     <script src="<?= base_url(); ?>assets_front/assets/js/main.js"></script>
+
     <script>
 $(document).ready(function () {
     filter_data(1);
     function filter_data(page){
-        $('#filter_data').html('<div id="loading" style="" ></div>');
+        $('.filter_data').html('<div id="loading" style="" ></div>');
         var action = 'fetch_data';
         var minimum_price = $('#hidden_minimum_price').val();
         var maximum_price = $('#hidden_maximum_price').val();
@@ -187,6 +198,146 @@ $(document).ready(function () {
             });
   
 });
+</script>
+<script>
+    $(document).ready(function () {
+       
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('rajaongkir/province')?>",
+            success: function (result_province) {
+                // console.log(result_province)
+                $("select[name=provinsi]").html(result_province);
+            }
+        });
+
+      $("select[name=provinsi]").on("change", function(){
+            var id_provinsi_terpilih = $("option:selected", this).attr("id_provinsi");
+            $.ajax({
+            type: "POST",
+            url: "<?= base_url('rajaongkir/city')?>",
+            data: 'id_provinsi='+id_provinsi_terpilih,
+            success: function (result_city) {
+                // console.log(result_province)
+                $("select[name=kota]").html(result_city);
+            }
+        });
+      });
+
+      $("select[name=kota]").on("change", function(){
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('rajaongkir/ekspedisi')?>",
+            success: function (result_ekspedisi) {
+                // console.log(result_province)
+                $("select[name=ekspedisi]").html(result_ekspedisi);
+            }
+        });
+    
+    });
+    $("select[name=ekspedisi]").on("change", function(){
+        
+        var ekspedisi_terpilih = $("select[name=ekspedisi]").val();
+        var tujuan = $("option:selected","select[name=kota]").attr('id_kota');
+        // alert(tujuan);
+        var total_berat = <?= $tot_berat ?>;
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url('rajaongkir/paket')?>",
+            data: 'ekspedisi='+ekspedisi_terpilih+'&id_kota='+tujuan+'&berat='+total_berat,
+            success: function (result_paket) {
+                // console.log(result_province)
+                $("select[name=paket]").html(result_paket);
+            }
+        });
+    });
+    $("select[name=paket]").on("change", function(){
+        
+        var dataongkir = $("option:selected", this).attr('ongkir');
+        $("#ongkir").html("Rp. " + dataongkir);
+        var data_total_bayar = parseInt(dataongkir) + parseInt(<?= $this->cart->total()?>);
+        $("#total_bayar").html("Rp. " + data_total_bayar);
+
+        //etd ongkir
+        var shipping_etd = $("option:selected", this).attr('shipping_etd');
+        $("input[name=shipping_etd]").val(shipping_etd);
+        $("input[name=shipping_cost]").val(dataongkir);
+        $("input[name=total_price]").val(data_total_bayar);
+        // $("input[name=shipping_courier]").val(result_ekspedisi);
+        // $("input[name=shipping_service]").val(result_paket);
+    });
+        jQuery(function () {
+        // Init page helpers (Summernote + CKEditor + SimpleMDE plugins)
+        Codebase.helpers(['summernote', 'tags-inputs', 'select2']);
+    });
+
+      });
+</script>
+<script>
+
+$('#pay-button').click(function (event) {
+    var id = $(this).data('id');
+    var grossamount = $(this).data('total_price');
+    var shipping_cost = $(this).data('shipping_cost');
+    var first_name = $(this).data('first_name');
+    var last_name = $(this).data('last_name');
+    var phone = $(this).data('phone');
+    var email = $(this).data('email');
+    var address = $(this).data('address');
+    console.log(shipping_cost);
+      event.preventDefault();
+      $(this).attr("disabled", "disabled");
+    
+    $.ajax({
+      url: '<?=base_url()?>/snap/token',
+      cache: false,
+        data: {
+            grossamount: grossamount,
+            id: id,
+            first_name: first_name,
+            last_name: last_name,
+            phone: phone,
+            email: email,
+            address: address,
+        },
+      success: function(data) {
+        //location = data;
+
+        console.log('token = '+data);
+        
+        var resultType = document.getElementById('result-type');
+        var resultData = document.getElementById('result-data');
+
+        function changeResult(type,data){
+          $("#result-type").val(type);
+          $("#result-data").val(JSON.stringify(data));
+          //resultType.innerHTML = type;
+          //resultData.innerHTML = JSON.stringify(data);
+        }
+
+        snap.pay(data, {
+          
+          onSuccess: function(result){
+            changeResult('success', result);
+            console.log(result.status_message);
+            console.log(result);
+            $("#payment-form").submit();
+          },
+          onPending: function(result){
+            changeResult('pending', result);
+            console.log(result.status_message);
+            $("#payment-form").submit();
+          },
+          onError: function(result){
+            changeResult('error', result);
+            console.log(result.status_message);
+            $("#payment-form").submit();
+          }
+        });
+      }
+    });
+  });
+
 </script>
 </body>
 
