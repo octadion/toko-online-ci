@@ -15,7 +15,7 @@
     <!-- Icons -->
     <link href="<?= base_url(); ?>assets_front/assets/css/nucleo-icons.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets_front/assets/css/font-awesome.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?=base_url('assets/')?>vendors/linericon/style.css">
     <!-- Jquery UI -->
     <link type="text/css" href="<?= base_url(); ?>assets_front/assets/css/jquery-ui.css" rel="stylesheet">
 
@@ -27,6 +27,7 @@
     
     <!-- Optional Plugins-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="<?=base_url();?>assets/css/argon-design-system.css?v=1.2.2" rel="stylesheet" />
 </head>
 <style>
 #loading
@@ -50,7 +51,7 @@
                     </div>
                     <div class="col-6 text-right">
                         <ul class="top-links account-links">
-                            <li><i class="fa fa-user-circle-o"></i> <a href="#">My Account</a></li>
+                            <li><i class="fa fa-user-circle-o"></i> <a href="<?=base_url('front/profile')?>">My Account</a></li>
                             <?= $this->session->userdata('logged_in')==true? '<li><i class="fa fa-power-off"></i> <a href="'.base_url('auth/logout').'">Logout</a></li> ' : '<li><i class="fa fa-power-off"></i> <a href="#">Login</a></li>'?>
                         </ul>
                     </div>
@@ -66,16 +67,18 @@
                         </a>
                     </div>
                     <div class="col-lg-7 col-12 col-sm-6">
-                        <form action="#" class="search">
+                    <!-- <?php echo form_open('front/productfront/search')?> -->
+                        <!-- <form action="<?=base_url('front/productfront/search')?>" class="search"> -->
                             <div class="input-group w-100">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" name="keyword"class="form-control" placeholder="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
+                        <!-- <?php form_close()?> -->
                     </div>
                     <div class="col-lg-2 col-12 col-sm-6">
                         <div class="right-icons pull-right d-none d-lg-block">

@@ -17,6 +17,9 @@ class Order extends MY_Controller
         $data = array(
             'title' => 'My Order',
             'unpaid' => $this->order_model->paid(),
+            'packed' => $this->order_model->packed(),
+            'delivered' => $this->order_model->delivered(),
+            'completed' => $this->order_model->completed(), 
             'cartItems' => $this->cart->contents(),
         );
 

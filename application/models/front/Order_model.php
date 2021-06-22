@@ -39,6 +39,38 @@ class Order_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function packed(){
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('status','confirmed');
+        $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        // $this->db->or_where('status','cancelled');
+        // $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->order_by('id','desc');
+        return $this->db->get()->result();
+    }
+    public function delivered(){
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('status','delivered');
+        $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        // $this->db->or_where('status','cancelled');
+        // $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->order_by('id','desc');
+        return $this->db->get()->result();
+    }
+
+    public function completed(){
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('status','completed');
+        $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        // $this->db->or_where('status','cancelled');
+        // $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->order_by('id','desc');
+        return $this->db->get()->result();
+    }
+
     public function getproduct($id = null){
         $this->db->select('orders.*, order_items.qty, order_items.name,order_items.barcode, order_items.base_price, order_items.base_total, order_items.product_id');
         $this->db->join('order_items', 'orders.id = order_items.order_id', 'left');

@@ -14,6 +14,21 @@ class Product_front_model extends CI_Model
         return $this->db->get();
     }
 
+    public function get_keyword($keyword){
+        // print_r($keyword);
+        $this->db->select('product.*, category.category_name');
+        $this->db->from('product');
+        $this->db->join('category', 'product.category_id = category.id', 'left');
+        $this->db->where('product.deleted_at', null);
+        $this->db->where('product.status_post', 'published');
+        $this->db->where("name LIKE '".$keyword."' OR barcode LIKE '".$keyword."$' OR price LIKE '".$keyword."$'");
+        // $this->db->like('name',$keyword);
+        // $this->db->or_like('barcode',$keyword);
+        // $this->db->or_like('category_name',$keyword);
+        // $this->db->or_like('price',$keyword);
+        return $this->db->get()->result();
+    }
+
     public function make_query($minimum_price, $maximum_price, $category){
         $query = "
         SELECT product.*, product.id as id_product, category.category_name

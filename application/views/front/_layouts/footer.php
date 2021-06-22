@@ -113,20 +113,17 @@
 }
 </style>
     <!-- Core -->
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet"href="<?= base_url() ?>assets/js/plugins/slick/slick.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/js/plugins/slick/slick-theme.min.css">
-    <script src="<?= base_url() ?>assets/js/plugins/slick/slick.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/swiper.css">
-    <script src="<?= base_url() ?>assets/js/swiper.min.js"></script>
-    <script src="<?= base_url(); ?>assets_front/assets/js/core/jquery.min.js"></script>
+ <link rel="stylesheet" href="<?= base_url() ?>assets/js/plugins/slick/slick-theme.min.css">
+ <script src="<?= base_url() ?>assets/js/plugins/slick/slick.min.js"></script>
+    <!-- <script src="<?= base_url(); ?>assets_front/assets/js/core/jquery.min.js"></script> -->
+    <script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
     <script src="<?= base_url(); ?>assets_front/assets/js/core/popper.min.js"></script>
     <script src="<?= base_url(); ?>assets_front/assets/js/core/bootstrap.min.js"></script>
     <script src="<?= base_url(); ?>assets_front/assets/js/core/jquery-ui.min.js"></script>
     <script src="<?= base_url(); ?>assets_front/assets/js/codebase.js"></script>
-
-  
+    <script src="<?= base_url(); ?>assets/js/codebase.js"></script>
+    <script src="<?= base_url(); ?>assets/js/argon-design-system.min.js?v=1.2.2" type="text/javascript"></script>
 
     <!-- Optional plugins -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -268,7 +265,7 @@ $(document).ready(function () {
     });
         jQuery(function () {
         // Init page helpers (Summernote + CKEditor + SimpleMDE plugins)
-        Codebase.helpers(['summernote', 'tags-inputs', 'select2']);
+        Codebase.helpers(['summernote', 'tags-inputs', 'select2','slick']);
     });
 
       });
@@ -338,6 +335,34 @@ $('#pay-button').click(function (event) {
     });
   });
 
+</script>
+<script>
+$('#form_akun').on('submit', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();
+        
+        var form = $('form')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        console.log(Array.from(formData));
+        // if($("#form_akun").valid() === true){
+            var BASE_URL = '<?= base_url(); ?>';
+            $.ajax({
+                
+                url: BASE_URL + 'front/profile/update',
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function(res){
+                    console.log(res);
+                    // swal(res);
+                    window.location.replace(BASE_URL+'front/profile');
+                },
+                error: function(res){
+                    console.log('error');
+                }
+            });
+        // }
+    });
 </script>
 </body>
 

@@ -104,6 +104,9 @@ class Auth_model extends CI_Model
                 case 'User':
                     redirect(base_url('front/home/'), 'refresh');
                     break;
+                case 'Operator':
+                    redirect(base_url('admin/dashboard/'), 'refresh');
+                    break;
 
                 default:
                     redirect(base_url('auth'), 'refresh');

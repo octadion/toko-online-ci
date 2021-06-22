@@ -122,7 +122,8 @@ var unitValidation = function() {
                 processData: false, // NEEDED, DON'T OMIT THIS
                 success: function(res){
                     console.log('success');
-                    $('#unit_judul').val('');
+                    $('#qty').val('');
+                    $('#tipe').val('');
                     $('#table_inventory').DataTable().ajax.reload();
                 },
                 error: function(res){
@@ -136,15 +137,16 @@ var unitValidation = function() {
         $('.form-group').removeClass('is-invalid');
     });
 
-    $(document).on('click', '#tambah_unit', function(e) {
+    $(document).on('click', '#edit', function(e) {
         $('.form-group').removeClass('is-invalid');
-        $('#form_stock').find("input[type=text], textarea").val("");
+        $('#form_stock').find("input[type=text], textarea, select, option").val("");
         $('#page').val('add');
     });
 
-    $(document).on('click', '.edit_unit', function(e) {
+    $(document).on('click', '.edit', function(e) {
         $('.title-input-unit').text('Edit unit')
-        $('#form_stock').find('#unit_judul').rules('remove', 'remote');
+        $('#form_stock').find('#qty').rules('remove', 'remote');
+        $('#form_stock').find('#tipe').rules('remove', 'remote');
         var unit_id = $(this).data('id');
         var unit_judul = $(this).data('unit_judul');
         $('#page').val('edit');

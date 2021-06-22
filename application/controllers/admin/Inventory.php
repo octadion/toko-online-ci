@@ -41,7 +41,7 @@ class Inventory extends MY_Controller
                 </a>
             </div>
         </div>
-                    <button id="del'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" class="swal-confirm-delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>';
+                  ';
             $data[] = $row;
         }
         $output = array(

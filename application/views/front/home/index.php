@@ -111,7 +111,24 @@
                 </div>
             </div>
             <div class="row mt-4">
+            <?php foreach($product as $produk){?>
                 <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="<?=base_url('front/productfront/detail/'.$produk->id.'')?>">
+                                <img src=" <?= base_url('uploads/'.$produk->thumbnail.'') ?>" style="height:250px; width:300px; margin:auto;" class="img-fluid" />
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="<?=base_url('front/productfront/detail/'.$produk->id.'')?>"><?= $produk->name?></a></h3>
+                            <div class="product-price">
+                                <span><?= indo_currency($produk->price)?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php }?>
+                <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-12">
                     <div class="single-product">
                         <div class="product-img">
                             <a href="product-detail.html">
@@ -170,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

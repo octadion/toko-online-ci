@@ -149,7 +149,7 @@ var unitValidation = function() {
             if (result.value) {
                 $.ajax({
                     type: 'POST',
-                    url: BASE_URL + 'admin/unit/del',
+                    url: BASE_URL + 'admin/shipment/del',
                     dataType: 'text',
                     data: {
                         id: id

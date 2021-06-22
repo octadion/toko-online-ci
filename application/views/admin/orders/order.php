@@ -292,6 +292,7 @@ table{
                     </div> -->
                     <input type="hidden" id="status_confirm" name="status" value="">
                            <input type="hidden" id="order_id" name="id" value="">
+                       
                 </div>
             </div>
             <div class="modal-footer">

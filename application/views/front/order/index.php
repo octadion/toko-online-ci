@@ -75,12 +75,109 @@
                
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+                    <table class="table">
+                            <tr>
+                                <!-- <th>No.</th> -->
+                                <th>Code</th>
+                                <th>Date</th>
+                                <th>Courier</th>
+                                <th class="text-right">Total Price</th>
+                                <th class="text-center">Payment Status</th>
+                                <!-- <th>Action</th> -->
+                            </tr>
+                            <?php foreach($packed as $key => $value){ ?>
+                            <tr>
+                                <td><?=$value->code?></td>
+                                <td><?=$value->order_date?></td>
+                                <td><?=$value->shipping_courier?></td>
+                                <td class="text-right"><?=indo_currency($value->total_price)?></td>
+                                <td <?php if($value->payment_status == 'pending'){?>
+                                class="text-center"><span class="badge badge-warning">Pending</span>
+                                <?php } else if($value->payment_status == 'expire'){?>
+                                  class="text-center"><span class="badge badge-danger">Expire</span>
+                                  <?php } else if($value->payment_status == 'settlement'){?>
+                                    class="text-center"><span class="badge badge-success">Paid</span>
+                                    <?php }?>
+                                </td>
+                                <!-- <td> <?php if($value->payment_status == 'pending'){?>
+                                <a href="<?= base_url('front/order/pay/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Pay</a></button> 
+                               <?php } else if($value->payment_status == 'expire'){?>
+                                <a href="<?= base_url('front/order/del/'.$value->id.'')?>" class="btn btn-sm btn-block btn-danger">Del</a></button> 
+                                <?php }?></td> -->
+                               
+                            </tr>
+                            <?php } ?>
+                        </table>
                       <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
+                    <table class="table">
+                            <tr>
+                                <!-- <th>No.</th> -->
+                                <th>Code</th>
+                                <th>Date</th>
+                                <th>Courier</th>
+                                <th class="text-right">Total Price</th>
+                                <th class="text-center">Payment Status</th>
+                                <th>Action</th>
+                            </tr>
+                            <?php foreach($delivered as $key => $value){ ?>
+                            <tr>
+                                <td><?=$value->code?></td>
+                                <td><?=$value->order_date?></td>
+                                <td><?=$value->shipping_courier?></td>
+                                <td class="text-right"><?=indo_currency($value->total_price)?></td>
+                                <td <?php if($value->payment_status == 'pending'){?>
+                                class="text-center"><span class="badge badge-warning">Pending</span>
+                                <?php } else if($value->payment_status == 'expire'){?>
+                                  class="text-center"><span class="badge badge-danger">Expire</span>
+                                  <?php } else if($value->payment_status == 'settlement'){?>
+                                    class="text-center"><span class="badge badge-success">Paid</span>
+                                    <?php }?>
+                                </td>
+                                <td>
+                                <a href="<?= base_url('front/order/detail/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Detail</a></button> 
+                              
+                               </td>
+                               
+                            </tr>
+                            <?php } ?>
+                        </table>
                       <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
+                    <table class="table">
+                            <tr>
+                                <!-- <th>No.</th> -->
+                                <th>Code</th>
+                                <th>Date</th>
+                                <th>Courier</th>
+                                <th class="text-right">Total Price</th>
+                                <th class="text-center">Payment Status</th>
+                                <th>Action</th>
+                            </tr>
+                            <?php foreach($completed as $key => $value){ ?>
+                            <tr>
+                                <td><?=$value->code?></td>
+                                <td><?=$value->order_date?></td>
+                                <td><?=$value->shipping_courier?></td>
+                                <td class="text-right"><?=indo_currency($value->total_price)?></td>
+                                <td <?php if($value->payment_status == 'pending'){?>
+                                class="text-center"><span class="badge badge-warning">Pending</span>
+                                <?php } else if($value->payment_status == 'expire'){?>
+                                  class="text-center"><span class="badge badge-danger">Expire</span>
+                                  <?php } else if($value->payment_status == 'settlement'){?>
+                                    class="text-center"><span class="badge badge-success">Paid</span>
+                                    <?php }?>
+                                </td>
+                                <td>
+                                <a href="<?= base_url('front/order/complete/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Complete</a></button> 
+                              
+                               </td>
+                               
+                            </tr>
+                            <?php } ?>
+                        </table>
                       <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
                     </div>
                   </div>

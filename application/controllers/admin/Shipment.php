@@ -38,18 +38,10 @@ class Shipment extends MY_Controller
                 Aksi
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
+                <a class="dropdown-item btn-foto" href="'.site_url('admin/shipment/detail/'.$item->id).'" data-id="'.$item->id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
-                <a class="dropdown-item change-status_payment" href="#edit_status_payment" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" >
-                    <i class="fa fa-fw fa-refresh mr-5"></i>Check
-                </a>
-                <a class="dropdown-item change-status_confirm" href="#edit_status_confirm" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" data-user_id="'.$this->session->userdata('id').'" data-status="'.$status_confirm.'">
-                <i class="fa fa-fw fa-check mr-5"></i>Confirm
-                </a>
-                <a class="dropdown-item change-status_cancel" href="#edit_status_cancel" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" data-user_id="'.$this->session->userdata('id').'" data-status="'.$status_cancel.'" data-toggle="modal" data-target="#modal-popin">
-                    <i class="fa fa-fw fa-remove mr-5"></i>Cancel
-                </a>
+               
               
             </div>
         </div>
@@ -162,9 +154,9 @@ class Shipment extends MY_Controller
 
     public function del(){
         $post = $this->input->post(null, TRUE);
-        $check = $this->unit_model->check_duplicate_unit_id($post["id"]);
-        if(!$check){
-            $data = $this->unit_model->del($post["id"]);
+        // $check = $this->unit_model->check_duplicate_unit_id($post["id"]);
+        // if(!$check){
+            $data = $this->shipment_model->del($post["id"]);
             $error = $this->db->error();
             if($error['code'] != 0){
                 echo "error";
@@ -173,9 +165,9 @@ class Shipment extends MY_Controller
             }
             // echo $data;
             
-        } else{
-            echo 'false';
-        }
+        // } else{
+        //     echo 'false';
+        // }
 
 		// echo "<script>window.location='".site_url('unit')."';</script>";
         // $this->output->set_output($id);
@@ -235,5 +227,90 @@ class Shipment extends MY_Controller
             'id' => $order_id
         ];
         $upd_order = $this->order_model->update_pay_order($dataupdate_order, $where);
+    }
+
+    public function detail($id = null)
+    {
+      
+        $this->db->select('orders.*, order_items.product_id, order_items.qty, order_items.name, order_items.base_total,
+        order_items.base_price, inventories.qty as stock, user.*');
+        $this->db->join('order_items','order_items.order_id = orders.id','left');
+        $this->db->join('inventories','order_items.product_id = inventories.product_id','left');
+        $this->db->join('user','orders.user_id = user.id','left');
+        $this->db->where([
+            'orders.deleted_at' => null,
+            'orders.id' => $id,
+        ]);
+        $this->db->from('orders');
+        $data = $this->db->get()->row();
+        
+        if (!$data || $id == null) {
+            echo 'data tidak ditemukan';
+            die;
+        }
+        $id_user = $data->user_id;
+        $this->db->select('orders.*,user.first_name,user.last_name');
+        $this->db->from('orders');
+        $this->db->join('user','orders.user_id = user.id','left');
+        $this->db->where('user_id',$id_user);
+        $this->db->order_by('id','desc');
+        $order =  $this->db->get()->result();
+        // $id_user = $data->user_id;
+        print_r($id_user);
+        $total_order = $this->db->query("SELECT * FROM orders where deleted_at is null and user_id = '$id_user'")->num_rows();
+
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.user_id',$id_user);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_product =  $this->db->get()->num_rows();
+
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.id',$id);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_tabelproduct =  $this->db->get()->num_rows();
+
+        $this->db->select('*');
+        $this->db->from('shipments');
+        // $this->db->join('inventories', 'inventories.product_id = order_items.product_id', 'left');
+        // $this->db->join('orders', 'orders.id = order_items.order_id', 'left');
+        $this->db->where('order_id', $id);
+        // $this->db->where('orders.id', $id);
+        $shipment =  $this->db->get()->result();
+
+        // $query = $this->product_model->get($id);
+        // $category = $this->category_model->get_view()->result();
+        // $unit = $this->unit_model->get_view()->result();
+        $foto = $this->db->get_where('product_photo', ['produk_id' => $id])->result();
+        
+        // if($data->num_rows() > 0){
+            // $item = $query->row();
+            $this->_display('admin/shipment/detail/detail', [
+                'menu_active' => 'shipment',
+                'title' => 'Detail Shipment',
+                'nama' => $this->session->userdata('full_name'),
+                'role' => $this->session->userdata('role'),
+                // 'page' => 'edit',
+                // 'item' => $item,
+                'total_order' => $total_order,
+                // 'unit' => $unit,
+                'order' => $order,
+                'foto'=>$foto,
+                'data'=>$data,
+                'tot_product'=>$total_product,
+                'shipment'=>$shipment,
+                // 'total' => $total,
+                'total_tabelprd'=>$total_tabelproduct,
+                ]);
+        // }
+        // else{
+        //     echo "<script>alert('Data tidak ditemukan');";
+		// 	echo "window.location='".site_url('admin/product')."';</script>";
+        // }
     }
 }

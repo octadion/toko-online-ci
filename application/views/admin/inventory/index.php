@@ -34,7 +34,7 @@
                     <th>Name</th>
                     <th>Barcode</th>
                     <th>Stock</th>
-                    <th class="text-center" style="width: 16%;">Action</th>
+                    <th class="text-center" style="width: 10%;">Action</th>
                 </tr>
             </thead>
             <tbody>

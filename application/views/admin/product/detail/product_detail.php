@@ -54,6 +54,14 @@
                                     
                                     <table class="table table-borderless table-striped">
                                         <tbody>
+                                        <tr>
+                                                <td>
+                                                <?php
+                                                $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+                                                echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($data->barcode, $generator::TYPE_CODE_128)) . '"  style="width: 250px">';
+                                                ?>
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td>
                                                     <i class="fa fa-fw fa-barcode mr-10"></i> <?= $data->barcode?>

@@ -11,6 +11,10 @@ class Order extends MY_Controller
         $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
         $this->load->model('payment_model');
 		$this->load->library('veritrans');
+        $this->load->model('product_model');
+        $this->load->model('category_model');
+        $this->load->model('unit_model');
+        $this->load->model('foto_model');
 		$this->veritrans->config($params);
     }
 
@@ -40,7 +44,7 @@ class Order extends MY_Controller
                 Aksi
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
+                <a class="dropdown-item btn-foto" href="'.site_url('admin/order/detail/'.$item->id).'" data-id="'.$item->id.'" data-user_id="'.$item->user_id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
                 <a class="dropdown-item change-status_payment" href="#edit_status_payment" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" >
@@ -95,7 +99,7 @@ class Order extends MY_Controller
                 Aksi
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
+                <a class="dropdown-item btn-foto" href="'.site_url('admin/order/detail/'.$item->id).'" data-id="'.$item->id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
                 <a class="dropdown-item change-status_deliver" href="#edit_status_deliver" id="'.encode_id($item->id).'"
@@ -145,7 +149,7 @@ class Order extends MY_Controller
                 Aksi
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
+                <a class="dropdown-item btn-foto" href="'.site_url('admin/order/detail/'.$item->id).'" data-id="'.$item->id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
 
@@ -385,6 +389,8 @@ class Order extends MY_Controller
     public function confirm(){
         $post = $this->input->post(null, TRUE);
         $data = $this->order_model->confirm($post);
+       
+
 		$error = $this->db->error();
 		if($error['code'] != 0){
 			echo "<script>alert('Status tidak berhasil diubah');</script>";
@@ -421,6 +427,46 @@ class Order extends MY_Controller
         print_r($post);
         $data = $this->order_model->deliver($post);
         $data_track = $this->order_model->track_number($post);
+        $curl = curl_init();
+ $post_data_arr = [
+            'number' => '085895311426',
+            'message' => 'tes api',
+          ]; 
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://localhost:8000/send-message",
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "number=085895311426&message=tes api",
+        CURLOPT_HTTPHEADER => array(
+            "content-type: application/x-www-form-urlencoded",
+         
+        ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        print_r($response);
+        // $post_data_arr = [
+        //     'number' => '085895311426',
+        //     'message' => 'tes api',
+        //   ]; 
+          
+        //   $url = 'http://localhost:8000/send-message';
+        //   $curl = curl_init($url);
+        //   curl_setopt($curl, CURLOPT_POST, true);
+        //   curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data_arr);
+        //   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        //   $response = curl_exec($curl);
+        //   curl_close($curl);
+        //   print_r($response);
 		$error = $this->db->error();
 		if($error['code'] != 0){
 			echo "<script>alert('Status tidak berhasil diubah');</script>";
@@ -459,6 +505,92 @@ class Order extends MY_Controller
         ->set_output(json_encode($result));
 
     
+    }
+
+    public function detail($id = null)
+    {
+      
+        $this->db->select('orders.*, order_items.product_id, order_items.qty, order_items.name, order_items.base_total,
+        order_items.base_price, inventories.qty as stock, user.*');
+        $this->db->join('order_items','order_items.order_id = orders.id','left');
+        $this->db->join('inventories','order_items.product_id = inventories.product_id','left');
+        $this->db->join('user','orders.user_id = user.id','left');
+        $this->db->where([
+            'orders.deleted_at' => null,
+            'orders.id' => $id,
+        ]);
+        $this->db->from('orders');
+        $data = $this->db->get()->row();
+        
+        if (!$data || $id == null) {
+            echo 'data tidak ditemukan';
+            die;
+        }
+        $id_user = $data->user_id;
+        $this->db->select('orders.*,user.first_name,user.last_name');
+        $this->db->from('orders');
+        $this->db->join('user','orders.user_id = user.id','left');
+        $this->db->where('user_id',$id_user);
+        $this->db->order_by('id','desc');
+        $order =  $this->db->get()->result();
+        // $id_user = $data->user_id;
+        print_r($id_user);
+        $total_order = $this->db->query("SELECT * FROM orders where deleted_at is null and user_id = '$id_user'")->num_rows();
+
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.user_id',$id_user);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_product =  $this->db->get()->num_rows();
+
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.id',$id);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_tabelproduct =  $this->db->get()->num_rows();
+
+        $this->db->select('order_items.*, order_items.id as id_orderitem, inventories.qty as stock, orders.status, orders.shipping_cost, orders.total_price');
+        $this->db->from('order_items');
+        $this->db->join('inventories', 'inventories.product_id = order_items.product_id', 'left');
+        $this->db->join('orders', 'orders.id = order_items.order_id', 'left');
+        $this->db->where('orders.id', $id);
+        // $this->db->where('orders.id', $id);
+        $product =  $this->db->get()->result();
+
+        $query = $this->product_model->get($id);
+        $category = $this->category_model->get_view()->result();
+        $unit = $this->unit_model->get_view()->result();
+        $foto = $this->db->get_where('product_photo', ['produk_id' => $id])->result();
+
+        $total = 0;
+        foreach($product as $prd){
+            $total = $total + $prd->base_total;
+        }
+        
+        // if($data->num_rows() > 0){
+            $item = $query->row();
+            $this->_display('admin/orders/detail/detail', [
+                'menu_active' => 'orders',
+                'title' => 'Detail Order',
+                'nama' => $this->session->userdata('full_name'),
+                'role' => $this->session->userdata('role'),
+                // 'page' => 'edit',
+                'item' => $item,
+                'total_order' => $total_order,
+                'unit' => $unit,
+                'order' => $order,
+                'foto'=>$foto,
+                'data'=>$data,
+                'tot_product'=>$total_product,
+                'product'=>$product,
+                'total' => $total,
+                'total_tabelprd'=>$total_tabelproduct,
+                ]);
+        
     }
     
 }

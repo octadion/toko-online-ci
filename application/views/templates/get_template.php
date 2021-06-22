@@ -157,9 +157,13 @@
                                        
                                     </ul>
                                 </li>
-                                <li class="<?= @$menu_active == 'payment' || @$menu_active == 'inventory' || @$menu_active == 'report_product'  ? 'open' : '' ?>">
+                                <li class="<?= @$menu_active == 'payment' || @$menu_active == 'inventory' || @$menu_active == 'report_product'||
+                                    @$menu_active == 'revenue'  ?'open' : '' ?>">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">Reports</span></a>
                                     <ul>
+                                        <li>
+                                        <a href="<?= base_url('admin/revenue'); ?>" class="<?= @$menu_active == 'revenue' ? 'active' : '' ?>">Revenue</a>
+                                        </li>
                                         <li>
                                         <a href="<?= base_url('admin/payment'); ?>" class="<?= @$menu_active == 'payment' ? 'active' : '' ?>">Payment</a>
                                         </li>
@@ -177,7 +181,9 @@
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users"></i><span class="sidebar-mini-hide">Account</span></a>
                                     <ul>
                                         <li>
-                                        <a href="<?= base_url('admin/akun'); ?>" class="<?= @$menu_active == 'akun' ? 'active' : '' ?>">Account</a>
+                                        <?php if($this->session->userdata('role') == 'Administrator'){ ?> 
+                                         <a href="<?= base_url('admin/akun'); ?>" class="<?= @$menu_active == 'akun' ? 'active' : '' ?>">Account</a>
+                                         <?php } ?>
                                         </li>
                                         <li>
                                         <a href="<?= base_url('admin/profil'); ?>" class="<?= @$menu_active == 'profil' ? 'active' : '' ?>">Profile</a>
@@ -185,7 +191,7 @@
                                       
                                     </ul>
                                 </li>
-                               
+                                <?php if($this->session->userdata('role') == 'Administrator'){ ?> 
                                 <li class="<?= @$menu_active == 'pengaturan'  ? 'open' : '' ?>">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Setting</span></a>
                                     <ul>
@@ -196,6 +202,7 @@
                                       
                                     </ul>
                                 </li>
+                                <?php } ?>
                               
                                 <!-- <li class="nav-main-heading"><span class="sidebar-mini-visible">PG</span><span class="sidebar-mini-hidden">Pages</span></li> -->
                               

@@ -34,7 +34,7 @@ class Payment extends MY_Controller
                 Aksi
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
+                <a class="dropdown-item btn-foto" href="'.site_url('admin/payment/detail/'.$item->order_id).'" data-id="'.$item->id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
                 <a class="dropdown-item change-status_payment" href="#edit_status_payment" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" data-order_id="'.$item->order_id.'" data-status_payment="'.$item->status.'">
@@ -42,7 +42,7 @@ class Payment extends MY_Controller
                 </a>
             </div>
         </div>
-                    <button id="del'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" class="swal-confirm-delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>';
+                    ';
             $data[] = $row;
         }
         $output = array(
@@ -208,5 +208,58 @@ class Payment extends MY_Controller
             'id' => $order_id
         ];
         $upd_order = $this->order_model->update_pay_order($dataupdate_order, $where);
+    }
+
+    public function detail($id = null){
+        $this->db->select('orders.*, order_items.product_id, order_items.qty, order_items.name, order_items.base_total,
+        order_items.base_price, inventories.qty as stock, user.*');
+        $this->db->join('order_items','order_items.order_id = orders.id','left');
+        $this->db->join('inventories','order_items.product_id = inventories.product_id','left');
+        $this->db->join('user','orders.user_id = user.id','left');
+        $this->db->where([
+            'orders.deleted_at' => null,
+            'orders.id' => $id,
+        ]);
+        $this->db->from('orders');
+        $data = $this->db->get()->row();
+        
+        if (!$data || $id == null) {
+            echo 'data tidak ditemukan';
+            die;
+        }
+        $id_user = $data->user_id;
+        $total_order = $this->db->query("SELECT * FROM orders where deleted_at is null and user_id = '$id_user'")->num_rows();
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.user_id',$id_user);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_product =  $this->db->get()->num_rows();
+
+        $this->db->select('*');
+        $this->db->from('payments');
+        $this->db->where('deleted_at', null);
+        $this->db->where('order_id',$id);
+        $payment = $this->db->get()->result();
+
+        $this->_display('admin/payment/detail/detail', [
+            'menu_active' => 'payment',
+            'title' => 'Detail Order',
+            'nama' => $this->session->userdata('full_name'),
+            'role' => $this->session->userdata('role'),
+            // 'page' => 'edit',
+            // 'item' => $item,
+            'total_order' => $total_order,
+            // 'unit' => $unit,
+            // 'order' => $order,
+            // 'foto'=>$foto,
+            'data'=>$data,
+            'tot_product'=>$total_product,
+            'payment'=>$payment,
+            // 'total' => $total,
+            // 'total_tabelprd'=>$total_tabelproduct,
+            ]);
+
     }
 }

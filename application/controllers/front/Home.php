@@ -25,6 +25,9 @@ class Home extends MY_Controller
             'title' => 'Manajemen Akun',
             'nama' => $this->session->userdata('full_name'),
             'role' => $this->session->userdata('role'),
+            'product'=>$this->db->select('product.*, product.id as id_product, product_photo.foto_name, product_photo.foto_path')->
+            from('product')->join('product_photo','product_photo.produk_id = product.id','left')
+            ->where('product.deleted_at', null)->where('product.status_post','published')->limit(4)->order_by('product.name','desc')->get()->result(),
             
         );
         $this->template->content_frontend('front/home/index', $data);

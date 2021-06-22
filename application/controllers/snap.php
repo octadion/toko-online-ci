@@ -137,9 +137,9 @@ class Snap extends CI_Controller {
     public function finish()
     {
     	$result = json_decode($this->input->post('result_data'));
-    	echo 'RESULT <br><pre>';
-    	var_dump($result);
-    	echo '</pre>' ;
+    	// echo 'RESULT <br><pre>';
+    	// var_dump($result);
+    	// echo '</pre>' ;
 		
 		if($result->payment_type == 'bank_transfer'){
 			if($result->va_numbers){
@@ -178,5 +178,11 @@ class Snap extends CI_Controller {
 		];
 
 		$this->db->insert('payments',$data_input);
+		$data = array(
+			'finish' => json_decode($this->input->post('result_data')),
+			'cartItems' => $this->cart->contents(),
+		);
+		$this->template->content_frontend('front/snap/finish', $data);
+	
     }
 }

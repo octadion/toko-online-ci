@@ -28,6 +28,24 @@ class ProductFront extends MY_Controller
         );
         $this->template->content_frontend('front/product_front/index', $data);
     }
+    public function search(){
+        $keyword = $this->input->post('keyword');
+        // print_r($keyword);
+        // exit;
+        $product=$this->product_front_model->get_keyword($keyword);
+        // print_r($product);
+        // print_r($keyword);
+        $data = array(
+            'category' => $this->product_front_model->filter_category('category_name'),
+            'product' => $product,
+            'menu_active' => 'akun',
+            'title' => 'Manajemen Akun',
+            'nama' => $this->session->userdata('full_name'),
+            'role' => $this->session->userdata('role'),
+            'cartItems' => $this->cart->contents(),
+        );
+        $this->template->content_frontend('front/product_front/search/index', $data);
+    }
     // public function save(){
     //     $data = [
     //         'name' => $this->input->post('name'),
@@ -108,8 +126,35 @@ class ProductFront extends MY_Controller
         $query = $this->product_model->get($id);
         $category = $this->category_model->get_view()->result();
         $unit = $this->unit_model->get_view()->result();
+        $stock = $this->db->select('qty')
+                            ->from('inventories')
+                            ->join('product','product.id = inventories.product_id','left')
+                            ->where('product.id', $id)
+                            ->get()->result_array();
         $foto = $this->db->get_where('product_photo', ['produk_id' => $id])->result();
-        
+        $count = count($foto);
+        $indicators = '';
+        $slides = '';
+        $counter = 0;
+        foreach($foto AS $key => $value){
+            $foto_path = $value->foto_path;
+            $foto_name =$value->foto_name;
+            // $title = $query[$key]['theme_title'];
+            if ($counter == 0) {
+              $indicators .= '<li lass="list-inline-item active"><a id="carousel-selector'.$counter.'" data-target="#product-images" data-slide-to="' . $counter . '" >
+              <img src="'.base_url(''.$foto_path.'/'.$foto_name.'').'" class="img-fluid"></a></li>';
+              $slides .= '<div class="carousel-item active">
+              <img src="'.base_url(''.$foto_path.'/'.$foto_name.'').'"  alt="Product 1"/>
+              </div>';
+            } else {
+              $indicators .= '<li lass="list-inline-item"><a id="carousel-selector'.$counter.'" data-target="#product-images" data-slide-to="' . $counter . '" >
+              <img src="'.base_url(''.$foto_path.'/'.$foto_name.'').'" class="img-fluid"></a></li>';
+              $slides .= '<div class="carousel-item">
+              <img src="'.base_url(''.$foto_path.'/'.$foto_name.'').'"  alt="Product 1"/>
+              </div>';
+            }
+            $counter=$counter+1;
+        }  
         if($query->num_rows() > 0){
             $item = $query->row();
             $this->template->content_frontend('front/product_front/detail/index', [
@@ -119,10 +164,14 @@ class ProductFront extends MY_Controller
                 'role' => $this->session->userdata('role'),
                 // 'page' => 'edit',
                 'item' => $item,
+                'stock' => $stock,
                 'category' => $category,
                 'unit' => $unit,
                 'foto'=>$foto,
+                'cartItems' => $this->cart->contents(),
                 'data'=>$data,
+                'slides' => $slides,
+                'indicators' => $indicators,
                 'product'=>$this->db->select('product.*, product.id as id_product, product_photo.foto_name, product_photo.foto_path')->
                 from('product')->join('product_photo','product_photo.produk_id = product.id','left')
                 ->where('product.deleted_at', null)->where('product.status_post','published')->limit(4)->order_by('product.name','desc')->get()->result(),

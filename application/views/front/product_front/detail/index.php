@@ -11,22 +11,36 @@
         <div class="container">
             <div class="row product-detail-inner">
                 <div class="col-lg-6 col-md-6 col-12">
+                <!-- <div class="js-slider slick-nav-black slick-dotted-inner slick-dotted-white" data-dots="true" data-arrows="true">
+                <?php foreach($foto as $ft){?>
+                    <div>
+                        <img class="img-fluid" src=" <?= base_url(); ?><?=$ft->foto_path.'/'.$ft->foto_name?>" alt="Project Promo 1">
+                    </div>
+                    <?php }?>
+                </div> -->
                     <div id="product-images" class="carousel slide" data-ride="carousel">
-                        <!-- slides -->
+                     
                        
                         <div class="carousel-inner">
-                            <div class="carousel-item active"> <img src="<?= base_url(); ?>assets_front/assets/img/products/1.jpg" alt="Product 1"> </div>
+
+                        <?=$slides?>
+                
+                            <!-- <div class="carousel-item active"> <img src="<?= base_url(); ?><?=$ft->foto_path.'/'.$ft->foto_name?>" alt="Product 1"> </div>
                             <div class="carousel-item"> <img src="<?= base_url(); ?>assets_front/assets/img/products/2.jpg" alt="Product 2"> </div>
                             <div class="carousel-item"> <img src="<?= base_url(); ?>assets_front/assets/img/products/3.jpg" alt="Product 3"> </div>
-                            <div class="carousel-item"> <img src="<?= base_url(); ?>assets_front/assets/img/products/4.jpg" alt="Product 4"> </div>
-                        </div> <!-- Left right -->
-                        <a class="carousel-control-prev" href="#product-images" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#product-images" data-slide="next"> <span class="carousel-control-next-icon"></span> </a><!-- Thumbnails -->
+                            <div class="carousel-item"> <img src="<?= base_url(); ?>assets_front/assets/img/products/4.jpg" alt="Product 4"> </div> -->
+                      
+                        </div>
+            
+                        <a class="carousel-control-prev" href="#product-images" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#product-images" data-slide="next"> <span class="carousel-control-next-icon"></span> </a>
                         <ol class="carousel-indicators list-inline">
-                            <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#product-images"> <img src="<?= base_url(); ?>assets_front/assets/img/products/1.jpg" class="img-fluid"> </a> </li>
+                        <?= $indicators?>
+                            <!-- <li class="list-inline-item active"> <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#product-images"> <img src="<?= base_url(); ?><?=$ft->foto_path.'/'.$ft->foto_name?>" class="img-fluid"> </a> </li>
                             <li class="list-inline-item"> <a id="carousel-selector-1" data-slide-to="1" data-target="#product-images"> <img src="<?= base_url(); ?>assets_front/assets/img/products/2.jpg" class="img-fluid"> </a> </li>
                             <li class="list-inline-item"> <a id="carousel-selector-2" data-slide-to="2" data-target="#product-images"> <img src="<?= base_url(); ?>assets_front/assets/img/products/3.jpg" class="img-fluid"> </a> </li>
-                            <li class="list-inline-item"> <a id="carousel-selector-3" data-slide-to="3" data-target="#product-images"> <img src="<?= base_url(); ?>assets_front/assets/img/products/4.jpg" class="img-fluid"> </a> </li>
+                            <li class="list-inline-item"> <a id="carousel-selector-3" data-slide-to="3" data-target="#product-images"> <img src="<?= base_url(); ?>assets_front/assets/img/products/4.jpg" class="img-fluid"> </a> </li> -->
                         </ol>
+            
                        
                     </div>
                 </div>
@@ -43,16 +57,15 @@
                         <div class="product-select">
                             <!-- <form> -->
                                 <div class="form-group">
-                                    <label>Size</label>
-                                    <select class="form-control">
-                                        <option>-- Size --</option>
-                                    </select>
+                                    <label>Stock</label>
+                                    <!-- <?=print_r($stock)?> -->
+                                   
+                                   <input type="text" class="form-control" <?php foreach($stock as $st){?> value="<?=$st['qty']?>" <?php } ?> readonly>
+                                 
                                 </div>
                                 <div class="form-group">
-                                    <label>Color</label>
-                                    <select class="form-control">
-                                        <option>-- Color --</option>
-                                    </select>
+                                    <label>Weight</label>
+                                    <input type="text" class="form-control" value="<?=$data->weight?> Gr" readonly>
                                 </div>
                                 <?php
                                 echo form_open('front/productfront/cart_by_dtl');
@@ -166,7 +179,7 @@
                     <div class="single-product">
                         <div class="product-img">
                             <a href="<?=base_url('front/productfront/detail/'.$produk->id.'')?>">
-                                <img src=" <?= base_url($produk->foto_path.'/'.$produk->foto_name) ?>" class="img-fluid" />
+                                <img src=" <?= base_url('uploads/'.$produk->thumbnail.'') ?>" style="height:250px; width:300px; margin:auto;" class="img-fluid" />
                             </a>
                         </div>
                         <div class="product-content">

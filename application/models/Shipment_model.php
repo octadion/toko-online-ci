@@ -14,6 +14,7 @@ class Shipment_model extends CI_Model
         $this->db->from('orders');
         $this->db->join('shipments', 'shipments.order_id = orders.id', 'left');
         $this->db->where('orders.deleted_at', null);
+        $this->db->where('shipments.deleted_at', null);
         $this->db->group_by('shipments.order_id');
 
         $i = 0;
@@ -66,5 +67,16 @@ class Shipment_model extends CI_Model
         }
         $query = $this->db->get();
         return $query;
+    }
+
+    
+    public function del($id)
+    {
+        $params = [
+            'deleted_at' => date('Y-m-d H:i:s'),
+        ];
+		$this->db->where('order_id', decode_id($id));
+		$result = $this->db->update('shipments', $params);
+        return $result;
     }
 }
