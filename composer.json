@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"picqer/php-barcode-generator": "^2.2"
+		"picqer/php-barcode-generator": "^2.2",
+		"rmccue/requests": "^1.8.1"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
