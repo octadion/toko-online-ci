@@ -98,10 +98,10 @@ if (ENVIRONMENT !== 'production') {
 } else {
 	$db['default'] = array(
 		'dsn'	=> '',
-		'hostname' => '127.0.0.1',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'toko_online',
+		'hostname' => '188.166.208.59',
+		'username' => 'hidrostore',
+		'password' => 'Hidrostore@2021',
+		'database' => 'hidrostore',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,
