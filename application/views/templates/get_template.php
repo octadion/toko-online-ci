@@ -14,6 +14,7 @@
     <meta name="author" content="pixelcave">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- Open Graph Meta -->
     <meta property="og:title" content="Info Covid Surakarta">
