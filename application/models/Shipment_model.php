@@ -15,6 +15,7 @@ class Shipment_model extends CI_Model
         $this->db->join('shipments', 'shipments.order_id = orders.id', 'left');
         $this->db->where('orders.deleted_at', null);
         $this->db->where('shipments.deleted_at', null);
+        $this->db->where('orders.payment_status', 'settlement');
         $this->db->group_by('shipments.order_id');
 
         $i = 0;

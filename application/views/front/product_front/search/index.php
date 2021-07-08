@@ -26,7 +26,7 @@
                                 <h3>Shop by Price</h3>
                             </div>
                             <div class="widget-content shop-by-price">
-                                <form method="GET" action="/tesas">
+                             
                                     <div class="price-filter">
                                         <div class="price-filter-inner">
                                         <input type="hidden" id="hidden_minimum_price" value="0">
@@ -42,7 +42,7 @@
                                             </div> -->
                                         </div>
                                     </div>
-                                </form>
+                               
                             </div>
                         </div>
                         <div class="sidebar-widget">
@@ -92,23 +92,19 @@
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="row">
                         <div class="col-12">
-                            <div class="products-top">
-                                <div class="products-top-inner">
-                                    <div class="products-found">
-                                        <p><span>25</span> products found of <span>1.342</span></p>
-                                    </div>
-                                    <div class="products-sort">
-                                        <span>Sort By : </span>
-                                        <select>
-                                            <option>Default</option>
-                                            <option>Price</option>
-                                            <option>Recent</option>
-                                        </select>
-                                    </div>
+                        <?php echo form_open('front/productfront/search')?>
+                        <div class="input-group w-100">
+                                <input type="text" name="keyword"class="form-control" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <?php form_close() ?>
                         </div>
                     </div>
+                    <br>
                     <!-- <div class="row filter_data"> -->
                     <?php foreach($product as $prd){?>
                         <div class="col-lg-4 col-md-6 col-12">

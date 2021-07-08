@@ -7,6 +7,7 @@ class Akun extends MY_Controller
     {
         parent::__construct();
         $this->load->model(['akun_model', 'auth_model']);
+        check_admin();
     }
     
     function get_ajax() {
@@ -88,10 +89,13 @@ class Akun extends MY_Controller
     }
     function status_color($name){
         if($name == 'Administrator'){
-            return '<span class="badge badge-primary">Superadmin</span>';
+            return '<span class="badge badge-primary">Administrator</span>';
         }
-        else if($name == 'Employee'){
-            return '<span class="badge badge-success">Admin</span>';
+        else if($name == 'Operator'){
+            return '<span class="badge badge-success">Operator</span>';
+        }
+        else if($name == 'User'){
+            return '<span class="badge badge-warning">User</span>';
         }
     }
     public function tambah(){

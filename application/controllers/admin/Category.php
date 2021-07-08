@@ -7,6 +7,7 @@ class Category extends MY_Controller
     {
         parent::__construct();
         $this->load->model('category_model');
+        check_admin();
     }
 
     function get_ajax() {

@@ -105,6 +105,7 @@ function getproduct(id){
             },
             success: function(res)  {
                 // $(`#id`).val(res.id);
+                console.log(res);
                 product = [];
                 product = res;
                 let html = '';
@@ -121,6 +122,7 @@ function getproduct(id){
 
                 }
                 $('table#table_confirm tbody').html(html);
+                console.log(html)
     }
         });
 
@@ -243,6 +245,7 @@ var unitValidation = function() {
                     console.log('success');
                     $('#unit_judul').val('');
                     $('#table_orderconfirmed').DataTable().ajax.reload();
+                    $('#table_orderdeliver').DataTable().ajax.reload();
                 },
                 error: function(res){
                     console.log('error');

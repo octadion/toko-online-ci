@@ -7,6 +7,7 @@ class Unit extends MY_Controller
     {
         parent::__construct();
         $this->load->model('unit_model');
+        check_admin();
     }
 
     function get_ajax() {

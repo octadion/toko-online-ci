@@ -109,4 +109,11 @@ print_r($id);
         }
             redirect('front/profile/edit');
     }
+    public function logout()
+    {
+        $id_user = decode_id($this->session->userdata('id'));
+        $this->session->unset_userdata('id');
+        $this->session->sess_destroy();
+        redirect(base_url('auth'), 'refresh');
+    }
 }

@@ -11,6 +11,7 @@ class Revenue extends MY_Controller
         // $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
 		// $this->load->library('veritrans');
 		// $this->veritrans->config($params);
+        check_admin();
     }
 
     function get_ajax() {
@@ -27,25 +28,7 @@ class Revenue extends MY_Controller
             $row[] = indo_currency($item->gross_revenue);
             $row[] = indo_currency($item->shipping);
             $row[] = indo_currency($item->net_revenue);
-            // $row[] = $item->shipping;
- 
-            // add html for action
-        //     $row[] = '<div class="btn-group" role="group">
-        //     <button id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" type="button" class="btn btn-sm btn-primary dropdown-toggle" id="btnGroupVerticalDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        //         Aksi
-        //     </button>
-        //     <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-        //         <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
-        //             <i class="fa fa-fw fa-eye mr-5"></i>Detail
-        //         </a>
-               
-        //         <a class="dropdown-item edit" href="#edit" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" data-user_id="'.$this->session->userdata('id').'" data-toggle="modal" 
-        //         data-qty="'.$item->qty.'" data-target="#modal-popin">
-        //             <i class="fa fa-fw fa-pencil mr-5"></i>Edit
-        //         </a>
-        //     </div>
-        // </div>
-        //             <button id="del'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" class="swal-confirm-delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>';
+           
                 $total_rev = $total_rev + $item->net_revenue;
                 // print_r($total_rev);
                 $data[] = $row;
@@ -54,6 +37,36 @@ class Revenue extends MY_Controller
                     "draw" => @$_POST['draw'],
                     "recordsTotal" => $this->revenue_model->count_all(),
                     "recordsFiltered" => $this->revenue_model->count_filtered(),
+                    "data" => $data,
+                    'total'    => indo_currency($total_rev, 2)
+                );
+        // output to json format
+        echo json_encode($output);
+    }
+
+    function get_ajax2() {
+        $list = $this->revenue_model->get_datatables2();
+        $total_rev = 0;
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($list as $item) {
+            // $no++;
+            $row = array();
+            // $row[] = $no.".";
+            $row[] = $item->month;
+            $row[] = $item->tot_order;
+            $row[] = indo_currency($item->gross_revenue);
+            $row[] = indo_currency($item->shipping);
+            $row[] = indo_currency($item->net_revenue);
+           
+                $total_rev = $total_rev + $item->net_revenue;
+                // print_r($total_rev);
+                $data[] = $row;
+        }
+        $output = array(
+                    "draw" => @$_POST['draw'],
+                    "recordsTotal" => $this->revenue_model->count_all2(),
+                    "recordsFiltered" => $this->revenue_model->count_filtered2(),
                     "data" => $data,
                     'total'    => indo_currency($total_rev, 2)
                 );

@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-6 text-left">
                         <ul class="top-links contact-info">
-                            <li><i class="fa fa-envelope-o"></i> <a href="#">contact@example.com</a></li>
+                            <li><i class="fa fa-envelope-o"></i> <a href="#">hidroponik.phicos@gmail.com</a></li>
                             <li><i class="fa fa-whatsapp"></i> +1 5589 55488 55</li>
                         </ul>
                     </div>
@@ -69,14 +69,14 @@
                     <div class="col-lg-7 col-12 col-sm-6">
                     <!-- <?php echo form_open('front/productfront/search')?> -->
                         <!-- <form action="<?=base_url('front/productfront/search')?>" class="search"> -->
-                            <div class="input-group w-100">
+                            <!-- <div class="input-group w-100">
                                 <input type="text" name="keyword"class="form-control" placeholder="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
-                            </div>
+                            </div> -->
                         <!-- </form> -->
                         <!-- <?php form_close()?> -->
                     </div>
@@ -84,7 +84,7 @@
                         <div class="right-icons pull-right d-none d-lg-block">
                             <div class="single-icon wishlist">
                                 <a href="#"><i class="fa fa-heart-o fa-2x"></i></a>
-                                <span class="badge badge-default">5</span>
+                                <span class="badge badge-default"></span>
                             </div>
                             <div class="single-icon shopping-cart">
                             <a href="<?php echo base_url('front/cart'); ?>" title="View Cart"><i class="fa fa-shopping-cart fa-2x"></i> 

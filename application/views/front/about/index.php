@@ -35,8 +35,8 @@
                                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
                                         aria-expanded="true" aria-controls="collapseOne">
                                         Visi
-                                        <i class="lnr lnr-chevron-down"></i>
-                                        <i class="lnr lnr-chevron-up"></i>
+                                        <!-- <i class="lnr lnr-chevron-down"></i>
+                                        <i class="lnr lnr-chevron-up"></i> -->
                                     </button>
                                 </div>
 
@@ -58,8 +58,8 @@
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Misi
-                                        <i class="lnr lnr-chevron-down"></i>
-                                        <i class="lnr lnr-chevron-up"></i>
+                                        <!-- <i class="lnr lnr-chevron-down"></i>
+                                        <i class="lnr lnr-chevron-up"></i> -->
                                     </button>
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -80,8 +80,8 @@
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                         Tujuan
-                                        <i class="lnr lnr-chevron-down"></i>
-                                        <i class="lnr lnr-chevron-up"></i>
+                                        <!-- <i class="lnr lnr-chevron-down"></i>
+                                        <i class="lnr lnr-chevron-up"></i> -->
                                     </button>
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
@@ -93,7 +93,7 @@
                                     </p>
                                     </div>
                                     </div>
-
+                                    
                                 </div>
                             </div>
                             <br>
@@ -112,8 +112,12 @@
                             Critani adalah website website pembelajaran Tradisi Lisan dimana penggiat dapat belajar dimana saja dan kapan saja.
                             Mitra dapat mengupload video ceritanya pada website.
                         </p>
+                        <br>
                         </div>
-
+                        <div style="width: 100%"><iframe  width="100%" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.172569401887!2d110.80758721477663!3d-7.556154494550604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1764c2b40a73%3A0x57c0543210c3de5!2sKantor%20Phicos%20Group%20(IT%20Consultant)!5e0!3m2!1sen!2sid!4v1625717114152!5m2!1sen!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy" tabindex="0"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a
+                    href="https://goo.gl/maps/WhKRjZznoHgTZuUK8">gps coordinates</a></iframe></div><br />
+                    
                     </div>
                     
                     </div>
@@ -163,7 +167,7 @@
             </div> -->
         </div>
     </section>
-    <section class="other-products pb-4 pt-4">
+    <!-- <section class="other-products pb-4 pt-4">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -193,4 +197,4 @@
                
             </div>
         </div>
-    </section>
+    </section> -->

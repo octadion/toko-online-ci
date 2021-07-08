@@ -16,6 +16,7 @@ class Order extends MY_Controller
         $this->load->model('unit_model');
         $this->load->model('foto_model');
 		$this->veritrans->config($params);
+        check_admin();
     }
 
     function get_ajax() {
@@ -144,18 +145,15 @@ class Order extends MY_Controller
             // $row[] = $this->status_color($item->status);
             // add html for action
           $status_deliver = 'delivered';
-            $row[] = '<div class="btn-group" role="group">
-            <button id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" type="button" class="btn btn-sm btn-primary dropdown-toggle" id="btnGroupVerticalDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Aksi
-            </button>
-            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/order/detail/'.$item->id).'" data-id="'.$item->id.'">
-                    <i class="fa fa-fw fa-eye mr-5"></i>Detail
-                </a>
+            $row[] = '
 
-              
-            </div>
-        </div>
+            <a class="btn btn-primary btn-sm" href="'.site_url('admin/order/detail/'.$item->id).'" data-id="'.$item->id.'">
+            <i class="fa fa-fw fa-eye mr-5"></i>Detail
+        </a>
+           
+           
+               
+    
                     <button id="del'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" class="swal-confirm-delete3 btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>';
             $data[] = $row;
         }
@@ -390,7 +388,7 @@ class Order extends MY_Controller
         $post = $this->input->post(null, TRUE);
         $data = $this->order_model->confirm($post);
        
-
+        
 		$error = $this->db->error();
 		if($error['code'] != 0){
 			echo "<script>alert('Status tidak berhasil diubah');</script>";
@@ -428,10 +426,19 @@ class Order extends MY_Controller
         $data = $this->order_model->deliver($post);
         $data_track = $this->order_model->track_number($post);
         $curl = curl_init();
- $post_data_arr = [
-            'number' => '085895311426',
-            'message' => 'tes api',
-          ]; 
+
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('id',decode_id($post['id']));
+        $number =  $this->db->get()->row()->customer_phone;
+
+        $this->db->select('*');
+        $this->db->from('shipments');
+        $this->db->where('order_id',decode_id($post['id']));
+        $track_number =  $this->db->get()->row()->track_number;
+
+        $message = "Halo kak, pesanan anda sudah dalam proses pengiriman, berikut nomor resinya: ".$track_number.", anda dapat mengeceknya sendiri atau mengeceknya di website Hidroponik Store Phicos pada menu order kemudian opsi Track. Terimakasih";
+       
         curl_setopt_array($curl, array(
         CURLOPT_URL => "http://localhost:8000/send-message",
         CURLOPT_SSL_VERIFYHOST => 0,
@@ -442,7 +449,7 @@ class Order extends MY_Controller
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "number=085895311426&message=tes api",
+        CURLOPT_POSTFIELDS => "number=".$number."&message=".$message."",
         CURLOPT_HTTPHEADER => array(
             "content-type: application/x-www-form-urlencoded",
          
@@ -454,19 +461,7 @@ class Order extends MY_Controller
 
         curl_close($curl);
         print_r($response);
-        // $post_data_arr = [
-        //     'number' => '085895311426',
-        //     'message' => 'tes api',
-        //   ]; 
-          
-        //   $url = 'http://localhost:8000/send-message';
-        //   $curl = curl_init($url);
-        //   curl_setopt($curl, CURLOPT_POST, true);
-        //   curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data_arr);
-        //   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        //   $response = curl_exec($curl);
-        //   curl_close($curl);
-        //   print_r($response);
+       
 		$error = $this->db->error();
 		if($error['code'] != 0){
 			echo "<script>alert('Status tidak berhasil diubah');</script>";

@@ -205,3 +205,29 @@ function time_elapsed_string($datetime, $full = false) {
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+
+function check_admin(){
+    $ci =& get_instance();
+    $ci->load->library('fungsi');
+    if($ci->fungsi->user_login()->role_id != 1 && $ci->fungsi->user_login()->role_id != 3){
+        redirect('front/home');
+    }
+}
+
+function check_already_login(){
+    $ci =& get_instance();
+    $user_session = decode_id($ci->session->userdata('id'));
+    if($user_session){
+        redirect('admin/dashboard');
+    }
+}
+
+function unset_data(){
+    $ci =& get_instance();
+    decode_id($ci->session->unset_userdata('id'));
+    // if($user_session){
+    //     redirect('admin/dashboard');
+    // }
+}
+
+

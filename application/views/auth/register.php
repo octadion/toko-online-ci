@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-    <title>Hidroponik Store Phicos - Login</title>
+    <title>Hidroponik Store Phicos - Register</title>
 
     <meta name="description" content="Info Covid Surakarta">
     <meta name="author" content="pixelcave">
@@ -48,13 +48,31 @@
                             <!-- END Header -->
                             <?= $this->session->flashdata('error_messages'); ?>
                             <?= $this->session->flashdata('success'); ?>
-                            <form class="js-validation-signin" action="<?= base_url('auth/validate'); ?>" method="post">
+                            <form class="js-validation-signin" action="<?= base_url('auth/register'); ?>" method="post">
                                 <input type="hidden" name="previous" value="<?= $this->input->get('page'); ?>">
                                 <div class="block block-themed block-rounded block-shadow">
                                     <div class="block-header bg-gd-dusk">
-                                        <h3 class="block-title">Silahkan Login</h3>
+                                        <h3 class="block-title">Silahkan Mengisi Data</h3>
                                     </div>
                                     <div class="block-content">
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="fname">First Name</label>
+                                                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Masukkan Nama Depan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="lname">Last Name</label>
+                                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Masukkan Nama Belakang">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="phone">Phone</label>
+                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan No. Handphone">
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <div class="col-12">
                                                 <label for="email">Email</label>
@@ -63,19 +81,31 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-12">
+                                                <label for="email">Alamat</label>
+                                                <textarea class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
                                                 <label for="password">Password</label>
                                                 <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <label for="passconf">Password Confirmation</label>
+                                                <input type="password" class="form-control" id="passconf" name="passconf" placeholder="Masukkan Konfirmasi Password">
+                                            </div>
+                                        </div>
                                         <div class="form-group row mb-0">
-                                        <div class="col-sm-6 d-sm-flex align-items-center push">
-                                        <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="<?=base_url('auth/create')?>">
-                                                    <i class="fa fa-plus mr-5"></i> Create Account
+                                        <div class="col-sm-6 push">
+                                        <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="<?=base_url('auth')?>">
+                                                    <i class="fa fa-user text-muted mr-5"></i> Sign In
                                                 </a>
-                                                </div>
+                                        </div>
                                             <div class="col-sm-6 text-sm-right push">
                                                 <button type="submit" class="btn btn-alt-primary">
-                                                    <i class="si si-login mr-10"></i> Login
+                                                <i class="fa fa-plus mr-5"></i>Create Account
                                                 </button>
                                             </div>
                                         </div>
@@ -134,26 +164,52 @@
                         jQuery(e).remove();
                     },
                     rules: {
+                        'first_name': {
+                        required: true,
+                        },
+                        'last_name': {
+                            required: true,
+                        },
                         'email': {
                             required: true,
                             minlength: 3,
                             email: true
                         },
+                        'phone': {
+                        required: true
+                        },
+                        'alamat': {
+                            required: true
+                        },
                         'password': {
                             required: true,
                             minlength: 5
-                        }
+                        },
+                         'passconf': {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#password"
+                        },
                     },
                     messages: {
+                        'first_name': 'First name wajib diisi!',
+                    'last_name': 'Last name wajib diisi!',
                         'email': {
                             required: 'Silahkan masukkan email',
                             minlength: 'Masukkan minimal 3 karakter',
                             email: 'Email anda tidak valid'
                         },
+                        'phone': 'Telepon wajib diisi!',
+                    'alamat': 'Alamat wajib diisi!',
                         'password': {
                             required: 'Silahkan masukkan password',
                             minlength: 'Masukkan minimal 5 karakter'
-                        }
+                        },
+                        'passconf': { 
+                        required: 'Password Confirmation wajib diisi!',
+                        minlength: 'Password Confirmation minimal 5 karakter',
+                        equalTo: 'Password harus sesuai dengan diatas!'
+                    },
                     }
                 });
             };

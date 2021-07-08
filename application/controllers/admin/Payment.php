@@ -11,6 +11,7 @@ class Payment extends MY_Controller
         $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
+        check_admin();
     }
 
     function get_ajax() {

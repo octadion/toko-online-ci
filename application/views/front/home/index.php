@@ -64,9 +64,9 @@
                             <i class="fa fa-truck"></i>
                         </div>
                         <div class="media-body">
-                            <h5>Fast Shipping</h5>
+                            <h5>Delivery</h5>
                             <p class="text-muted">
-                                All you have to do is to bring your passion. We take care of the rest.
+                            Pengiriman ke seluruh Indonesia dengan pengiriman JNE, Tiki & POS.
                             </p>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         <div class="media-body">
                             <h5>Online Payment</h5>
                             <p class="text-muted">
-                                All you have to do is to bring your passion. We take care of the rest.
+                                Pembayaran dengan banyak metode: kartu kredit/debit, transfer bank, e-Money, dan masih banyak lagi.
                             </p>
                         </div>
                     </div>

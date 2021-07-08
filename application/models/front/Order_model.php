@@ -25,6 +25,7 @@ class Order_model extends CI_Model
         // $this->db->where('payment_status','unpaid');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->where('id',$id);
+        $this->db->where('deleted_at', null);
         $this->db->order_by('id','desc');
         return $this->db->get()->result();
     }
@@ -33,8 +34,10 @@ class Order_model extends CI_Model
         $this->db->from('orders');
         $this->db->where('status','created');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
         $this->db->or_where('status','cancelled');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
         $this->db->order_by('id','desc');
         return $this->db->get()->result();
     }
@@ -44,6 +47,7 @@ class Order_model extends CI_Model
         $this->db->from('orders');
         $this->db->where('status','confirmed');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
         // $this->db->or_where('status','cancelled');
         // $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->order_by('id','desc');
@@ -54,6 +58,7 @@ class Order_model extends CI_Model
         $this->db->from('orders');
         $this->db->where('status','delivered');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
         // $this->db->or_where('status','cancelled');
         // $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->order_by('id','desc');
@@ -65,6 +70,7 @@ class Order_model extends CI_Model
         $this->db->from('orders');
         $this->db->where('status','completed');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
         // $this->db->or_where('status','cancelled');
         // $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->order_by('id','desc');
@@ -83,5 +89,22 @@ class Order_model extends CI_Model
         ]);
         $this->db->from('orders');
         return $this->db->get()->result();
+    }
+
+    public function del($id){
+        $params = [
+            'deleted_at' => date('Y-m-d H:i:s'),
+        ];
+		$this->db->where('id', $id);
+		$result = $this->db->update('orders', $params);
+        return $result;
+    }
+    public function complete($id){
+        $params = [
+            'status' => 'completed',
+        ];
+		$this->db->where('id', $id);
+		$result = $this->db->update('orders', $params);
+        return $result;
     }
 }

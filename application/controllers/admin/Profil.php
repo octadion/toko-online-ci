@@ -7,6 +7,7 @@ class Profil extends MY_Controller
     {
         parent::__construct();
         $this->load->model(['akun_model', 'auth_model']);
+        check_admin();
     }
 
     public function index()

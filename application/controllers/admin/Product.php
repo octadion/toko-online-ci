@@ -10,7 +10,7 @@ class Product extends MY_Controller
         $this->load->model('category_model');
         $this->load->model('unit_model');
         $this->load->model('foto_model');
-       
+        check_admin();
     }
 
     function get_ajax() {

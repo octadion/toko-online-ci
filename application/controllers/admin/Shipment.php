@@ -11,6 +11,7 @@ class Shipment extends MY_Controller
         // $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
 		// $this->load->library('veritrans');
 		// $this->veritrans->config($params);
+        check_admin();
     }
 
     function get_ajax() {
@@ -33,18 +34,12 @@ class Shipment extends MY_Controller
             // add html for action
             $status_cancel = 'cancelled';
             $status_confirm = 'confirmed';
-            $row[] = '<div class="btn-group" role="group">
-            <button id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" type="button" class="btn btn-sm btn-primary dropdown-toggle" id="btnGroupVerticalDrop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Aksi
-            </button>
-            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/shipment/detail/'.$item->id).'" data-id="'.$item->id.'">
+            $row[] = '
+                <a class="btn btn-sm btn-primary btn-foto" href="'.site_url('admin/shipment/detail/'.$item->id).'" data-id="'.$item->id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
                
-              
-            </div>
-        </div>
+             
                     <button id="del'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" class="swal-confirm-delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>';
             $data[] = $row;
         }

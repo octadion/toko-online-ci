@@ -170,5 +170,14 @@ class Akun_model extends CI_Model
         }
     }
 
+    public function get_user($id =  null){
+        $this->db->from('user');
+        if($id !=null){
+            $this->db->where('id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+      }
+
 }
 

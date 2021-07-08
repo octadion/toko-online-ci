@@ -18,21 +18,29 @@ class Auth_model extends CI_Model
     }
 
 
-    public function register($email, $pwd)
+    public function register($first_name, $last_name, $phone, $email, $alamat, $password)
     {
         $key = self::token;
-        $pwd_peppered = hash_hmac("sha256", $pwd, $key);
+        $pwd_peppered = hash_hmac("sha256", $password, $key);
         $pwd_hashed = password_hash($pwd_peppered, PASSWORD_DEFAULT);
         $data = [
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'phone' => $phone,
             'email' => $email,
+            'alamat' => $alamat,
             'password' => $pwd_hashed,
+            'role_id' => 2,
+            'activated_at' => date('Y-m-d H:i:s'),
         ];
         $data = $this->security->xss_clean($data);
         $query = $this->db->insert('user', $data);
         if ($this->db->affected_rows()) {
-            return true;
+            $this->session->set_flashdata('success', '<div class="alert alert-success" role="alert">Akun berhasil dibuat.</div>');
+            redirect(base_url('auth'), 'refresh');
         }
-        return null;
+        $this->session->set_flashdata('error_messages', '<div class="alert alert-danger" role="alert">Akun gagal dibuat.</div>');
+        redirect(base_url('auth'), 'refresh');
     }
 
     public function validate($email, $password)

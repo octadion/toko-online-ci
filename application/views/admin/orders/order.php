@@ -40,14 +40,7 @@ table{
 <div class="tab-content">
                 <div class="tab-pane active" id="btabs-static2-created" role="tabpanel">
 <div class="block block-rounded">
-    <div class="block-header block-header-default">
-        <!-- <h3 class="block-title"></h3> -->
-        <!-- <div class="block-options">
-            <button type="button" id="cek_status" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-popin">
-                <i class="fa fa-search"></i> Check Status
-            </button>
-        </div> -->
-    </div>
+ 
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
                 <table id="table_order" class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -72,14 +65,7 @@ table{
                 </div>
                 <div class="tab-pane" id="btabs-static2-confirmed" role="tabpanel">
                 <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <!-- <h3 class="block-title"></h3> -->
-                        <!-- <div class="block-options">
-                            <button type="button" id="cek_status" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-popin">
-                                <i class="fa fa-search"></i> Check Status
-                            </button>
-                        </div> -->
-                    </div>
+                 
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
                         <table id="table_orderconfirmed" class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -104,14 +90,7 @@ table{
                 </div>
                 <div class="tab-pane" id="btabs-static2-delivered" role="tabpanel">
                 <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <!-- <h3 class="block-title"></h3> -->
-                        <!-- <div class="block-options">
-                            <button type="button" id="cek_status" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-popin">
-                                <i class="fa fa-search"></i> Check Status
-                            </button>
-                        </div> -->
-                    </div>
+                 
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
                         <table id="table_orderdeliver" class="table table-bordered table-striped table-vcenter js-dataTable-full">
@@ -136,14 +115,7 @@ table{
                 </div>
                 <div class="tab-pane" id="btabs-static2-completed" role="tabpanel">
                 <div class="block block-rounded">
-                    <div class="block-header block-header-default">
-                        <!-- <h3 class="block-title"></h3> -->
-                        <!-- <div class="block-options">
-                            <button type="button" id="cek_status" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-popin">
-                                <i class="fa fa-search"></i> Check Status
-                            </button>
-                        </div> -->
-                    </div>
+                   
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
                         <table id="table_completed" class="table table-bordered table-striped table-vcenter js-dataTable-full">

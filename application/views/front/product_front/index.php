@@ -92,23 +92,19 @@
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="row">
                         <div class="col-12">
-                            <div class="products-top">
-                                <div class="products-top-inner">
-                                    <div class="products-found">
-                                        <p><span>25</span> products found of <span>1.342</span></p>
-                                    </div>
-                                    <div class="products-sort">
-                                        <span>Sort By : </span>
-                                        <select>
-                                            <option>Default</option>
-                                            <option>Price</option>
-                                            <option>Recent</option>
-                                        </select>
-                                    </div>
+                        <?php echo form_open('front/productfront/search')?>
+                        <div class="input-group w-100">
+                                <input type="text" name="keyword"class="form-control" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <?php form_close() ?>
                         </div>
                     </div>
+                    <br>
                     <div class="row filter_data">
                         <!-- <div class="col-lg-4 col-md-6 col-12">
                             <div class="single-product">

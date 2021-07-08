@@ -14,21 +14,21 @@ class Report_product_model extends CI_Model
         $this->db->from('order_items');
         $this->db->join('inventories', 'inventories.product_id = order_items.product_id', 'left');
         $this->db->join('orders', 'orders.id = order_items.order_id', 'left');
-        $this->db->where('orders.status', 'confirmed');
+        $this->db->where('orders.payment_status', 'settlement');
         if($_POST["start_date"] && $_POST["end_date"])
         {
         $this->db->where('order_items.created_at BETWEEN "'.$_POST["start_date"] . '" and "'.$_POST["end_date"] .'"');
         }
-        $this->db->or_where('orders.status', 'delivered');
-        if($_POST["start_date"] && $_POST["end_date"])
-        {
-        $this->db->where('order_items.created_at BETWEEN "'.$_POST["start_date"] . '" and "'.$_POST["end_date"] .'"');
-        }
-        $this->db->or_where('orders.status', 'completed');
-        if($_POST["start_date"] && $_POST["end_date"])
-        {
-        $this->db->where('order_items.created_at BETWEEN "'.$_POST["start_date"] . '" and "'.$_POST["end_date"] .'"');
-        }
+        // $this->db->or_where('orders.status', 'delivered');
+        // if($_POST["start_date"] && $_POST["end_date"])
+        // {
+        // $this->db->where('order_items.created_at BETWEEN "'.$_POST["start_date"] . '" and "'.$_POST["end_date"] .'"');
+        // }
+        // $this->db->or_where('orders.status', 'completed');
+        // if($_POST["start_date"] && $_POST["end_date"])
+        // {
+        // $this->db->where('order_items.created_at BETWEEN "'.$_POST["start_date"] . '" and "'.$_POST["end_date"] .'"');
+        // }
         $i = 0;
         foreach ($this->column_search as $item) { // loop column 
             if(@$_POST['search']['value']) { // if datatable send POST for search

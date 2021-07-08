@@ -94,64 +94,64 @@
           <div class="col-sm-6">
             <div class="form-group">
                 <label for="">Provinsi</label>
-                  <select name="provinsi" class="js-select2 form-control" id="provinsi"></select>
+                  <select name="provinsi" class="js-select2 form-control" id="provinsi" required></select>
             </div>
           </div>
           <div class="col-sm-5">
               <div class="form-group">
                   <label for="">Kota</label>
-                    <select name="kota" class="js-select2 form-control" id="kota"></select>
+                    <select name="kota" class="js-select2 form-control" id="kota" required></select>
               </div>
           </div>
           <div class="col-sm-6">
               <div class="form-group">
                   <label for="">Kurir</label>
-                    <select name="ekspedisi" class="js-select2 form-control" id="ekspedisi"></select>
+                    <select name="ekspedisi" class="js-select2 form-control" id="ekspedisi" required></select>
               </div>
           </div>
           <div class="col-sm-5">
               <div class="form-group">
                   <label for="">Servis</label>
-                    <select name="paket" class="js-select2 form-control" id="paket"></select>
+                    <select name="paket" class="js-select2 form-control" id="paket" required></select>
               </div>
           </div>
 
           <div class="col-sm-6">
               <div class="form-group">
                   <label for="">Nama Depan</label>
-                  <input type="text" class="form-control" id="name" name="first_name">
+                  <input type="text" class="form-control" id="name" name="first_name" required>
               </div>
           </div>
           <div class="col-sm-5">
               <div class="form-group">
                   <label for="">Nama Belakang</label>
-                  <input type="text" class="form-control" id="postcode" name="last_name">
+                  <input type="text" class="form-control" id="postcode" name="last_name" required>
               </div>
           </div>
          
           <div class="col-sm-8">
               <div class="form-group">
                   <label for="">Alamat</label>
-                  <input type="text" class="form-control" id="address" name="address">
+                  <input type="text" class="form-control" id="address" name="address" required>
                    
               </div>
           </div>
           <div class="col-sm-3">
               <div class="form-group">
                   <label for="">Kode Pos</label>
-                  <input type="text" class="form-control" id="postcode" name="postcode">
+                  <input type="text" class="form-control" id="postcode" name="postcode" required>
               </div>
           </div>
           <div class="col-sm-6">
               <div class="form-group">
                   <label for="">No. Telp</label>
-                  <input type="text" class="form-control" id="phone" name="phone">
+                  <input type="text" class="form-control" id="phone" name="phone" required>
               </div>
           </div>
           <div class="col-sm-5">
               <div class="form-group">
                   <label for="">Email</label>
-                  <input type="text" class="form-control" id="email" name="email">
+                  <input type="text" class="form-control" id="email" name="email" required>
               </div>
           </div>
           <div class="col-sm-6">

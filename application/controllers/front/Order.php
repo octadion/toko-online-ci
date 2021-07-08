@@ -111,4 +111,94 @@ class Order extends MY_Controller
         $this->cart->destroy();
         redirect('front/order/');
     }
+
+    public function del($id){
+
+        $this->order_model->del($id);
+        if($this->db->affected_rows()>0){
+			$this->session->set_flashdata('success','Data berhasil disimpan');
+	
+		}
+		redirect('front/order');
+            // echo $data;
+            
+
+    }
+
+    public function detail($id){
+        $this->db->select('*');
+        $this->db->from('shipments');
+        // $this->db->join('inventories', 'inventories.product_id = order_items.product_id', 'left');
+        // $this->db->join('orders', 'orders.id = order_items.order_id', 'left');
+        $this->db->where('order_id', $id);
+        // $this->db->where('orders.id', $id);
+        $shipment =  $this->db->get()->result();
+        $data = array(
+            'title' => 'My Order',
+            'shipment' => $shipment,
+            'cartItems' => $this->cart->contents(),
+        );
+
+        $this->template->content_frontend('front/order/detail/detail', $data);
+    }
+    public function complete($id){
+
+        $this->order_model->complete($id);
+        if($this->db->affected_rows()>0){
+			$this->session->set_flashdata('success','Data berhasil disimpan');
+	
+		}
+		redirect('front/order');
+            // echo $data;
+            
+
+    }
+
+    public function track($id){
+        $this->db->select('shipments.*,orders.shipping_courier');
+        $this->db->from('shipments');
+        $this->db->join('orders','orders.id = shipments.order_id','left');
+        $this->db->where('orders.id',$id);
+        // $this->db->order_by('id','desc');
+        $track_number =  $this->db->get()->row()->track_number;
+
+            $this->db->select('shipments.*,orders.shipping_courier');
+        $this->db->from('shipments');
+        $this->db->join('orders','orders.id = shipments.order_id','left');
+        $this->db->where('orders.id',$id);
+        $shipping_courier =  $this->db->get()->row()->shipping_courier;
+                    
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=aece4f99905e06277a892cfa72edac7db854abfed81a4431912c4315c6405a7f&courier='.$shipping_courier.'&awb='.$track_number.'',
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_SSL_VERIFYHOST => 0,
+                CURLOPT_SSL_VERIFYPEER => 0,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'GET',
+            ));
+            
+            $response = curl_exec($curl);
+            
+            curl_close($curl);
+            // echo $response;
+            $array_response = json_decode($response,true);
+        
+        $data_track = $array_response['data'];
+        $count_ray = count($array_response['data']['history']);
+        $data = array(
+			'hasil' => $data_track,
+            'countnya' => $count_ray,
+			'cartItems' => $this->cart->contents(),
+		);
+		$this->template->content_frontend('front/order/track/track', $data);
+       
+
+    }
+
 }

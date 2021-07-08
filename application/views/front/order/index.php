@@ -171,8 +171,7 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                <a href="<?= base_url('front/order/complete/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Complete</a></button> 
-                              
+                                <a href="<?= base_url('front/order/del/'.$value->id.'')?>" class="btn btn-sm btn-block btn-danger">Del</a></button> 
                                </td>
                                
                             </tr>
