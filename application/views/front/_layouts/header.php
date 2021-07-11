@@ -67,8 +67,8 @@
                         </a>
                     </div>
                     <div class="col-lg-7 col-12 col-sm-6">
-                    <!-- <?php echo form_open('front/productfront/search')?> -->
-                        <!-- <form action="<?=base_url('front/productfront/search')?>" class="search"> -->
+                    <!-- <?php echo form_open('front/productFront/search')?> -->
+                        <!-- <form action="<?=base_url('front/productFront/search')?>" class="search"> -->
                             <!-- <div class="input-group w-100">
                                 <input type="text" name="keyword"class="form-control" placeholder="Search">
                                 <div class="input-group-append">

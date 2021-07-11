@@ -179,7 +179,7 @@ class ProductFront extends MY_Controller
         }
         else{
             echo "<script>alert('Data tidak ditemukan');";
-			echo "window.location='".site_url('front/productfront')."';</script>";
+			echo "window.location='".site_url('front/productFront')."';</script>";
         }
     }
 

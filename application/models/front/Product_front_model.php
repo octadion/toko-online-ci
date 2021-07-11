@@ -69,17 +69,17 @@ class Product_front_model extends CI_Model
                 <div class="col-lg-4 col-md-6 col-12">
                             <div class="single-product">
                             <div class="js-slider slick-nav-black slick-dotted-inner slick-dotted-white product-img" data-dots="true" data-arrows="true">
-                                    <a href="'.base_url('front/productfront/detail/'.$row['id'].'').'">
+                                    <a href="'.base_url('front/productFront/detail/'.$row['id'].'').'">
                                         <img src="'.base_url().'uploads'."/".$row['thumbnail'].'" class="img-fluid" style="height:250px; width:300px; margin:auto;"/>
                                         <input type="hidden" value="'.$row['id'].'">
                                     </a>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="'.base_url('front/productfront/detail/'.$row['id'].'').'">'.$row['name'].'</a></h3>
+                                    <h3><a href="'.base_url('front/productFront/detail/'.$row['id'].'').'">'.$row['name'].'</a></h3>
                                     <div class="product-price">
                                         <span>'.indo_currency($row['price']).'</span>
                                         
-                                        <a href="'.base_url('front/productfront/cart/'.$row['id'].'').'" class="btn-sm btn-primary">Add to Cart</a>
+                                        <a href="'.base_url('front/productFront/cart/'.$row['id'].'').'" class="btn-sm btn-primary">Add to Cart</a>
                                     </div>
                                 </div>
                             </div>

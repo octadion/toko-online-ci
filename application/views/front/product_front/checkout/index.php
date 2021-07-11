@@ -183,7 +183,7 @@
           ?>
 
           <div class="col-sm-11">
-          <a href="<?= base_url('front/productfront/')?>" class="btn btn-light">Continue shopping</a>
+          <a href="<?= base_url('front/productFront/')?>" class="btn btn-light">Continue shopping</a>
           <button type="submit" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Order</button>                                              
           </div>                           
         </div>

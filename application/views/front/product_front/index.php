@@ -92,7 +92,7 @@
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="row">
                         <div class="col-12">
-                        <?php echo form_open('front/productfront/search')?>
+                        <?php echo form_open('front/productFront/search')?>
                         <div class="input-group w-100">
                                 <input type="text" name="keyword"class="form-control" placeholder="Search">
                                 <div class="input-group-append">

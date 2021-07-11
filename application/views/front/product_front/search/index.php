@@ -92,7 +92,7 @@
                 <div class="col-lg-9 col-md-8 col-12">
                     <div class="row">
                         <div class="col-12">
-                        <?php echo form_open('front/productfront/search')?>
+                        <?php echo form_open('front/productFront/search')?>
                         <div class="input-group w-100">
                                 <input type="text" name="keyword"class="form-control" placeholder="Search">
                                 <div class="input-group-append">
@@ -110,16 +110,16 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="<?= base_url('front/productfront/detail/'.$prd->id.'')?>">
+                                    <a href="<?= base_url('front/productFront/detail/'.$prd->id.'')?>">
                                         <img src="<?= base_url('uploads/'.$prd->thumbnail.'');?>" class="img-fluid" style="height:250px; width:300px; margin:auto;" />
                                         <input type="hidden" value="<?=$prd->id?>">
                                     </a>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="<?= base_url('front/productfront/detail/'.$prd->id.'')?>"><?=$prd->name?></a></h3>
+                                    <h3><a href="<?= base_url('front/productFront/detail/'.$prd->id.'')?>"><?=$prd->name?></a></h3>
                                     <div class="product-price">
                                         <span><?=$prd->price?></span>
-                                        <a href="<?=base_url('front/productfront/cart/'.$prd->id.'')?>" class="btn-sm btn-primary">Add to Cart</a>
+                                        <a href="<?=base_url('front/productFront/cart/'.$prd->id.'')?>" class="btn-sm btn-primary">Add to Cart</a>
                                     </div>
                                 </div>
                             </div>

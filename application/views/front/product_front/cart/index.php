@@ -81,7 +81,7 @@ function updateCartItem(obj, rowid){
 <!-- <div class="col mb-6"> -->
  <div class="row">
     <div class="col-sm-6 col-md-3">
-        <a href="<?= base_url('front/productfront/')?>" class="btn btn-lg btn-block btn-light">Continue shopping</a>
+        <a href="<?= base_url('front/productFront/')?>" class="btn btn-lg btn-block btn-light">Continue shopping</a>
     </div>
     <div class="col-sm-6 col-md-3 text-right">
         <?php if($this->cart->total_items()>0){?>
