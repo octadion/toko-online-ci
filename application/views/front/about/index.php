@@ -20,10 +20,8 @@
                         <div class="main_title">
                             <h2 style="font-size: 33px !important;"><center>Tentang Hidroponik Store Phicos</center></h2>
                             <br>
-                            <center><p>Critani adalah web yang dibuat oleh <a
-                                    href="https://web.facebook.com/dyon.octa">Tim Critani</a> website
-                                pembelajaran Tradisi Lisan dimana penggiat dapat belajar dimana saja dan kapan saja.
-                                Mitra dapat mengupload video ceritanya pada website.
+                            <center><p>Hidroponik Store Phicos adalah sebuah website
+                                toko online untuk melakukan pembelian sayur hidroponik dan perlengkapan hidroponik lainnya. Pembeli dapat membeli produk dengan mudah dengan pembayaran yang mudah, selain itu pesanan dapat dikirim ke seluruh indonesia.
                             </p></center>
                         </div>
                         <br>
@@ -34,7 +32,7 @@
                                 <div class="card-header" id="headingOne">
                                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
                                         aria-expanded="true" aria-controls="collapseOne">
-                                        Visi
+                                       Informasi
                                         <!-- <i class="lnr lnr-chevron-down"></i>
                                         <i class="lnr lnr-chevron-up"></i> -->
                                     </button>
@@ -45,8 +43,8 @@
                                     <div class="card-body">
                                     <div class="product-short-desc">
                                     <p>
-                                        Membuat tradisi lisan yang ada di Indonesia teregenerasi dengan baik, mengenalkan budaya tradisi
-                                        lisan kepada masyarakat awam, membuat tradisi lisan terorganisir.
+                                    Pada awalnya sayur hidroponik hanya ditanam sebagai
+                                hobi sampingan, akan tetapi dikarenakan kualitas yang bagus dan permintaan tinggi akhirnya dibuat lah Hidroponik Store Phicos.
                                     </p>
                                     </div>
                                     </div>
@@ -57,7 +55,7 @@
                                 <div class="card-header" id="headingTwo">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Misi
+                                      Lokasi
                                         <!-- <i class="lnr lnr-chevron-down"></i>
                                         <i class="lnr lnr-chevron-up"></i> -->
                                     </button>
@@ -67,21 +65,19 @@
                                     <div class="card-body">
                                     <div class="product-short-desc">
                                     <p>
-                                        Membuat masyarakat lebih mengenal dan menyukai tradisi lisan. memberi wadah penggiat dan masyarakat
-                                        untuk menyimpan tradisi lisan.
+                                    Jl Rajawali 1 No 2, RT 02 RW 06, Kelurahan Manahan, Kecamatan Banjarsari, Surakarta
                                     </p>
                                     </div>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header" id="headingThree">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                         Tujuan
-                                        <!-- <i class="lnr lnr-chevron-down"></i>
-                                        <i class="lnr lnr-chevron-up"></i> -->
+                                 
                                     </button>
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
@@ -95,23 +91,23 @@
                                     </div>
                                     
                                 </div>
-                            </div>
+                            </div> -->
                             <br>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="video_area" id="video">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9YffrCViTVk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="500" height="320" src="https://www.youtube.com/embed/9YffrCViTVk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                                     </div>
                         <div class="about_details">
                         <div class="product-short-desc">
                                     
-                        <p>
+                        <!-- <p>
                             Critani adalah website website pembelajaran Tradisi Lisan dimana penggiat dapat belajar dimana saja dan kapan saja.
                             Mitra dapat mengupload video ceritanya pada website.
-                        </p>
+                        </p> -->
                         <br>
                         </div>
                         <div style="width: 100%"><iframe  width="100%" height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.172569401887!2d110.80758721477663!3d-7.556154494550604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1764c2b40a73%3A0x57c0543210c3de5!2sKantor%20Phicos%20Group%20(IT%20Consultant)!5e0!3m2!1sen!2sid!4v1625717114152!5m2!1sen!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy" tabindex="0"

@@ -77,7 +77,7 @@ function updateCartItem(obj, rowid){
     <?php } ?>
 </tbody>
 </table>
-<p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+<p class="description">Order anda telah di simpan dikeranjang, silakan proses ke checkout jika barang sudah terpilih semua atau anda dapat memilih produk lagi. Pesanan anda akan di data pada proses checkout nanti.</p>
 <!-- <div class="col mb-6"> -->
  <div class="row">
     <div class="col-sm-6 col-md-3">
@@ -98,4 +98,5 @@ function updateCartItem(obj, rowid){
 </div>
             </div>
 </section>
-      
+<br>
+<br>

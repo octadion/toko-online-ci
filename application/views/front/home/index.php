@@ -92,7 +92,7 @@
                         <div class="media-body">
                             <h5>Free Return</h5>
                             <p class="text-muted">
-                                All you have to do is to bring your passion. We take care of the rest.
+                                Website yang memudahkan pembeli dalam membeli pesanannya.
                             </p>
                         </div>
                     </div>

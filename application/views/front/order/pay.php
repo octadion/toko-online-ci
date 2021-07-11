@@ -87,7 +87,7 @@
                             </tr>
                             <?php } ?>
                         </table>
-                        <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                        <p class="description">Silahkan lengkapi pembayaran anda, anda dapat mengklik tombol pay dibawah, lalu anda dapat memilih metode pembayaran yang anda inginkan lalu ikuti proses sampai pembayaran berhasil.</p>
                         <!-- <p class="description">Detail:</p> -->
                         
 <!--                         
@@ -187,4 +187,4 @@
         </div>
         </div>
     </section>
-   
+   <br>

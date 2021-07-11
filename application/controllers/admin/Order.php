@@ -382,6 +382,38 @@ class Order extends MY_Controller
             'id' => $id
         ];
         $upd_order = $this->order_model->update_pay_order($dataupdate_order, $where);
+
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('id', $id);
+        $number =  $this->db->get()->row()->customer_phone;
+        $curl = curl_init();
+        $status = $result->transaction_status;
+        if($status == 'settlement'){
+            $message = "Halo kak, pembayaran anda sudah berhasil, silakan menunggu, pesananan anda akan segera diproses. Terimakasih telah memesan :)";
+       
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://localhost:8000/send-message",
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "number=".$number."&message=".$message."",
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded",
+             
+            ),
+            ));
+    
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+    
+            curl_close($curl);
+        }
     }
 
     public function confirm(){

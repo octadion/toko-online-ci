@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ProductFront extends MY_Controller
+class productfront extends MY_Controller
 {
     public function __construct()
 	{

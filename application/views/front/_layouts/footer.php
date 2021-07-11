@@ -8,9 +8,7 @@
                             <div class="logo-footer">
                                 <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">Hidrostore</span>
                             </div>
-                            <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna
-                                eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-                                facilisis luctus, metus.</p>
+                            <p class="text">Hidroponik Store Phicos solusi sayur sehat anda. Membantu anda merencanakan dan mengembangkan kebun sayur anda.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456
                                         789</a></span></p>
                         </div>
@@ -51,9 +49,9 @@
                             <!-- Single Widget -->
                             <div class="contact">
                                 <ul>
-                                    <li>NO. 342 - London Oxford Street.</li>
-                                    <li>012 United Kingdom.</li>
-                                    <li>info@indomarket.com</li>
+                                    <li>Jl Rajawali 1 No 2, RT 02 RW 06, Kelurahan Manahan, Kecamatan Banjarsari</li>
+                                    <li>Surakarta.</li>
+                                    <li>phicos@gmail.com</li>
                                     <li>+032 3456 7890</li>
                                 </ul>
                             </div>
@@ -76,7 +74,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="left">
-                                <p>Copyright © 2021 <a href="http://indokoding.net" target="_blank">IndoKoding.net</a> -
+                                <p>Copyright © 2021 <a href="http://indokoding.net" target="_blank">Phicos Group Surakarta</a> -
                                     All Rights Reserved.</p>
                             </div>
                         </div>
