@@ -142,7 +142,7 @@ $(document).ready(function () {
         var maximum_price = $('#hidden_maximum_price').val();
         var category = get_filter('category');
         $.ajax({
-            url: "<?= base_url();?>front/productfront/fetch_data/" +page,
+            url: "<?= base_url();?>front/productFront/fetch_data/" +page,
             method: "POST",
             dataType: "JSON",
             data: {action:action, minimum_price:minimum_price,
