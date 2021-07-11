@@ -115,7 +115,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">Pages</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?= base_url('front/productfront/')?>">Products</a>
+                                <a class="dropdown-item" href="<?= base_url('front/productFront/')?>">Products</a>
                                 <!-- <a class="dropdown-item" href="product-detail.html">Product Detail</a> -->
                                 <a class="dropdown-item" href="<?= base_url('front/cart')?>">Cart</a>
                                 <!-- <a class="dropdown-item" href="checkout.html">Checkout</a> -->
