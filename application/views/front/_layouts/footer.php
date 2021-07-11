@@ -284,7 +284,7 @@ $('#pay-button').click(function (event) {
       $(this).attr("disabled", "disabled");
     
     $.ajax({
-      url: '<?=base_url()?>/snap/token',
+      url: '<?=base_url()?>snap/token',
       cache: false,
         data: {
             grossamount: grossamount,
