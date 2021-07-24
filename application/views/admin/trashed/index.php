@@ -19,11 +19,11 @@
 <div class="block block-rounded block-shadow">
     <div class="block-header block-header-default">
         <h3 class="block-title">Trashed Order</h3>
-        <div class="block-options">
+        <!-- <div class="block-options">
             <button type="button" id="tambah_unit" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-popin">
                 <i class="fa fa-plus"></i> Add Unit
             </button>
-        </div>
+        </div> -->
     </div>
     <div class="block-content block-content-full">
         <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->

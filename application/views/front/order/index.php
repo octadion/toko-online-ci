@@ -143,7 +143,7 @@
                             </tr>
                             <?php } ?>
                         </table>
-                      <p class="description">Order anda telah di kirim, mohon tunggu barang anda sedang dalam proses pengiriman. Anda dapat pesanan anda dengan mengklik tombol track, saat sudah sampai anda dapat mengklik tombol complete untuk menyelesaikan proses order.</p>
+                      <p class="description">Order anda telah di kirim, mohon tunggu barang anda sedang dalam proses pengiriman. Anda dapat mengecek pesanan anda dengan mengklik tombol track, saat sudah sampai anda dapat mengklik tombol complete untuk menyelesaikan proses order.</p>
                     </div>
                     <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
                     <table class="table">

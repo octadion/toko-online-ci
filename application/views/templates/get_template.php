@@ -162,9 +162,9 @@
                                     @$menu_active == 'revenue'|| @$menu_active == 'sale'  ?'open' : '' ?>">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">Reports</span></a>
                                     <ul>
-                                        <li>
+                                        <!-- <li>
                                         <a href="<?= base_url('admin/revenue'); ?>" class="<?= @$menu_active == 'revenue' ? 'active' : '' ?>">Revenue</a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                         <a href="<?= base_url('admin/sale'); ?>" class="<?= @$menu_active == 'sale' ? 'active' : '' ?>">Sale</a>
                                         </li>

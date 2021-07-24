@@ -6,7 +6,7 @@ class Report_product_model extends CI_Model
 {
     // start datatables
     var $column_order = array(null, 'name','barcode', 'qty','base_total', 'code','stock','created_at',); //set column field database for datatable orderable
-    var $column_search = array('id'); //set column field database for datatable searchable
+    var $column_search = array('name'); //set column field database for datatable searchable
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {

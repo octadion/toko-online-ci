@@ -42,7 +42,7 @@
     <?php } ?>
 </tbody>
 </table>
-<p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+<p class="description">Order anda telah di kirim, mohon tunggu barang anda sedang dalam proses pengiriman. Anda dapat mengecek pesanan anda dengan mengklik tombol track, saat sudah sampai anda dapat mengklik tombol complete untuk menyelesaikan proses order.</p>
 <!-- <div class="col mb-6"> -->
  <div class="row">
     <div class="col-sm-6 col-md-3">
@@ -66,4 +66,5 @@
 </div>
             </div>
 </section>
+<br>
       

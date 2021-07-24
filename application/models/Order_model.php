@@ -6,7 +6,7 @@ class Order_model extends CI_Model
 {
     // start datatables
     var $column_order = array(null, 'id','code','order_date','total_price','customer_firstname','customer_lastname','customer_email','status', 'payment_status', 'created_at'); //set column field database for datatable orderable
-    var $column_search = array('id'); //set column field database for datatable searchable
+    var $column_search = array('customer_firstname'); //set column field database for datatable searchable
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {
@@ -331,4 +331,40 @@ class Order_model extends CI_Model
         $this->db->update('orders',$dataupdate_order, $where);
 
     }
+    function get_data(){
+        $this->db->select("count(id) as total_penjualan, DATE_FORMAT(order_date, '%M, %Y') AS datetime, sum(grand_total) as total");
+        $this->db->group_by('datetime');
+        $result = $this->db->get('orders');
+        if($result->num_rows() > 0){
+            foreach($result->result() as $data){
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
+    }
+    public function grafik(){
+     
+
+        $data = $this->db->select("count(id) as total_penjualan, DATE_FORMAT(order_date, '%M, %Y') AS datetime, sum(grand_total) as total")
+        ->group_by('datetime')
+        ->get_where('orders', [
+            // 'product_id' => $product_id,
+            'orders.deleted_at' => null,
+        
+        ])->result();
+
+    $result = [];
+    foreach ($data as $data) {
+        $result[] = [
+            $total[] = $data->total_penjualan,
+            $tgl[] = $data->datetime,
+           
+        ];
+    }
+
+    $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($result));
+    }
+
 }

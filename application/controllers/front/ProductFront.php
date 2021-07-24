@@ -225,7 +225,7 @@ class ProductFront extends MY_Controller
             'name'    => $this->input->post('name'),
             'weight' => $this->input->post('weight'),
             'barcode' => $this->input->post('barcode'),
-            // 'foto' => $data->thumbnail,
+            'foto' => $this->input->post('foto'),
         );
         $this->cart->insert($data);
         redirect($redirect_page, 'refresh');

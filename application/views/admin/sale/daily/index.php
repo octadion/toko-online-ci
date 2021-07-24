@@ -26,6 +26,7 @@
             <thead>
                 <tr>
                     <th class="text-center" style="width: 5%;">#</th>
+                    <th>Date</th>
                     <th>No. Order</th>
                     <th>Product</th>
                     <th>Price</th>
@@ -42,6 +43,7 @@
              ?>
             <tr>
                     <td style="width: 5%;"><?=$no++?></td>
+                    <td><?=DATE_FORMAT(new DateTime($rpt->order_date), 'd M Y');?></td>
                     <td><?=$rpt->code?></td>
                     <td><?=$rpt->name?></td>
                     <td><?=indo_currency($rpt->base_price)?></td>

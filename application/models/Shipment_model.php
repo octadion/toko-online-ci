@@ -6,11 +6,11 @@ class Shipment_model extends CI_Model
 {
     // start datatables
     var $column_order = array(null, 'id','order_id','name','qty','weight','customer_lastname','status','created_at'); //set column field database for datatable orderable
-    var $column_search = array('id'); //set column field database for datatable searchable
+    var $column_search = array('customer_firstname'); //set column field database for datatable searchable
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {
-        $this->db->select('orders.*, sum(shipments.qty) as total_qty, sum(shipments.weight) as total_weight');
+        $this->db->select('orders.*, sum(shipments.qty) as total_qty, sum(shipments.weight) as total_weight, shipments.order_id');
         $this->db->from('orders');
         $this->db->join('shipments', 'shipments.order_id = orders.id', 'left');
         $this->db->where('orders.deleted_at', null);

@@ -72,6 +72,7 @@
                                 echo form_hidden('id', $data->id);
                                 echo form_hidden('price', $data->price);
                                 echo form_hidden('name', $data->name);
+                                echo form_hidden('foto', $data->thumbnail);
                                 echo form_hidden('weight', $data->weight);
                                 echo form_hidden('barcode', $data->barcode);
                                 echo form_hidden('redirect_page', str_replace('index.php/','',current_url()));
@@ -129,7 +130,7 @@
                                     <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true">Description</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Reviews</a>
+                                    <!-- <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false">Reviews</a> -->
                                 </li>
                             </ul>
                         </div>
@@ -239,3 +240,4 @@
             </div>
         </div>
     </section>
+    <br>

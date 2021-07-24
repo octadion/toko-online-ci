@@ -28,21 +28,21 @@
                             </ol>
                             <div class="carousel-inner shadow-sm rounded">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="<?= base_url(); ?>assets_front/assets/img/slides/slide1.jpg" alt="First slide">
+                                    <img class="d-block w-100" src="<?= base_url(); ?>assets_front/assets/img/slides/slidebaru1.jpg" alt="First slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Mountains, Nature Collection</h5>
+                                        <h5>Healthy, Nature Collection</h5>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="<?= base_url(); ?>assets_front/assets/img/slides/slide2.jpg" alt="Second slide">
+                                    <img class="d-block w-100" src="<?= base_url(); ?>assets_front/assets/img/slides/slidebaru2.jpg" alt="Second slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Freedom, Sea Collection</h5>
+                                        <h5>Easy, Just From Home</h5>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="<?= base_url(); ?>assets_front/assets/img/slides/slide3.jpg" alt="Third slide">
+                                    <img class="d-block w-100" src="<?= base_url(); ?>assets_front/assets/img/slides/slidebaru3.jpg" alt="Third slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Living the Dream, Lost Island</h5>
+                                        <h5>All You Can Buy</h5>
                                     </div>
                                 </div>
                             </div>

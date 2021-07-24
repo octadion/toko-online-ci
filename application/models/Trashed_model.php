@@ -6,7 +6,7 @@ class Trashed_model extends CI_Model
 {
     // start datatables
     var $column_order = array(null, 'id','code','order_date','total_price','customer_firstname','customer_lastname','customer_email','status', 'payment_status', 'created_at'); //set column field database for datatable orderable
-    var $column_search = array('id'); //set column field database for datatable searchable
+    var $column_search = array('customer_firstname'); //set column field database for datatable searchable
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {

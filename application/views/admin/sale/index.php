@@ -20,7 +20,7 @@
 <div class="col-md-4">
 <div class="block block-themed block-rounded block-shadow">
             <div class="block-header block-header-default bg-gd-dusk">
-                <h3 class="block-title">Data</h3>
+                <h3 class="block-title">Daily</h3>
             </div>
             <div class="block-content">
             <?php echo form_open('admin/sale/daily')?>
@@ -122,7 +122,7 @@
 <div class="col-md-4">
 <div class="block block-themed block-rounded block-shadow">
             <div class="block-header block-header-default bg-gd-dusk">
-                <h3 class="block-title">Data</h3>
+                <h3 class="block-title">Yearly</h3>
             </div>
             <div class="block-content">
             <?php echo form_open('admin/sale/yearly')?>

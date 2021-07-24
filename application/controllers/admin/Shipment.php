@@ -308,4 +308,50 @@ class Shipment extends MY_Controller
 		// 	echo "window.location='".site_url('admin/product')."';</script>";
         // }
     }
+    public function track($id){
+        $this->db->select('shipments.*,orders.shipping_courier');
+        $this->db->from('shipments');
+        $this->db->join('orders','orders.id = shipments.order_id','left');
+        $this->db->where('orders.id',$id);
+        // $this->db->order_by('id','desc');
+        $track_number =  $this->db->get()->row()->track_number;
+
+            $this->db->select('shipments.*,orders.shipping_courier');
+        $this->db->from('shipments');
+        $this->db->join('orders','orders.id = shipments.order_id','left');
+        $this->db->where('orders.id',$id);
+        $shipping_courier =  $this->db->get()->row()->shipping_courier;
+                    
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=aece4f99905e06277a892cfa72edac7db854abfed81a4431912c4315c6405a7f&courier='.$shipping_courier.'&awb='.$track_number.'',
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_SSL_VERIFYHOST => 0,
+                CURLOPT_SSL_VERIFYPEER => 0,
+              CURLOPT_ENCODING => '',
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 0,
+              CURLOPT_FOLLOWLOCATION => true,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => 'GET',
+            ));
+            
+            $response = curl_exec($curl);
+            
+            curl_close($curl);
+            // echo $response;
+            $array_response = json_decode($response,true);
+        
+        $data_track = $array_response['data'];
+        $count_ray = count($array_response['data']['history']);
+        $this->_display('admin/shipment/track/track', [
+            'menu_active' => 'shipment',
+            'title' => 'Tracking',
+            'nama' => $this->session->userdata('full_name'),
+            'role' => $this->session->userdata('role'),
+            'hasil' => $data_track,
+            'countnya' => $count_ray,
+            ]);
+    }
 }

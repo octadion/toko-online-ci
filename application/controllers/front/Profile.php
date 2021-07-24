@@ -17,6 +17,13 @@ class Profile extends MY_Controller
         $category = $this->category_model->get_view()->result();
         $id = decode_id($this->session->userdata('id'));
         $order = $this->db->query("SELECT * FROM orders where deleted_at is null and user_id = '$id'")->num_rows();
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.user_id',$id);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_product =  $this->db->get()->num_rows();
         $data = array(
             'category'=> $category,
             // 'berita'=> $this->db->select('*')->from('berita')
@@ -32,14 +39,23 @@ class Profile extends MY_Controller
             ->where('product.deleted_at', null)->where('product.status_post','published')->limit(4)->order_by('product.name','desc')->get()->result(),
            'profile' => $this->db->select('*')->limit(1)->get_where('user',['id' => $id, 'deleted_at' => null])->row(),
            'order'=>$order,
+           'prd' => $total_product,
         );
         $this->template->content_frontend('front/profile/index', $data);
     }
 
     public function edit(){
+       
         $category = $this->category_model->get_view()->result();
         $id = decode_id($this->session->userdata('id'));
         $order = $this->db->query("SELECT * FROM orders where deleted_at is null and user_id = '$id'")->num_rows();
+        $this->db->select('order_items.*, orders.id');
+        $this->db->from('order_items');
+        $this->db->join('orders','orders.id = order_items.order_id','left');
+        $this->db->where('orders.user_id',$id);
+        $this->db->group_by('order_items.product_id');
+        // $this->db->order_by('id','desc');
+        $total_product =  $this->db->get()->num_rows();
         $data = array(
             'category'=> $category,
             // 'berita'=> $this->db->select('*')->from('berita')
@@ -55,6 +71,7 @@ class Profile extends MY_Controller
             ->where('product.deleted_at', null)->where('product.status_post','published')->limit(4)->order_by('product.name','desc')->get()->result(),
            'profile' => $this->db->select('*')->limit(1)->get_where('user',['id' => $id, 'deleted_at' => null])->row(),
            'order'=>$order,
+           'prd' => $total_product,
         );
         $this->template->content_frontend('front/profile/edit/index', $data);
     }
@@ -88,7 +105,10 @@ class Profile extends MY_Controller
             // 'email' => $this->input->post('email'),
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
+            'phone' => $this->input->post('phone'),
+            'email' => $this->input->post('email'),
             'alamat' => $this->input->post('alamat'),
+            
             // 'phone' => $this->input->post('phone')
         ];
         $this->db->where('id', $id);

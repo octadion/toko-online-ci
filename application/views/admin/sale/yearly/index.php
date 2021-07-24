@@ -41,7 +41,7 @@
             <tr>
                     <td style="width: 5%;"><?=$no++?></td>
                     <td><?=$mon->code?></td>
-                    <td><?=$mon->order_date?></td>
+                    <td><?=DATE_FORMAT(new DateTime($mon->order_date), 'd M Y');?></td>
                     <td><?=indo_currency($mon->grand_total)?></td>
             </tr>
             <?php } ?>

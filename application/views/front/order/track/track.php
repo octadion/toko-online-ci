@@ -66,7 +66,7 @@
 
             </tbody>
             </table>
-            <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+            <p class="description">Order anda telah di kirim, mohon tunggu barang anda sedang dalam proses pengiriman. Berikut adalah informasi order, saat sudah sampai anda dapat mengklik tombol complete untuk menyelesaikan proses order.</p>
 
                     </div>
                     </div>
@@ -103,7 +103,7 @@
 
         </tbody>
         </table>
-        <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        <p class="description">Order anda telah di kirim, mohon tunggu barang anda sedang dalam proses pengiriman. Berikut adalah informasi tujuan order, saat sudah sampai anda dapat mengklik tombol complete untuk menyelesaikan proses order.</p>
 
                     </div>
                     </div>
@@ -133,7 +133,7 @@
                                             </li>
                                         <?php } ?>
                                     </ul>
-        <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        <p class="description">Order anda telah di kirim, mohon tunggu barang anda sedang dalam proses pengiriman. Berikut adalah informasi history dari order yang sudah dikirim, saat sudah sampai anda dapat mengklik tombol complete untuk menyelesaikan proses order.</p>
 
                     </div>
                     </div>
@@ -143,4 +143,4 @@
 </div>
             </div>
 </section>
-      
+      <br>

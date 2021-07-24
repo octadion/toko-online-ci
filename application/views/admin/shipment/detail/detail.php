@@ -108,7 +108,7 @@
                                             <th class="text-center">Qty</th>
                                             <th class="text-center">Weight</th>
                                             <th class="text-right">Track Number</th>
-                                            <!-- <th class="text-right">PRICE</th> -->
+                                            <th class="text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -123,6 +123,7 @@
                                             <td class="text-center"><?=$prd->qty?></td>
                                             <td class="text-center font-w600"><?=$prd->weight?></td>
                                             <td class="text-right"><?=$prd->track_number?></td>
+                                            <td class="text-right"> <a href="<?= base_url('admin/shipment/track/'.$prd->order_id.'')?>" class="btn btn-sm btn-primary">Track</a></td>
                                             <!-- <td class="text-right"><?=indo_currency($prd->base_total)?></td> -->
                                         </tr>
                                         <?php }?>

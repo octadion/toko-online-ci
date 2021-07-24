@@ -6,11 +6,11 @@ class Inventory_model extends CI_Model
 {
     // start datatables
     var $column_order = array(null, 'product_id','qty', 'created_at'); //set column field database for datatable orderable
-    var $column_search = array('id'); //set column field database for datatable searchable
+    var $column_search = array('product.name'); //set column field database for datatable searchable
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {
-        $this->db->select('inventories.*, inventories.id as id_inventory, product.barcode, product.name');
+        $this->db->select('inventories.*, inventories.id as id_inventory, product.barcode, product.name, product.id as id_product');
         $this->db->from('inventories');
         $this->db->join('product', 'product.id = inventories.product_id', 'left');
         $this->db->where('product.deleted_at', null);

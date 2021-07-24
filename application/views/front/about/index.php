@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="video_area" id="video">
-                            <iframe width="500" height="320" src="https://www.youtube.com/embed/9YffrCViTVk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="500" height="320" src="https://www.youtube.com/embed/9_I1P8E6K84" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                                     </div>

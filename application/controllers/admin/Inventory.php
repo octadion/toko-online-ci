@@ -32,7 +32,7 @@ class Inventory extends MY_Controller
                 Aksi
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id).'" data-id="'.$item->id.'">
+                <a class="dropdown-item btn-foto" href="'.site_url('admin/product/detail/'.$item->id_product).'" data-id="'.$item->id.'">
                     <i class="fa fa-fw fa-eye mr-5"></i>Detail
                 </a>
                

@@ -1,4 +1,12 @@
-
+<?php
+        foreach($x as $data){
+            $total[] = $data->total_penjualan;
+            $tgl[] = $data->datetime;
+            $jml[] = $data->total;
+            // $tgl[] = (float) $data->stok;
+            // print_r($total);
+        }
+    ?>
 <div class="block block-rounded">
     <div class="block-content" style="background-image: url('<?= base_url(); ?>assets/img/illust/header-dashboard.png'); background-size: cover;">
         <div class="py-20 text-center">
@@ -74,7 +82,7 @@
                             <div class="block">
                                 <div class="block-header">
                                     <h3 class="block-title">
-                                        Sales <small>This week</small>
+                                        Sales <small>This moth</small>
                                     </h3>
                                     <div class="block-options">
                                         <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
@@ -122,7 +130,7 @@
                             <div class="block">
                                 <div class="block-header">
                                     <h3 class="block-title">
-                                        Earnings <small>This week</small>
+                                        Earnings <small>This month</small>
                                     </h3>
                                     <div class="block-options">
                                         <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
@@ -236,3 +244,113 @@
             <!-- END Main Container -->
     <!-- </div> -->
 <!-- </div> -->
+<script>
+
+var BePagesDashboard = function() {
+    // Chart.js Charts, for more examples you can check out http://www.chartjs.org/docs
+    var initDashboardChartJS = function () {
+        // Set Global Chart.js configuration
+        Chart.defaults.global.defaultFontColor              = '#555555';
+        Chart.defaults.scale.gridLines.color                = "transparent";
+        Chart.defaults.scale.gridLines.zeroLineColor        = "transparent";
+        Chart.defaults.scale.display                        = false;
+        Chart.defaults.scale.ticks.beginAtZero              = true;
+        Chart.defaults.global.elements.line.borderWidth     = 2;
+        Chart.defaults.global.elements.point.radius         = 5;
+        Chart.defaults.global.elements.point.hoverRadius    = 7;
+        Chart.defaults.global.tooltips.cornerRadius         = 3;
+        Chart.defaults.global.legend.display                = false;
+
+        // Chart Containers
+        var chartDashboardLinesCon  = jQuery('.js-chartjs-dashboard-lines');
+        var chartDashboardLinesCon2 = jQuery('.js-chartjs-dashboard-lines2');
+
+        // Chart Variables
+        var chartDashboardLines, chartDashboardLines2;
+        // Lines Charts Data
+        var chartDashboardLinesData = {
+            labels: <?=json_encode($tgl)?>,
+            datasets: [
+                {
+                    label: 'This Week',
+                    fill: true,
+                    backgroundColor: 'rgba(66,165,245,.25)',
+                    borderColor: 'rgba(66,165,245,1)',
+                    pointBackgroundColor: 'rgba(66,165,245,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(66,165,245,1)',
+                    data: <?=json_encode($total)?>
+                }
+            ]
+        };
+
+        var chartDashboardLinesOptions = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMax: 20
+                    }
+                }]
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return ' ' + tooltipItems.yLabel + ' Sales';
+                    }
+                }
+            }
+        };
+
+        var chartDashboardLinesData2 = {
+            labels: <?=json_encode($tgl)?>,
+            datasets: [
+                {
+                    label: 'This Week',
+                    fill: true,
+                    backgroundColor: 'rgba(156,204,101,.25)',
+                    borderColor: 'rgba(156,204,101,1)',
+                    pointBackgroundColor: 'rgba(156,204,101,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(156,204,101,1)',
+                    data: <?=json_encode($jml)?>
+                }
+            ]
+        };
+
+        var chartDashboardLinesOptions2 = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMax: 100000
+                    }
+                }]
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItems, data) {
+                        return ' Rp. ' + tooltipItems.yLabel;
+                    }
+                }
+            }
+        };
+
+        // Init Charts
+        if ( chartDashboardLinesCon.length ) {
+            chartDashboardLines  = new Chart(chartDashboardLinesCon, { type: 'line', data: chartDashboardLinesData, options: chartDashboardLinesOptions });
+        }
+
+        if ( chartDashboardLinesCon2.length ) {
+            chartDashboardLines2 = new Chart(chartDashboardLinesCon2, { type: 'line', data: chartDashboardLinesData2, options: chartDashboardLinesOptions2 });
+        }
+    };
+
+    return {
+        init: function () {
+            // Init Chart.js Charts
+            initDashboardChartJS();
+        }
+    };
+}();
+</script>

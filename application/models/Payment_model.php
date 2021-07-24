@@ -6,7 +6,7 @@ class Payment_model extends CI_Model
 {
     // start datatables
     var $column_order = array(null, 'order_id','gross_amount','payment_type','vendor_name','va_number','payment_time','status', 'created_at'); //set column field database for datatable orderable
-    var $column_search = array('order_id'); //set column field database for datatable searchable
+    var $column_search = array('vendor_name'); //set column field database for datatable searchable
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {
