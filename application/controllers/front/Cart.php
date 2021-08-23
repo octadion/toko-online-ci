@@ -26,11 +26,13 @@ class Cart extends MY_Controller
         $update = 0;
         
         // Get cart item info
+        $id = $this->input->get('id');
+        $product = $this->db->query("SELECT * FROM inventories where product_id = '".$id."' ")->row()->qty;
         $rowid = $this->input->get('rowid');
         $qty = $this->input->get('qty');
         
         // Update item in the cart
-        if(!empty($rowid) && !empty($qty)){
+        if($qty < $product){
             $data = array(
                 'rowid' => $rowid,
                 'qty'   => $qty

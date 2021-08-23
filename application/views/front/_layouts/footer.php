@@ -114,6 +114,7 @@
     <link rel="stylesheet"href="<?= base_url() ?>assets/js/plugins/slick/slick.min.css">
  <link rel="stylesheet" href="<?= base_url() ?>assets/js/plugins/slick/slick-theme.min.css">
  <script src="<?= base_url() ?>assets/js/plugins/slick/slick.min.js"></script>
+ 
     <!-- <script src="<?= base_url(); ?>assets_front/assets/js/core/jquery.min.js"></script> -->
     <script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
     <script src="<?= base_url(); ?>assets_front/assets/js/core/popper.min.js"></script>
@@ -122,7 +123,8 @@
     <script src="<?= base_url(); ?>assets_front/assets/js/codebase.js"></script>
     <script src="<?= base_url(); ?>assets/js/codebase.js"></script>
     <script src="<?= base_url(); ?>assets/js/argon-design-system.min.js?v=1.2.2" type="text/javascript"></script>
-
+    <script src="<?= base_url() ?>assets_front/js/bootstrap.min.js"></script>
+ <script src="<?= base_url() ?>assets_front/js/sweetalert2.min.js"></script>
     <!-- Optional plugins -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -252,7 +254,7 @@ $(document).ready(function () {
         $("#ongkir").html("Rp. " + dataongkir);
         var data_total_bayar = parseInt(dataongkir) + parseInt(<?= $this->cart->total()?>);
         $("#total_bayar").html("Rp. " + data_total_bayar);
-
+        console.log(data_total_bayar);
         //etd ongkir
         var shipping_etd = $("option:selected", this).attr('shipping_etd');
         $("input[name=shipping_etd]").val(shipping_etd);
@@ -332,7 +334,41 @@ $('#pay-button').click(function (event) {
       }
     });
   });
-
+  $('#cod-button').click(function (event) {
+    var id = $(this).data('id');
+    var grossamount = $(this).data('total_price');
+    var shipping_cost = $(this).data('shipping_cost');
+    var first_name = $(this).data('first_name');
+    var last_name = $(this).data('last_name');
+    var phone = $(this).data('phone');
+    var email = $(this).data('email');
+    var address = $(this).data('address');
+    var base_url = '<?= base_url(); ?>';
+    
+      $.ajax({
+            type: 'POST',
+            url: base_url + 'front/order/pay_cod',
+            dataType: 'text',
+            data: {
+                grossamount: grossamount,
+                id: id,
+                first_name: first_name,
+                last_name: last_name,
+                phone: phone,
+                email: email,
+                address: address,
+            },
+            success: function(res){
+                // reload_table()
+                // reload_table2()
+                console.log('edit status success');
+                window.location.replace(base_url+'front/order');
+            },
+            error: function(res){
+                console.log('edit status failed');
+            }
+        });
+  });
 </script>
 <script>
 $('#form_akun').on('submit', function(e) { //use on if jQuery 1.7+

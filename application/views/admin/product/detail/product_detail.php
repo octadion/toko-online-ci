@@ -94,7 +94,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <i class="fa fa-fw fa-balance-scale mr-10"></i> <?= $data->qty?>
+                                                    <i class="fa fa-fw fa-archive mr-10"></i> <?= $data->qty?>
                                                 </td>
                                             </tr>
                                             <tr>

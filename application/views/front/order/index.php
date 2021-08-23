@@ -60,13 +60,37 @@
                                   class="text-center"><span class="badge badge-danger">Expire</span>
                                   <?php } else if($value->payment_status == 'settlement'){?>
                                     class="text-center"><span class="badge badge-success">Paid</span>
-                                    <?php }?>
+                                    <?php }else if($value->payment_status == 'deny'){?>
+                                    class="text-center"><span class="badge badge-danger">Denied</span>
+                                    <?php }
+                                    else if($value->payment_status == 'capture'){?>
+                                      class="text-center"><span class="badge badge-success">Capture</span>
+                                      <?php }
+                                       else if($value->payment_status == 'refund'){?>
+                                        class="text-center"><span class="badge badge-warning">refund</span>
+                                        <?php }?>
                                 </td>
                                 <td> <?php if($value->payment_status == 'pending'){?>
                                 <a href="<?= base_url('front/order/pay/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Pay</a></button> 
                                <?php } else if($value->payment_status == 'expire'){?>
                                 <a href="<?= base_url('front/order/del/'.$value->id.'')?>" class="btn btn-sm btn-block btn-danger">Del</a></button> 
-                                <?php }?></td>
+                                <?php }
+                                else if($value->payment_status == 'deny'){?>
+                                  <a href="<?= base_url('front/order/del/'.$value->id.'')?>" class="btn btn-sm btn-block btn-danger">Del</a></button> 
+                                  <?php }
+                                   else if($value->payment_status == 'capture'){?>
+                                    <a href="<?= base_url('front/order/detail_refund/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Detail</a></button> 
+              
+                                    <?php }
+                                     else if($value->payment_status == 'refund'){?>
+                                    <a href="<?= base_url('front/order/del/'.$value->id.'')?>" class="btn btn-sm btn-block btn-danger">Del</a></button> 
+                
+                                      <?php }
+                                      else if($value->payment_status == 'settlement'){?>
+                                        <a href="<?= base_url('front/order/detail_refund/'.$value->id.'')?>" class="btn btn-sm btn-block btn-primary">Detail</a></button> 
+                    
+                                          <?php }?>
+                              </td>
                                
                             </tr>
                             <?php } ?>

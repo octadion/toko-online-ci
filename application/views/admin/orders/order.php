@@ -213,6 +213,88 @@ table{
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal-popin4" tabindex="-1" role="dialog" aria-labelledby="modal-popin" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-popin" role="document">
+        <div class="modal-content">
+        <form id="form_refund" class="js-validation-refund" method="post" enctype="multipart/form-data">
+            <div class="block block-themed block-transparent mb-0">
+                <div class="block-header bg-primary-dark">
+                    <h3 class="title-input-unit block-title">Refund Payment</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                            <i class="si si-close"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content">
+                <div class="form-group row">
+                <label class="col-12" for="unit_judul">Payment Detail</label>
+                </div>
+                <table class="table table-bordered no-margin">
+                    <tbody>
+                        <tr>
+                            <th style="width: 35%">Payment Type</th>
+                            <td><span id="payment_type"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td><span id="total_amount"></span></td>
+                        </tr>
+                        <!-- <tr>
+                            <th>Status</th>
+                            <td><span id="status"></span></td>
+                        </tr> -->
+                        <tr>
+                            <th>Vendor</th>
+                            <td><span id="vendor"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td><span id="status__"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Bank Number</th>
+                            <td><span id="bank_number"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-group row">
+                        <label class="col-12" for="unit_judul">Refund <label class="text-danger">*</label></label>
+                        <div class="col-md-12">
+                        <input type="number" id="amount" name="amount" class="form-control" placeholder="Rp. 0">
+                           <!-- <input type="hidden" id="status" name="status" value=""> -->
+                           <!-- <input type="hidden" id="id" name="id" value=""> -->
+                         
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12" for="unit_judul">Reason <label class="text-danger">*</label></label>
+                        <div class="col-md-12">
+                        <textarea class="form-control" id="reason" name="reason" placeholder="reason"></textarea>
+                           <!-- <input type="hidden" id="status" name="status" value=""> -->
+                           <input type="hidden" id="id2" name="id" value="">
+                         
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                <button id="submit_bank" type="submit" class="btn btn-primary">
+                   Bank Transfer
+                </button>
+                <button id="submit" type="submit" class="btn btn-primary">
+                    Credit Card
+                </button>
+                <button id="submit_3party" type="submit" class="btn btn-primary">
+                    3rd Party
+                </button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 <!-- END Top Modal -->
 <div class="modal fade" id="modal-popin3" tabindex="-1" role="dialog" aria-labelledby="modal-popin" aria-hidden="true">
     <div class="modal-dialog modal-dialog-popin" role="document">

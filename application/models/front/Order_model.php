@@ -18,11 +18,14 @@ class Order_model extends CI_Model
         $this->db->update('orders',$dataupdate_order, $where);
 
     }
+    public function update_refund($data, $where){
+        $this->db->update('orders',$data, $where);
+
+    }
 
     public function unpaid($id = null){
         $this->db->select('*');
         $this->db->from('orders');
-        // $this->db->where('payment_status','unpaid');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->where('id',$id);
         $this->db->where('deleted_at', null);
@@ -36,6 +39,12 @@ class Order_model extends CI_Model
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->where('deleted_at', null);
         $this->db->or_where('status','cancelled');
+        $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
+        $this->db->or_where('status','created_cod');
+        $this->db->where('user_id',decode_id($this->session->userdata('id')));
+        $this->db->where('deleted_at', null);
+        $this->db->or_where('status','cod');
         $this->db->where('user_id',decode_id($this->session->userdata('id')));
         $this->db->where('deleted_at', null);
         $this->db->order_by('id','desc');

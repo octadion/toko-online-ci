@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="<?=base_url('assets/')?>vendors/linericon/style.css">
     <!-- Jquery UI -->
     <link type="text/css" href="<?= base_url(); ?>assets_front/assets/css/jquery-ui.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?= base_url(); ?>assets_front/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?= base_url(); ?>assets_front/assets/css/sweetalert2.min.css">
     <!-- Argon CSS -->
     <link type="text/css" href="<?= base_url(); ?>assets_front/assets/css/argon-design-system.min.css" rel="stylesheet">
 

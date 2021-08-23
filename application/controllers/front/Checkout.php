@@ -22,13 +22,17 @@ class Checkout extends MY_Controller
         // Load the cart view
         $this->template->content_frontend('front/product_front/checkout/index', $data);
     }
-
-    public function order(){
+    public function cod()
+    {
+        $data = array();
         
-        $data = [
-            $customer_name = $this->input->post('name'),
-            $customer_address = $this->input->post('address'),
-            $customer
-        ];
+        // Retrieve cart data from the session
+        $data['cartItems'] = $this->cart->contents();
+        
+        // Load the cart view
+        $this->template->content_frontend('front/product_front/cod/index', $data);
     }
+
+
+    
 }

@@ -54,7 +54,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                <th colspan="5">Grand Total</th>
+                <th colspan="6">Grand Total</th>
                
                 <th><?=indo_currency($grand_total)?></th>
                 </tr>

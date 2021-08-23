@@ -8,7 +8,7 @@ class Shipment extends MY_Controller
         parent::__construct();
         $this->load->model('shipment_model');
         $this->load->model('order_model');
-        // $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
+        // $params = array('server_key' => 'SB-Mid-server-Ibd04nKFjjMh8kNnmH-Nr-m0', 'production' => false);
 		// $this->load->library('veritrans');
 		// $this->veritrans->config($params);
         check_admin();
@@ -315,17 +315,18 @@ class Shipment extends MY_Controller
         $this->db->where('orders.id',$id);
         // $this->db->order_by('id','desc');
         $track_number =  $this->db->get()->row()->track_number;
+        // print_r($track_number);
 
             $this->db->select('shipments.*,orders.shipping_courier');
         $this->db->from('shipments');
         $this->db->join('orders','orders.id = shipments.order_id','left');
         $this->db->where('orders.id',$id);
         $shipping_courier =  $this->db->get()->row()->shipping_courier;
-                    
+        // print_r($shipping_courier);
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=aece4f99905e06277a892cfa72edac7db854abfed81a4431912c4315c6405a7f&courier='.$shipping_courier.'&awb='.$track_number.'',
+              CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=990f26a1b96fd5990db39cca5fb59e43a4da4267d3777163e6e3f5040e894f2e&courier='.$shipping_courier.'&awb='.$track_number.'',
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_SSL_VERIFYHOST => 0,
                 CURLOPT_SSL_VERIFYPEER => 0,

@@ -8,7 +8,7 @@ class Order extends MY_Controller
         parent::__construct();
         $this->load->model('order_model');
         // $this->load->model('front/order_model');
-        $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-Ibd04nKFjjMh8kNnmH-Nr-m0', 'production' => false);
         $this->load->model('payment_model');
 		$this->load->library('veritrans');
         $this->load->model('product_model');
@@ -59,8 +59,11 @@ class Order extends MY_Controller
                 data-code="'.$item->code.'" data-date="'.$item->order_date.'" data-payment="'.$item->payment_status.'"
                 data-full_name="'.$full_name.'" data-email="'.$item->customer_email.'" data-phone="'.$item->customer_phone.'" data-target="#modal-popin">
                     <i class="fa fa-fw fa-remove mr-5"></i>Cancel
+               
+                <a class="dropdown-item change-status_refund2" href="#edit_status_refund" id="'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" data-tot_amount="'.$item->total_price.'"
+                data-payment_type="'.$item->payment_type.'" data-vendor="'.$item->vendor_name.'"data-bank="'.$item->no_rekening.'" data-status="'.$item->payment_status.'" data-toggle="modal"  data-target="#modal-popin4">
+                <i class="fa fa-fw fa-credit-card mr-5"></i>Refund
                 </a>
-              
             </div>
         </div>
                     <button id="del'.encode_id($item->id).'" data-id="'.encode_id($item->id).'" class="swal-confirm-delete btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>';
@@ -226,6 +229,12 @@ class Order extends MY_Controller
         else if($status == 'delivered'){
             return '<span class="badge badge-primary">Delivered</span>';
         }
+        else if($status == 'created_cod'){
+            return '<span class="badge badge-warning">Created</span>';
+        }
+        else if($status == 'cod'){
+            return '<span class="badge badge-warning">COD</span>';
+        }
 
     }
 
@@ -238,6 +247,15 @@ class Order extends MY_Controller
         }
         else if($status == 'expire'){
             return '<span class="badge badge-danger">Expired</span>';
+        }
+        else if($status == 'capture'){
+            return '<span class="badge badge-success">Capture</span>';
+        }
+        else if($status == 'deny'){
+            return '<span class="badge badge-danger">Denied</span>';
+        }
+        else if($status == 'refund'){
+            return '<span class="badge badge-warning">Refund</span>';
         }
     }
 
@@ -312,6 +330,7 @@ class Order extends MY_Controller
         // $check = $this->order_model->check_duplicate_unit_id($post["id"]);
         // if(!$check){
             $data = $this->order_model->del($post["id"]);
+            $data2 = $this->order_model->del_payment($post["id"]);
             $error = $this->db->error();
             if($error['code'] != 0){
                 echo "error";
@@ -355,6 +374,35 @@ class Order extends MY_Controller
         }
 
     }
+    public function refund_bank(){
+        $post = $this->input->post(null, TRUE);
+        $data = $this->order_model->refund_bank($post);
+        $data2 = $this->order_model->refund_bank_payment($post);
+        
+		$error = $this->db->error();
+		if($error['code'] != 0){
+			echo "<script>alert('Status tidak berhasil diubah');</script>";
+		} else {
+			echo "<script>alert('Status berhasil diubah');</script>";
+		}
+        echo $data;
+    }
+    public function refund(){
+        $id = decode_id($this->input->post('id'));
+        $amount = $this->input->post('amount');
+        print_r($id);
+        $params = array(
+            'refund_key' => 'order-ref'.$id.'',
+            'amount' => $amount,
+            'reason' => 'Item out of stock'
+        );
+        if($id){
+            $this->refund_order($id, $params);
+        }else{
+            print_r($id);
+        }
+    }
+    
 
     public function cekstatus(){
         $id = decode_id($this->input->post('id'));
@@ -444,6 +492,35 @@ class Order extends MY_Controller
         $post = $this->input->post(null, TRUE);
         print_r($post);
         $data = $this->order_model->cancel($post);
+        $curl = curl_init();
+
+        $this->db->select('*');
+        $this->db->from('orders');
+        $this->db->where('id',decode_id($post['id']));
+        $number =  $this->db->get()->row()->customer_phone;
+        $message = "Halo kak, mohon maaf atas ketidaknyamanannya, pesanan anda kami cancel dikarenakan terdapat masalah pada barang yang anda pesan, kami akan melakukan refund terhadap uang yang sudah anda bayar. untuk metode pembayaran melalui credit card beserta melalui third party seperti gopay dll kami akan mengirimkanya langsung
+        ke akun anda, untuk metode pembayaran melalui bank transfer dan melalui virtual account, anda dapat mengisi nomor rekening di form refund di website kami di bagian detail order anda, setelah itu kami akan melakukan refund ke rekening anda. diharap segera mengisi agar kami bisa langsung memrosesnya, jika dalam waktu 3 hari belum direfund harap hubungi email berikut: hidrostore@mail.com. Terimakasih";
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://localhost:8000/send-message",
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "number=".$number."&message=".$message."",
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded",
+             
+            ),
+            ));
+    
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+    
+            curl_close($curl);
 		$error = $this->db->error();
 		if($error['code'] != 0){
 			echo "<script>alert('Status tidak berhasil diubah');</script>";
@@ -451,6 +528,74 @@ class Order extends MY_Controller
 			echo "<script>alert('Status berhasil diubah');</script>";
 		}
         echo $data;
+    }
+    public function refund_payment(){
+        $id = decode_id($this->input->post('id'));
+        $amount = $this->input->post('amount');
+        $params = array(
+            'refund_key' => 'order-ref'.$id.'',
+            'amount' => $amount,
+            'reason' => 'Item out of stock'
+        );
+        if($id){
+            $this->refund_order($id, $params);
+        }else{
+            print_r($id);
+        }
+    }
+    public function refund_3party(){
+        $id = decode_id($this->input->post('id'));
+        $amount = $this->input->post('amount');
+        print_r($id);
+        $params = array(
+            'refund_key' => 'order-ref'.$id.'',
+            'amount' => $amount,
+            'reason' => 'Item out of stock'
+        );
+        if($id){
+            $this->refund_direct($id, $params);
+        }else{
+            print_r($id);
+        }
+    }
+    private function refund_order($id, $params){
+        $result = $this->veritrans->refund($id, $params);
+        $dataupdate = [
+            'status' => $result->transaction_status
+        ];
+        $where = [
+            'order_id' => $id
+        ];
+        $update = $this->payment_model->update($dataupdate, $where);
+      
+        $dataupdate_order = [
+            'payment_status' => $result->transaction_status
+        ];
+        $where = [
+            'id' => $id
+        ];
+        $upd_order = $this->order_model->update_pay_order($dataupdate_order, $where);
+
+
+    }
+    private function refund_direct($id, $params){
+        $result = $this->veritrans->refundDirect($id, $params);
+        $dataupdate = [
+            'status' => $result->transaction_status
+        ];
+        $where = [
+            'order_id' => $id
+        ];
+        $update = $this->payment_model->update($dataupdate, $where);
+      
+        $dataupdate_order = [
+            'payment_status' => $result->transaction_status
+        ];
+        $where = [
+            'id' => $id
+        ];
+        $upd_order = $this->order_model->update_pay_order($dataupdate_order, $where);
+
     }
     public function deliver(){
         $post = $this->input->post(null, TRUE);
@@ -618,6 +763,17 @@ class Order extends MY_Controller
                 'total_tabelprd'=>$total_tabelproduct,
                 ]);
         
+    }
+    public function cek_amount(){
+        $amount = $this->input->post('amount', TRUE);
+        $id = decode_id($_POST['id2']);
+        if($this->order_model->cek_totamount($amount, $id)){
+            // return false;
+            echo 'false';
+        } else{
+            // return true;
+            echo 'true';
+        }
     }
     
 }

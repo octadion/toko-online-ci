@@ -10,13 +10,18 @@ class Order_model extends CI_Model
     var $order = array('id' => 'desc'); // default order 
     
     private function _get_datatables_query() {
-        $this->db->select('orders.*, order_items.qty, order_items.product_id, order_items.name, order_items.barcode');
+        $this->db->select('orders.*, order_items.qty, order_items.product_id, order_items.name, order_items.barcode, payments.vendor_name, payments.payment_type');
         $this->db->from('orders');
         $this->db->group_by('order_items.order_id');
         $this->db->join('order_items', 'order_items.order_id = orders.id', 'left');
+        $this->db->join('payments', 'payments.order_id = orders.id', 'left');
         $this->db->where('orders.deleted_at', null);
         $this->db->where('orders.status', 'created');
         $this->db->or_where('orders.status', 'cancelled');
+        $this->db->where('orders.deleted_at', null);
+        $this->db->or_where('orders.status', 'created_cod');
+        $this->db->where('orders.deleted_at', null);
+        $this->db->or_where('orders.status', 'cod');
         $this->db->where('orders.deleted_at', null);
         $i = 0;
         foreach ($this->column_search as $item) { // loop column 
@@ -242,10 +247,47 @@ class Order_model extends CI_Model
         $query = $this->db->get();
         return $query;
     }
-    public function confirm($post){
+    public function refund_bank($post){
         print_r($post);
         $params = [
-            'status' => $post['status'],
+            'payment_status' => 'refund',
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+
+        $this->db->where('id', decode_id($post['id']));
+        $result = $this->db->update('orders', $params);
+
+    
+        return $result;
+    }
+    public function refund_bank_payment($post){
+        print_r($post);
+        $params = [
+            'status' => 'refund',
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+
+        $this->db->where('order_id', decode_id($post['id']));
+        $result = $this->db->update('payments', $params);
+
+    
+        return $result;
+    }
+    public function confirm($post){
+        print_r($post);
+       $this->db->select('status');
+       $this->db->from('orders');
+       $this->db->where('id', decode_id($post['id']));
+       $statusdb = $this->db->get()->row()->status;
+       if($statusdb == 'created'){
+           $status = 'confirmed';
+       } else if($statusdb =='created_cod') {
+           $status = 'completed';
+       } else if($statusdb =='cod'){
+           $status = 'completed';
+       }
+        $params = [
+            'status' => $status,
             'updated_at' => date('Y-m-d H:i:s'),
           'approved_by' => decode_id($this->session->userdata('id')),
           'approved_at' => date('Y-m-d H:i:s'),
@@ -316,6 +358,15 @@ class Order_model extends CI_Model
 		$result = $this->db->update('orders', $params);
         return $result;
     }
+    public function del_payment($id)
+    {
+        $params = [
+            'deleted_at' => date('Y-m-d H:i:s'),
+        ];
+		$this->db->where('order_id', decode_id($id));
+		$result = $this->db->update('payments', $params);
+        return $result;
+    }
 
     public function track_number($post){
         $params = [
@@ -365,6 +416,86 @@ class Order_model extends CI_Model
     $this->output
         ->set_content_type('application/json')
         ->set_output(json_encode($result));
+    }
+
+    public function refund_payment($post){
+        $id = decode_id($post['id']);
+        // $amount = $this->input->post('amount');
+        print_r($id);
+        $params = array(
+            'refund_key' => 'order-ref'.$id.'',
+            'amount' => $post['amount'],
+            'reason' => $post['reason']
+        );
+        if($id){
+            $this->refund_order($id, $params);
+        }else{
+            print_r($id);
+        }
+    }
+    private function refund_order($id, $params){
+        $result = $this->veritrans->refund($id, $params);
+        $dataupdate = [
+            'status' => $result->transaction_status
+        ];
+        $where = [
+            'order_id' => $id
+        ];
+        $update = $this->payment_model->update($dataupdate, $where);
+      
+        $dataupdate_order = [
+            'payment_status' => $result->transaction_status
+        ];
+        $where = [
+            'id' => $id
+        ];
+        $upd_order = $this->order_model->update_pay_order($dataupdate_order, $where);
+
+    }
+    public function cek_totamount($amount, $id){
+        $this->db->from('orders');
+        $this->db->where('id', $id);
+        $this->db->where('total_price <', $amount);
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+            // return $query->row();
+            return true;
+        }else{    
+            // return $query->row();
+            return false;
+        }
+    }
+    // private $orders = 'orders';
+
+    function get_chart_data($start_date, $end_date) {
+        $this->db->select("DATE_FORMAT(order_date, '%M %d %Y') AS datetime, sum(grand_total) as total");
+        $this->db->from("orders");
+        $this->db->where('order_date BETWEEN "'.$start_date. '" and "'.$end_date.'"');
+        $this->db->group_by('datetime');
+        $this->db->order_by('datetime');
+        $results = $this->db->get()->result();
+        // print_r($results);
+        return $results;
+    }
+    function get_chart_data_sold($start_date, $end_date) {
+        $this->db->select("count(id) as total, DATE_FORMAT(order_date, '%M %d %Y') AS datetime");
+        $this->db->from("orders");
+        $this->db->where('order_date BETWEEN "'.$start_date. '" and "'.$end_date.'"');
+        $this->db->group_by('datetime');
+        $this->db->order_by('datetime','asc');
+        $results = $this->db->get()->result();
+        // print_r($results);
+        return $results;
+    }
+    function get_chart_data_laris($start_date, $end_date) {
+        $this->db->select("count(product_id) as total, name AS datetime");
+        $this->db->from("order_items");
+        $this->db->join('orders', 'orders.id = order_items.order_id', 'left');
+        $this->db->where('orders.order_date BETWEEN "'.$start_date. '" and "'.$end_date.'"');
+        $this->db->group_by('datetime');
+        $results = $this->db->get()->result();
+        // print_r($results);
+        return $results;
     }
 
 }

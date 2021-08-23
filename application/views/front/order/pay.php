@@ -51,7 +51,9 @@
 								<br> <?=$value->created_at?>
 								<br> Status: <?=$value->status?>
 								<br> Payment Status: <?=$value->payment_status?>
+                <?php if($value->status=='created'){?>
 								<br> Shipped by: <?=$value->shipping_courier?>
+                <?php } ?>
 							</address>
 						</div>
             <?php }?>
@@ -103,10 +105,12 @@
                            <td><?=$value->grand_total?></td>
                           
                        </tr>
+                       <?php if($value->status=='created'){?>
                        <tr>
                             <th>Shipping Cost:</th>
                            <td><?=$value->shipping_cost?></td>
                        </tr>
+                       <?php } ?>
                        <tr>
                            <th>Grand Total:</th>
                            <td><?=$value->total_price?></td>
@@ -116,6 +120,9 @@
                                 data-first_name="<?=$value->customer_firstname?>" data-last_name="<?=$value->customer_lastname?>" data-phone="<?=$value->customer_phone?>"
                                 data-email="<?=$value->customer_email?>" data-address="<?=$value->customer_address?>"
                                  class="btn btn-md  btn-primary"><i class="fa fa-dollar"></i> Pay</button> 
+                                 <?php if($value->status=='created_cod'){?>
+                                  <a href="<?= base_url('front/order/pay_cod/'.$value->id.'')?>" class="btn btn-md btn-primary"><i class="fa fa-dollar"></i>Cod</a>
+                                 <?php }?>
                                 </td>
                        </table>
                                             <!-- <a href="https://app.sandbox.midtrans.com/snap/v2/vtweb/ceaaed41-df16-41ce-a969-d8f70e611416">Proceed to payment</a> -->

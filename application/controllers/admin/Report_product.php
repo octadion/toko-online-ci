@@ -8,7 +8,7 @@ class Report_product extends MY_Controller
         parent::__construct();
         $this->load->model('report_product_model');
         // $this->load->model('front/order_model');
-        // $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
+        // $params = array('server_key' => 'SB-Mid-server-Ibd04nKFjjMh8kNnmH-Nr-m0', 'production' => false);
 		// $this->load->library('veritrans');
 		// $this->veritrans->config($params);
         check_admin();

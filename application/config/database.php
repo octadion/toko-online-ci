@@ -76,10 +76,10 @@ $query_builder = TRUE;
 if (ENVIRONMENT !== 'production') {
 	$db['default'] = array(
 		'dsn'	=> '',
-		'hostname' => '188.166.208.59',
-		'username' => 'hidrostore',
-		'password' => 'Hidrostore@2021',
-		'database' => 'hidrostore',
+		'hostname' => '127.0.0.1',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'toko_online',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,
@@ -118,3 +118,4 @@ if (ENVIRONMENT !== 'production') {
 		'save_queries' => TRUE
 	);
 }
+

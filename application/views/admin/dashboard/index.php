@@ -289,7 +289,7 @@ var BePagesDashboard = function() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        suggestedMax: 20
+                        suggestedMax: 10
                     }
                 }]
             },

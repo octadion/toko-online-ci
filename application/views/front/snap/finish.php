@@ -53,8 +53,8 @@
                                 <br> VA Number: <?=$finish->bill_key?>
                                 <br> Bill Code: <?=$finish->biller_code?>
                             <?php } else { ?>
-                                <br> Vendor: Alfamart/Indomart
-                                <br> VA Number: <?=$finish->payment_code?>
+                                <br> Vendor: Alfamart/Indomart/Credit Card
+                                <br> VA Number: --
                                 <br> Bill Code: --
 							<?php } ?>
                             </address>
@@ -62,8 +62,10 @@
 						<div class="col-xl-3 col-lg-4">
 							<p class="text-dark mb-2" style="font-weight: normal; font-size:14x; text-transform: uppercase;">Guide</p>
 							<address>
+              <?php if($finish->payment_type == 'bank_transfer'){?>
                 Panduan Pembayaran:
                 <a href=<?php echo $finish->pdf_url;?> target=_blank>Payment Guide</a>
+                <?php } ?>
 							</address>
               
 						</div>

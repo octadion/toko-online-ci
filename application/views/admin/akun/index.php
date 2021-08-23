@@ -238,7 +238,7 @@
                         <div class="col-md-12">
                         <select class="js-select2 form-control" id="role_id" name="role_id">
                             <option value="1">Admin</option>
-                            <option value="2">Karyawan</option>
+                            <option value="3">Karyawan</option>
                         </select>
                         </div>
                     </div>

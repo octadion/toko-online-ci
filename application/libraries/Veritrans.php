@@ -212,5 +212,21 @@ class Veritrans {
         	Veritrans::$serverKey,
         	false);
   	}
+	  public static function refund($id, $params)
+    {
+        return Veritrans::post(
+            Veritrans::getBaseUrl() . '/' . $id . '/refund',
+            Veritrans::$serverKey,
+            $params
+        );
+    }
+	public static function refundDirect($id, $params)
+    {
+        return Veritrans::post(
+            Veritrans::getBaseUrl() . '/' . $id . '/refund/online/direct',
+			Veritrans::$serverKey,
+            $params
+        );
+    }
 
 }

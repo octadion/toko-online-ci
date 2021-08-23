@@ -22,7 +22,7 @@ class Snap extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'SB-Mid-server-lllM3XwrxvDj1C78-55QT6Aq', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-Ibd04nKFjjMh8kNnmH-Nr-m0', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
 		$this->load->helper('url');
@@ -146,6 +146,9 @@ class Snap extends CI_Controller {
 				foreach($result->va_numbers as $row){
 					$vendor_name = $row->bank;
 					$va_number = $row->va_number;
+					// if($va_number == ''){
+					// 	$va_number == '';
+					// }
 					$biller_code = '';
 				}
 			}else{
@@ -158,10 +161,11 @@ class Snap extends CI_Controller {
 				$va_number = $result->bill_key;
 				$biller_code = $result->biller_code;
 		}else{
-			$vendor_name = 'alfamart/indomart';
-			$va_number = $result->payment_code;
+			$vendor_name = 'credit card';
+			$va_number = '';
 			$biller_code = '';
 		}
+		
 		// $gross_amount = str_replace(search:'.00',replace:'',$result->gross_amount);
 		$data_input = [
 			'order_id' => $result->order_id,
@@ -172,7 +176,7 @@ class Snap extends CI_Controller {
 			'biller_code' => $biller_code,
 			'status' => $result->transaction_status,
 			'payment_time' => $result->transaction_time,
-			'pdf_url' => $result->pdf_url
+			// 'pdf_url' => $result->pdf_url
 
 
 		];

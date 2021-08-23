@@ -158,7 +158,7 @@
                                        
                                     </ul>
                                 </li>
-                                <li class="<?= @$menu_active == 'payment' || @$menu_active == 'inventory' || @$menu_active == 'report_product'||
+                                <li class="<?= @$menu_active == 'payment' || @$menu_active == 'inventory' || @$menu_active == 'grafik'||
                                     @$menu_active == 'revenue'|| @$menu_active == 'sale'  ?'open' : '' ?>">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-layers"></i><span class="sidebar-mini-hide">Reports</span></a>
                                     <ul>
@@ -172,7 +172,7 @@
                                         <a href="<?= base_url('admin/payment'); ?>" class="<?= @$menu_active == 'payment' ? 'active' : '' ?>">Payment</a>
                                         </li>
                                         <li>
-                                        <a href="<?= base_url('admin/report_product'); ?>" class="<?= @$menu_active == 'report_product' ? 'active' : '' ?>">Product</a>
+                                        <a href="<?= base_url('admin/grafik'); ?>" class="<?= @$menu_active == 'grafik' ? 'active' : '' ?>">Chart</a>
                                         </li>
                                         <li>
                                         <a href="<?= base_url('admin/inventory'); ?>" class="<?= @$menu_active == 'inventory' ? 'active' : '' ?>">Inventories</a>

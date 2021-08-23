@@ -154,7 +154,7 @@ function delete_row4(id){
 
 var unitValidation = function() {
     var initValidationSignIn = function() {
-        jQuery('.js-validation-unit').validate({
+        jQuery('.js-validation-refund').validate({
             ignore: ".ignoreThisClass",
             errorClass: 'invalid-feedback animated fadeInDown',
             errorElement: 'div',
@@ -172,18 +172,30 @@ var unitValidation = function() {
                 console.log('success');
             },
             rules: {
-                'unit_judul': {
+                'amount': {
                     required: true,
                     remote:{
-                        url: BASE_URL + "admin/unit/unit_validation",
-                        type: "post"
-                    }
+                        url: BASE_URL + "admin/order/cek_amount",
+                        type: "post",
+                        data: {
+                                id2: function() {
+                                return $("#id2").val();
+                            }
+                        }
+                    },
+                   
                 },
+                'reason': {
+                        required: true
+                    },
             },
             messages: {
-                'unit_judul': {
-                    required: 'unit wajib diisi!',
-                    remote: 'unit tidak boleh sama'
+                'amount': {
+                    required: 'jumlah wajib diisi!',
+                    remote: 'jumlah tidak boleh lebih besar'
+                },
+                'reason': {
+                    required: 'alasan wajib diisi!',
                 }
             }
         });
@@ -220,6 +232,99 @@ var unitValidation = function() {
                 },
                 error: function(res){
                     console.log('error');
+                }
+            });
+        }
+    });
+    $('#form_refund').on('click', '#submit', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();
+        console.log('submited');
+        
+        var form = $('#form_refund')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        console.log(Array.from(formData));
+
+        if($("#form_refund").valid() === true){
+            console.log('validation true')
+            jQuery('#modal-popin4').modal('hide');
+            $.ajax({
+                url: BASE_URL + 'admin/order/refund_payment',
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function(res){
+                    console.log('success');
+                    console.log(res);
+                    $('#reason').val('');
+                    $('#amount').val('');
+                    $('#table_order').DataTable().ajax.reload();
+                },
+                error: function(res){
+                    console.log(res);
+                    swal('Gagal', 'terjadi kesalahan', 'error');
+                }
+            });
+        }
+    });
+    $('#form_refund').on('click', '#submit_bank', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();
+        console.log('submited');
+        
+        var form = $('#form_refund')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        console.log(Array.from(formData));
+
+        if($("#form_refund").valid() === true){
+            console.log('validation true')
+            jQuery('#modal-popin4').modal('hide');
+            $.ajax({
+                url: BASE_URL + 'admin/order/refund_bank',
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function(res){
+                    console.log('success');
+                    console.log(res);
+                    $('#reason').val('');
+                    $('#amount').val('');
+                    $('#table_order').DataTable().ajax.reload();
+                },
+                error: function(res){
+                    console.log('error');
+                    swal('Gagal', 'terjadi kesalahan', 'error');
+                }
+            });
+        }
+    });
+    $('#form_refund').on('click', '#submit_3party', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();
+        console.log('submited');
+        
+        var form = $('#form_refund')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        console.log(Array.from(formData));
+
+        if($("#form_refund").valid() === true){
+            console.log('validation true')
+            jQuery('#modal-popin4').modal('hide');
+            $.ajax({
+                url: BASE_URL + 'admin/order/refund_3party',
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                success: function(res){
+                    console.log('success');
+                    console.log(res);
+                    $('#reason').val('');
+                    $('#amount').val('');
+                    $('#table_order').DataTable().ajax.reload();
+                },
+                error: function(res){
+                    console.log('error');
+                    swal('Gagal', 'terjadi kesalahan', 'error');
                 }
             });
         }
@@ -275,6 +380,7 @@ var unitValidation = function() {
                     $('#unit_judul').val('');
                     $('#table_order').DataTable().ajax.reload();
                     $('#table_orderconfirmed').DataTable().ajax.reload();
+                    $('#table_completed').DataTable().ajax.reload();
                 },
                 error: function(res){
                     console.log('error');
@@ -293,7 +399,7 @@ var unitValidation = function() {
         $('#page').val('add');
     });
     $(document).on('click', '.change-status_deliver', function(e) {
-        $('.title-input-unit').text('Edit unit')
+        $('.title-input-unit').text('Deliver')
         $('#form_cancel').find('#unit_judul').rules('remove', 'remote');
         var id = $(this).data('id');
         var user_id = $(this).data('user_id');
@@ -320,7 +426,7 @@ var unitValidation = function() {
     });
 
     $(document).on('click', '.change-status_cancel', function(e) {
-        $('.title-input-unit').text('Edit unit')
+        $('.title-input-unit').text('Cancel Order')
         $('#form_cancel').find('#unit_judul').rules('remove', 'remote');
         var id = $(this).data('id');
         var user_id = $(this).data('user_id');
@@ -344,7 +450,24 @@ var unitValidation = function() {
         console.log(code);
         console.log(date);
     });
-
+    $(document).on('click', '.change-status_refund2', function(e) {
+        $('.title-input-unit').text('Refund Payment')
+        $('#form_refund').find('#unit_judul').rules('remove', 'remote');
+        var id = $(this).data('id');
+        var payment_type = $(this).data('payment_type');
+        var tot_amount = $(this).data('tot_amount');
+        var vendor = $(this).data('vendor');
+        var bank_number = $(this).data('bank');
+        var status = $(this).data('status');
+        $('#id2').val(id);
+        $('#status__').text(status);
+        $('#payment_type').text(payment_type);
+        $('#total_amount').text(tot_amount);
+        $('#vendor').text(vendor);
+        $('#bank_number').text(bank_number);
+        console.log(id);
+        console.log(status);
+    });
     $(document).on('click', '.swal-confirm-delete', function(){
         let id = $(this).data('id');
         console.log(id);
@@ -630,6 +753,29 @@ var unitValidation = function() {
                 reload_table()
                 reload_table2()
                 console.log('edit status success');
+            },
+            error: function(res){
+                console.log('edit status failed');
+            }
+        });
+    });
+    $(document).on('click', '.change-status_refund', function(){
+        id = $(this).data('id');
+        amount = $(this).data('amount');
+        console.log(id);
+        $.ajax({
+            type: 'POST',
+            url: BASE_URL + 'admin/order/refund',
+            dataType: 'text',
+            data: {
+                id: id,
+                amount: amount
+            },
+            success: function(res){
+                reload_table()
+                reload_table2()
+                console.log('edit status success');
+                console.log(res);
             },
             error: function(res){
                 console.log('edit status failed');

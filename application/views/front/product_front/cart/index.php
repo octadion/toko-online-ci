@@ -1,11 +1,17 @@
 <script>
 // Update item quantity
 function updateCartItem(obj, rowid){
-    $.get("<?php echo base_url('front/cart/updateItemQty/'); ?>", {rowid:rowid, qty:obj.value}, function(resp){
+    const id = $(obj).attr("data-id")
+    console.log(id);
+    $.get("<?php echo base_url('front/cart/updateItemQty/'); ?>", {rowid:rowid, qty:obj.value, id:id}, function(resp){
         if(resp == 'ok'){
             location.reload();
         }else{
-            alert('Cart update failed, please try again.');
+            Swal.fire(
+            'Mohon Maaf',
+            'Stock tidak mencukupi',
+            'error'
+            );
         }
     });
 }
@@ -28,7 +34,7 @@ function updateCartItem(obj, rowid){
                 <div class="card-body">
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-<table class="table">
+<table class="table" id="table-cart">
 <thead>
     <tr>
         <th width="10%"></th>
@@ -54,10 +60,10 @@ function updateCartItem(obj, rowid){
         </td>
         <td><?php echo $item["name"]; ?></td>
         <td><?php echo ''.indo_currency($item["price"]).''; ?></td>
-        <td><input type="number" class="form-control text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
+        <td><input type="number" class="form-control text-center" data-id="<?php echo $item["id"]; ?>" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"></td>
        <td class="text-center"><?= $berat?> Gr</td>
         <td class="text-right"><?php echo ''.indo_currency($item["subtotal"]).''; ?></td>
-        <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('front/cart/removeItem/'.$item["rowid"]); ?>':false;"><i class="fa fa-remove"></i> </button> </td>
+        <td class="text-right"><button class="btn btn-sm btn-danger" onclick="window.location.href='<?php echo base_url('front/cart/removeItem/'.$item["rowid"]); ?>'"><i class="fa fa-remove"></i> </button> </td>
     </tr>
     <?php } }else{ ?>
     <tr><td colspan="6"><p>Your cart is empty.....</p></td>
@@ -85,7 +91,12 @@ function updateCartItem(obj, rowid){
     </div>
     <div class="col-sm-6 col-md-3 text-right">
         <?php if($this->cart->total_items()>0){?>
-        <a href="<?= base_url('front/checkout/')?>" class="btn btn-lg btn-block btn-primary">Checkout</a>
+        <a href="<?= base_url('front/checkout/cod')?>" class="btn btn-lg btn-block btn-primary">Checkout (COD)</a>
+        <?php }?>
+    </div>
+    <div class="col-sm-6 col-md-3 text-right">
+        <?php if($this->cart->total_items()>0){?>
+        <a href="<?= base_url('front/checkout/')?>" class="btn btn-lg btn-block btn-primary">Checkout (Online)</a>
         <?php }?>
     </div>
  </div>
