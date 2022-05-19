@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-    <title>Hidroponik Store Phicos - Register</title>
+    <title>Enderest Store - Register</title>
 
     <meta name="description" content="Info Covid Surakarta">
     <meta name="author" content="pixelcave">
@@ -43,7 +43,7 @@
                         <div class="content content-full overflow-hidden">
                             <!-- Header -->
                             <div class="py-30 text-center">
-                                <h1 class="h4 font-w700 mt-30 mb-10">Hidroponik Store Phicos</h1>
+                                <h1 class="h4 font-w700 mt-30 mb-10">Enderest Store</h1>
                             </div>
                             <!-- END Header -->
                             <?= $this->session->flashdata('error_messages'); ?>

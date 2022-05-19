@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-    <title>Toko Hidroponik Phicos<?= @$title ? ' - ' . $title : ''; ?></title>
+    <title>Enderest Store<?= @$title ? ' - ' . $title : ''; ?></title>
 
     <meta name="description" content="Info Covid Surakarta">
     <meta name="author" content="pixelcave">
@@ -80,7 +80,7 @@
                             <!-- Logo -->
                             <div class="content-header-item">
                                 <a class="link-effect font-w700" href="<?= base_url('dashboard'); ?>">
-                                    <span class="font-size-xl text-dual-primary-dark">Hidroponik</span><span class="font-size-xl text-primary"> Store</span>
+                                    <span class="font-size-xl text-dual-primary-dark">Enderest</span><span class="font-size-xl text-primary"> Store</span>
                                 </a>
                             </div>
                             <!-- END Logo -->
@@ -149,12 +149,12 @@
                                         <li>
                                             <a href="<?= base_url('admin/order'); ?>" class="<?= @$menu_active == 'orders' ? 'active' : '' ?>">Orders</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="<?= base_url('admin/trashed'); ?>" class="<?= @$menu_active == 'trashed' ? 'active' : '' ?>">Trashed</a>
-                                        </li>
-                                        <li>
+                                        </li> -->
+                                        <!-- <li>
                                             <a href="<?= base_url('admin/shipment'); ?>" class="<?= @$menu_active == 'shipment' ? 'active' : '' ?>">Shipment</a>
-                                        </li>
+                                        </li> -->
                                        
                                     </ul>
                                 </li>
@@ -168,15 +168,15 @@
                                         <li>
                                         <a href="<?= base_url('admin/sale'); ?>" class="<?= @$menu_active == 'sale' ? 'active' : '' ?>">Sale</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                         <a href="<?= base_url('admin/payment'); ?>" class="<?= @$menu_active == 'payment' ? 'active' : '' ?>">Payment</a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                         <a href="<?= base_url('admin/grafik'); ?>" class="<?= @$menu_active == 'grafik' ? 'active' : '' ?>">Chart</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                         <a href="<?= base_url('admin/inventory'); ?>" class="<?= @$menu_active == 'inventory' ? 'active' : '' ?>">Inventories</a>
-                                        </li>
+                                        </li> -->
                                         
                                     </ul>
                                 </li>
@@ -184,11 +184,11 @@
                                 <li class="<?= @$menu_active == 'profil' || @$menu_active == 'akun'  ? 'open' : '' ?>">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users"></i><span class="sidebar-mini-hide">Account</span></a>
                                     <ul>
-                                        <li>
+                                        <!-- <li>
                                         <?php if($this->session->userdata('role') == 'Administrator'){ ?> 
                                          <a href="<?= base_url('admin/akun'); ?>" class="<?= @$menu_active == 'akun' ? 'active' : '' ?>">Account</a>
                                          <?php } ?>
-                                        </li>
+                                        </li> -->
                                         <li>
                                         <a href="<?= base_url('admin/profil'); ?>" class="<?= @$menu_active == 'profil' ? 'active' : '' ?>">Profile</a>
                                         </li>
@@ -334,7 +334,7 @@
         <footer id="page-footer" class="opacity-0">
             <div class="content py-20 font-size-xs clearfix">
                 <div class="float-right">
-                    <a class="font-w600" href="#" target="_blank">Hidroponik Store Phicos 2.0</a> &copy; <span class="js-year-copy"><?= date('Y'); ?></span>
+                    <a class="font-w600" href="#" target="_blank">Enderest Store 2.0</a> &copy; <span class="js-year-copy"><?= date('Y'); ?></span>
                 </div>
             </div>
         </footer>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Hidroponik Store Phicos - Solusi Sayuran Sehat Anda</title>
+    <title>Enderest Store - Solusi Fashion Anda</title>
 
     <!-- Fonts -->
     <link
@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-6 text-left">
                         <ul class="top-links contact-info">
-                            <li><i class="fa fa-envelope-o"></i> <a href="#">hidroponik.phicos@gmail.com</a></li>
+                            <li><i class="fa fa-envelope-o"></i> <a href="#">enderest.store@gmail.com</a></li>
                             <li><i class="fa fa-whatsapp"></i> +1 5589 55488 55</li>
                         </ul>
                     </div>
@@ -64,7 +64,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-12 col-sm-6">
                         <a class="navbar-brand mr-lg-5" href="<?= base_url(); ?> assets_front/index.html">
-                            <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">HidroStore</span>
+                            <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">Enderest Store</span>
                         </a>
                     </div>
                     <div class="col-lg-7 col-12 col-sm-6">

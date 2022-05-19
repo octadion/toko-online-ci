@@ -78,7 +78,7 @@
           <img src="../../dist/img/credit/paypal2.png" alt="Paypal"> -->
 
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-          Hidroponik Store Phicos melayani pembayaran dengan banyak metode antara lain: kartu kredit/debit, transfer bank, e-Money, dan masih banyak lagi.
+          Enderest Store melayani pembayaran dengan banyak metode antara lain: kartu kredit/debit, transfer bank, e-Money, dan masih banyak lagi.
           Silakan mengisi data diri checkout untuk memproses order anda.
           </p>
         </div>

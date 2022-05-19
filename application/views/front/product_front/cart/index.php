@@ -89,14 +89,14 @@ function updateCartItem(obj, rowid){
     <div class="col-sm-6 col-md-3">
         <a href="<?= base_url('front/productFront/')?>" class="btn btn-lg btn-block btn-light">Continue shopping</a>
     </div>
-    <div class="col-sm-6 col-md-3 text-right">
+    <!-- <div class="col-sm-6 col-md-3 text-right">
         <?php if($this->cart->total_items()>0){?>
         <a href="<?= base_url('front/checkout/cod')?>" class="btn btn-lg btn-block btn-primary">Checkout (COD)</a>
         <?php }?>
-    </div>
+    </div> -->
     <div class="col-sm-6 col-md-3 text-right">
         <?php if($this->cart->total_items()>0){?>
-        <a href="<?= base_url('front/checkout/')?>" class="btn btn-lg btn-block btn-primary">Checkout (Online)</a>
+        <a href="<?= base_url('front/checkout/')?>" class="btn btn-lg btn-block btn-primary">Checkout</a>
         <?php }?>
     </div>
  </div>

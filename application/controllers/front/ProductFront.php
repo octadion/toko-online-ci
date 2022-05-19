@@ -16,7 +16,6 @@ class ProductFront extends MY_Controller
     public function index()
     {
         
-        // $faq = $this->db->("SELECT * FROM faq where status = 'public' ")->get()->num_rows();
        
         $data = array(
             'category' => $this->product_front_model->filter_category('category_name'),

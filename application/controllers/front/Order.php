@@ -313,7 +313,7 @@ class Order extends MY_Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=990f26a1b96fd5990db39cca5fb59e43a4da4267d3777163e6e3f5040e894f2e&courier='.$shipping_courier.'&awb='.$track_number.'',
+              CURLOPT_URL => 'https://api.binderbyte.com/v1/track?api_key=079f7ef284acdf18f6affe5ac4a68954348e4595d750fadbfe486ca504ceb202&courier='.$shipping_courier.'&awb='.$track_number.'',
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_SSL_VERIFYHOST => 0,
                 CURLOPT_SSL_VERIFYPEER => 0,

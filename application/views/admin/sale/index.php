@@ -4,7 +4,7 @@
         <div class="py-20 text-center">
             <h1 class="h3 mb-5"><?= $title; ?></h1>
             <p class="mb-10 text-muted">
-                <em>Hidroponik Store Phicos</em>
+                <em>Enderest Store</em>
             </p>
         </div>
     </div>

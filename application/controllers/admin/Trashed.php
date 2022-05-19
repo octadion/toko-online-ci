@@ -70,6 +70,12 @@ class Trashed extends MY_Controller
         else if($status == 'delivered'){
             return '<span class="badge badge-primary">Delivered</span>';
         }
+        else if($status == 'created_cod'){
+            return '<span class="badge badge-warning">Created</span>';
+        }
+        else if($status == 'cod'){
+            return '<span class="badge badge-warning">COD</span>';
+        }
     }
     function paymentstatus_color($status){
         if($status == 'settlement'){
@@ -80,6 +86,15 @@ class Trashed extends MY_Controller
         }
         else if($status == 'expire'){
             return '<span class="badge badge-danger">Expired</span>';
+        }
+        else if($status == 'capture'){
+            return '<span class="badge badge-success">Capture</span>';
+        }
+        else if($status == 'deny'){
+            return '<span class="badge badge-danger">Denied</span>';
+        }
+        else if($status == 'refund'){
+            return '<span class="badge badge-warning">Refund</span>';
         }
     }
     public function index()

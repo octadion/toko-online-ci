@@ -48,9 +48,9 @@
     <div class="col-sm-6 col-md-3">
         <a href="<?= base_url('front/order')?>" class="btn btn-lg btn-block btn-light">Back</a>
     </div>
-    <div class="col-sm-6 col-md-3">
+    <!-- <div class="col-sm-6 col-md-3">
         <a href="<?= base_url('front/order/track/'.$ship->order_id.'')?>" class="btn btn-lg btn-block btn-light">Track</a>
-    </div>
+    </div> -->
     <div class="col-sm-6 col-md-3 text-right">
       
         <a href="<?= base_url('front/order/complete/'.$ship->order_id.'')?>" class="btn btn-lg btn-block btn-primary">Complete</a>

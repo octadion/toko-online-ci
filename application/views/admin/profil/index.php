@@ -18,7 +18,7 @@
                             </div>
                             <h1 class="h3 text-white font-w700 mb-10" id=""><?= $this->session->userdata('first_name').' '.$this->session->userdata('last_name')?></h1>
                             <h2 class="h5 text-white-op">
-                            <?= $this->session->userdata('role')?> <a class="text-primary-light" href="javascript:void(0)">@HidroponikStore</a>
+                            <?= $this->session->userdata('role')?> <a class="text-primary-light" href="javascript:void(0)">@EnderestStore</a>
                             </h2>
                         </div>
                     </div>

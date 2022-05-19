@@ -6,9 +6,9 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo-footer">
-                                <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">Hidrostore</span>
+                                <i class="fa fa-shopping-bag fa-3x"></i> <span class="logo">ENDEEREST STORE</span>
                             </div>
-                            <p class="text">Hidroponik Store Phicos solusi sayur sehat anda. Membantu anda merencanakan dan mengembangkan kebun sayur anda.</p>
+                            <p class="text">Enderest Store solusi fashion anda. Membantu anda merencanakan dan mengembangkan fashion anda.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456
                                         789</a></span></p>
                         </div>
